@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 05/27/2012 18:36:18
--- Generated from EDMX file: D:\Documents\Visual Studio 2010\Projects\SocialProgramming\WebApplication\Model.edmx
+-- Date Created: 05/27/2012 19:57:04
+-- Generated from EDMX file: D:\Documents\GitHub\SocialProgramming\WebApplication\Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [SocialProgramming];
+USE [db6ddc145b85ea4a27baafa057014bb8cd];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -28,6 +28,15 @@ IF OBJECT_ID(N'[dbo].[FK_CategoryEntry_Entry]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserPage]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pages] DROP CONSTRAINT [FK_UserPage];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EntryKeyword_Entry]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EntryKeyword] DROP CONSTRAINT [FK_EntryKeyword_Entry];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EntryKeyword_Keyword]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EntryKeyword] DROP CONSTRAINT [FK_EntryKeyword_Keyword];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EntryFile]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Files] DROP CONSTRAINT [FK_EntryFile];
 GO
 
 -- --------------------------------------------------
@@ -52,8 +61,17 @@ GO
 IF OBJECT_ID(N'[dbo].[FeedBacks]', 'U') IS NOT NULL
     DROP TABLE [dbo].[FeedBacks];
 GO
+IF OBJECT_ID(N'[dbo].[Keywords]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Keywords];
+GO
+IF OBJECT_ID(N'[dbo].[Files]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Files];
+GO
 IF OBJECT_ID(N'[dbo].[CategoryEntry]', 'U') IS NOT NULL
     DROP TABLE [dbo].[CategoryEntry];
+GO
+IF OBJECT_ID(N'[dbo].[EntryKeyword]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EntryKeyword];
 GO
 
 -- --------------------------------------------------
