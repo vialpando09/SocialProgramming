@@ -89,14 +89,6 @@
                             <h3>@WebApplication.Resources.Common.Keywords</h3>
                             @Html.ValidationSummary(true)
                             <div class="field" style="margin-top: 20px;">
-                                @Html.LabelFor(model => model.huKeywords, "Magyar kulcsszavak")
-                                @Html.TextBoxFor(model => model.huKeywords, new { size = "50" })
-                                @Html.ValidationMessageFor(model => model.huKeywords)
-                            </div>
-                            <div class="field">
-                                @Html.LabelFor(model => model.enKeywords, "English keywords")
-                                @Html.TextBoxFor(model => model.enKeywords, new { size = "50" })
-                                @Html.ValidationMessageFor(model => model.enKeywords)
                             </div>   
                         </text>);
                 tabstrip.Add()
