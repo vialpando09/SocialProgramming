@@ -1,0 +1,13 @@
+﻿@model IEnumerable<NavigationData>
+
+@{ Html.Telerik().TabStrip()
+        .Name("TabStrip")
+        .BindTo(Model,
+                (item, navigationData) =>
+                {
+                    item.Text = navigationData.Text;
+                    item.ImageUrl = navigationData.ImageUrl;
+                    item.Url = navigationData.NavigateUrl;
+                })
+        .Render();
+}

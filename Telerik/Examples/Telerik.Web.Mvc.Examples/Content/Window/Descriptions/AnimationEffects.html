@@ -1,0 +1,32 @@
+﻿<p>
+    This example shows how to configure Telerik Window for ASP.NET MVC to animate when opening and closing. The supported animations are zoom, opacity and expand.
+</p>
+<ul>
+    <li>
+        To configure the expand animation use the <strong>Expand</strong> method.
+    </li>
+    <li>
+        To configure the opacity animation use the <strong>Opacity</strong> method.
+    </li>
+    <li>
+        To configure the zoom animation use the <strong>Zoom</strong> method.
+    </li>
+    <li>
+        To turn off zoom or expand animation you can use the <strong>Toggle</strong> method.
+    </li>
+</ul>
+<pre class="prettyprint">
+&lt;%= Html.Telerik().Window()
+        .Name("Window")
+        .Effects(fx => fx
+            .Zoom()
+            .Opacity()
+            .OpenDuration(200)
+            .CloseDuration(300)
+        )
+        .Content("&lt;p style='text-align: center'&gt;Content&lt;/p&gt;")
+%&gt;
+</pre>
+<p>
+    Use the configurator to experiment with the animation settings.
+</p>

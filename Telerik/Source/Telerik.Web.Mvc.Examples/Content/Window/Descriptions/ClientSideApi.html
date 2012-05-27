@@ -1,0 +1,35 @@
+﻿<p>
+    This example shows how to use the client-side API of Telerik Window for ASP.NET MVC.
+</p>
+<p>
+    To use the client-side API you should first retrieve the window client-side object:
+</p>
+<pre class="prettyprint">
+&lt;script type=&quot;text/javascript&quot;&gt;
+function getWindow(){
+    //"Window" is the value specified by the Name() method.
+    var window = $("#Window").data("tWindow");
+    return window;
+}
+&lt;/script&gt;
+</pre>
+<p>
+    Available client-side methods:
+</p>
+<ul>
+    <li>
+        You can open window with the <strong>open()</strong> method.
+    </li>
+    <li>
+        You can close window with the <strong>close()</strong> method.
+    </li>
+    <li>
+        You can re-load window content with the <strong>refresh()</strong> method.
+    </li>
+    <li>
+        You can maximize window with the <strong>maximize()</strong> method.
+    </li>
+    <li>
+        You can restore window size with the <strong>restore()</strong> method.
+    </li>
+</ul>

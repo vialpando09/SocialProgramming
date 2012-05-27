@@ -1,0 +1,22 @@
+﻿<p>
+    The Telerik Chart for ASP.NET MVC supports multiple axes for displaying diverse sets of data.
+</p>
+<p>
+    Series can be associated to a particular axis by specifying the axis name.
+</p>
+<pre class="prettyprint">
+Html.Telerik().Chart(Model)
+    .Name("chart")
+    .Series(series => {
+        series.Column(new int[] { 20, 40 });
+                
+        series.Line(new double[] { 30, 38 })
+              .Axis("mpg");
+    })
+    .ValueAxis(axis => axis
+        .Numeric().Title("Default")
+    )
+    .ValueAxis(axis => axis
+        .Numeric("mpg")
+    )
+</pre>

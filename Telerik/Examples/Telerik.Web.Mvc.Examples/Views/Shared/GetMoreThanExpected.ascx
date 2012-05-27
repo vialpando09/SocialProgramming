@@ -1,0 +1,17 @@
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
+
+<h2>Get more than expected!</h2>
+
+<p class="theme-agnostic-lead">
+    Take the Telerik Extensions for ASP.NET MVC to your Visual Studio projects to truly experience their power.
+    Download your <a href="http://www.telerik.com/community/license-agreement.aspx?pId=697" onclick="if (typeof _gaq != 'undefined') _gaq.push(['_trackPageview', '/mvc-demo/footer/trial']);" >free copy now</a>
+    and jumpstart your development with the
+    <a href="http://www.telerik.com/products/aspnet-mvc/getting-started.aspx" onclick="if (typeof _gaq != 'undefined') _gaq.push(['_trackPageview', '/mvc-demo/footer/resources']);">available learning resources</a>.
+</p>
+
+<p>
+    The Extensions are offered in both open source and commercial versions the differences between which are well explained in the
+    <a href="http://www.telerik.com/purchase/faqs/aspnet-mvc.aspx" onclick="if (typeof _gaq != 'undefined') _gaq.push(['_trackPageview', '/mvc-demo/footer/licensing-FAQ']);">licensing FAQ</a>.
+</p>
+
+<p>If you have any questions, do not hesitate to contact us at <a href="mailto:sales@telerik.com">sales@telerik.com</a>.</p>

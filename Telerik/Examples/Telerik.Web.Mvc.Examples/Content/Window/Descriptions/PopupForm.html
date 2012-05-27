@@ -1,0 +1,24 @@
+﻿<p>
+    This example shows how to have a window component initially hidden, show it through client script and submit a form within it.
+    Here are the necessary steps in order to achieve this:
+</p>
+
+<ol>
+    <li>In order to suppress the window from showing on page load, use the <code>Visible()</code> method:
+
+<pre class="prettyprint">
+&lt;%= Html.Telerik().Window()
+        .Name("Window")
+        .Visible(<em>false</em>)
+%&gt;
+</pre>
+    </li>
+    <li>To show the window, use its <a href="http://www.telerik.com/help/aspnet-mvc/telerik-ui-components-window-client-api-and-events.html#open">open() client-side method</a>:
+
+<pre class="prettyprint">
+$('#Window').data('tWindow').open();
+</pre>
+    </li>
+
+    <li>The nested form is submitted through a <code>&lt;button type="submit"&gt;</code>.</li>
+</ol>

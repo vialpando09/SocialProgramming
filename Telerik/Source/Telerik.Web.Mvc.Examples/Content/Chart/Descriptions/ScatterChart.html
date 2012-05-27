@@ -1,0 +1,24 @@
+﻿<p>
+    This example shows how to display Scatter series in the Telerik Chart for ASP.NET MVC.
+</p>
+<p>
+    Each point of the scatter chart represents a pair of two (Price and Performance) values.
+</p>
+<p>
+    The axes are configured through the <strong>XAxis</strong> and <strong>YAxis</strong> settings.
+</p>
+<p>
+    Multiple X and Y axes can be specified. Series can be associated to a particular axis by specifying the axis name.
+</p>
+<pre class="prettyprint">
+Html.Telerik().Chart(Model)
+    .Name("chart")
+    .Series(series => {
+        series.Scatter(d => d.RPM, d => d.Power);
+                
+        series.Scatter(d => d.RPM, d => d.Torque)
+              .YAxis("torque");
+    })
+    .YAxis(y => y.Numeric().Title("Power (bhp)"))
+    .YAxis(y => y.Numeric("torque").Title("Torque (lb-ft)"))
+</pre>

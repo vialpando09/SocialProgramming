@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap>
+  <siteMapNode title="Home" controller="Home" action="FirstLook">
+    <siteMapNode title="Overview" controller="Home" action="FirstLook" />
+    <siteMapNode title="Calendar">
+      <siteMapNode controller="Calendar" action="FirstLook" title="First Look" />
+      <siteMapNode controller="Calendar" action="Selectaction" title="Select Action" />
+      <siteMapNode controller="Calendar" action="Globalization" title="Globalization" />
+      <siteMapNode controller="Calendar" action="ClientSideEvents" title="Client-side Events" />
+      <siteMapNode controller="Calendar" action="ClientSideApi" title="Client-side API" />
+      <siteMapNode controller="Calendar" action="Accessibility" title="Accessibility" />
+      <siteMapNode controller="Calendar" action="RtlSupport" title="RTL support" />
+    </siteMapNode>
+    <siteMapNode title="Chart" isNew="true">
+      <siteMapNode controller="Chart" action="FirstLook" title="First Look" />
+      <siteMapNode controller="Chart" action="AreaChart" title="Area chart" isNew="true" />
+	  <siteMapNode controller="Chart" action="MultipleAxes" title="Multiple axes" isNew="true" />
+      <siteMapNode controller="Chart" action="PlotBands" title="Plot Bands" isNew="true" />
+      <siteMapNode controller="Chart" action="PieChart" title="Pie chart" />
+	  <siteMapNode controller="Chart" action="ScatterChart" title="Scatter chart" />
+	  <siteMapNode controller="Chart" action="ScatterLineChart" title="Scatter line chart" />
+	  <siteMapNode controller="Chart" action="AjaxBinding" title="Ajax Binding" />
+      <siteMapNode controller="Chart" action="ClientSideApi" title="Client-side API" />
+      <siteMapNode controller="Chart" action="ClientSideEvents" title="Client-side Events" />
+	  <siteMapNode controller="Chart" action="HighPerformance" title="High Performance" />
+	  <siteMapNode controller="Chart" action="CombinationChart" title="Combination Chart" />
+      <siteMapNode controller="Chart" action="MissingValues" title="Missing Values" />
+	</siteMapNode>
+    <siteMapNode title="ComboBox">
+      <siteMapNode controller="ComboBox" action="FirstLook" title="First Look" />
+      <siteMapNode title="Filtering">
+        <siteMapNode controller="ComboBox" action="FilteringClient" title="Client Filtering" />
+        <siteMapNode controller="ComboBox" action="FilteringServer" title="Server Filtering "/>
+      </siteMapNode>
+      <siteMapNode controller="ComboBox" action="AnimationEffects" title="Animation Effects" />
+      <siteMapNode controller="ComboBox" action="AjaxLoading" title="Load on Demand" />
+      <siteMapNode controller="ComboBox" action="CascadingComboBox" title="Cascading ComboBox" />
+      <siteMapNode controller="ComboBox" action="ServerValidation" title="Server Validation" />
+      <siteMapNode controller="ComboBox" action="ClientValidation" title="Client Validation" />
+      <siteMapNode controller="ComboBox" action="ClientSideApi" title="Client-side API" />
+      <siteMapNode controller="ComboBox" action="ClientSideEvents" title="Client-side Events" />
+      <siteMapNode controller="ComboBox" action="ClientSideBinding" title="Client-side Binding" />
+      <siteMapNode controller="ComboBox" action="Accessibility" title="Accessibility" />
+      <siteMapNode controller="ComboBox" action="RtlSupport" title="RTL support" />
+    </siteMapNode>
+    <siteMapNode title="DatePicker">
+      <siteMapNode controller="DatePicker" action="FirstLook" title="First Look" />
+      <siteMapNode controller="DatePicker" action="DateParsing" title="Date parsing" />
+      <siteMapNode controller="DatePicker" action="EditTemplate" title="Edit Template" />
+      <siteMapNode controller="DatePicker" action="ServerValidation" title="Server Validation" />
+      <siteMapNode controller="DatePicker" action="ClientValidation" title="Client Validation" />
+      <siteMapNode controller="DatePicker" action="Globalization" title="Globalization" />
+      <siteMapNode controller="DatePicker" action="AnimationEffects" title="Animation Effects" />
+      <siteMapNode controller="DatePicker" action="ClientSideEvents" title="Client-side Events" />
+      <siteMapNode controller="DatePicker" action="ClientSideApi" title="Client-side API" />
+      <siteMapNode controller="DatePicker" action="Accessibility" title="Accessibility" />
+      <siteMapNode controller="DatePicker" action="RtlSupport" title="RTL support" />
+    </siteMapNode>
+    <siteMapNode title="Editor">
+      <siteMapNode controller="Editor" action="FirstLook" title="First Look" />
+      <siteMapNode controller="Editor" action="ServerValidation" title="Server Validation" />
+      <siteMapNode controller="Editor" action="ClientValidation" title="Client Validation" />
+      <siteMapNode controller="Editor" action="ClientSideEvents" title="Client-side Events" />
+      <siteMapNode controller="Editor" action="ClientSideApi" title="Client-side API" />
+      <siteMapNode controller="Editor" action="Styles" title="Styles" />
+      <siteMapNode controller="Editor" action="Snippets" title="Snippets" />
+      <siteMapNode controller="Editor" action="ImageTool" title="Image Browser" />
+      <siteMapNode controller="Editor" action="CustomTools" title="Custom Tools" />
+      <siteMapNode controller="Editor" action="Localization" title="Localization" />
+      <siteMapNode controller="Editor" action="KeyboardNavigation" title="Keyboard navigation" isNew="true" />
+      <siteMapNode controller="Editor" action="Accessibility" title="Accessibility" />
+      <siteMapNode controller="Editor" action="RtlSupport" title="RTL support" />
+      <siteMapNode controller="Editor" action="EditorInGrid" title="Editor In Grid" />
+    </siteMapNode>
+    <siteMapNode title="Grid">
+      <siteMapNode controller="Grid" action="FirstLook" title="First Look" />
+      <siteMapNode title="Data Binding">
+        <siteMapNode controller="Grid" action="ServerBinding" title="Server Binding" />
+        <siteMapNode controller="Grid" action="AjaxBinding" title="Ajax Binding" />
+        <siteMapNode controller="Grid" action="WebService" title="Web Service Binding" />
+        <siteMapNode controller="Grid" action="OperationMode" title="Operation Mode" />
+        <siteMapNode controller="Grid" action="CustomBinding" title="Custom Ajax Binding" />
+        <siteMapNode controller="Grid" action="CustomServerBinding" title="Custom Server Binding" />
+        <siteMapNode controller="Grid" action="ExternalServiceTwitter" title="Twitter Binding" />
+        <siteMapNode controller="Grid" action="ExternalServiceFacebook" title="Facebook Binding" />
+      </siteMapNode>
+      <siteMapNode title="Paging">
+        <siteMapNode controller="Grid" action="Paging" title="Paging" />
+        <siteMapNode controller="Grid" action="PageOnScroll" title="Page On Scroll" />
+      </siteMapNode>
+            <siteMapNode controller="Grid" action="Sorting" title="Sorting" />
+            <siteMapNode controller="Grid" action="Filtering" title="Filtering" />
+            <siteMapNode title="Grouping/Aggregates" >
+                <siteMapNode controller="Grid" action="Grouping" title="Grouping" />
+                <siteMapNode controller="Grid" action="AggregatesServerSide" title="Server Aggregates" />
+                <siteMapNode controller="Grid" action="AggregatesAjax" title="Ajax Aggregates" />
+            </siteMapNode>
+            <siteMapNode title="Master/Detail">
+                <siteMapNode controller="Grid" action="HierarchyServerSide" title="Server Hierarchy" />
+                <siteMapNode controller="Grid" action="HierarchyAjax" title="Ajax Hierarchy" />
+                <siteMapNode controller="Grid" action="DetailsServerSide" title="Server Detail Template" />
+                <siteMapNode controller="Grid" action="DetailsAjax" title="Client Detail Template" />
+            </siteMapNode>
+            <siteMapNode title="Editing">
+                <siteMapNode controller="Grid" action="EditingServerSide" title="Server Editing" />
+                <siteMapNode controller="Grid" action="EditingAjax" title="Ajax Editing" />
+                <siteMapNode controller="Grid" action="EditingWebService" title="Web Service Editing" />
+                <siteMapNode controller="Grid" action="EditingBatch" title="Batch Editing" />
+            </siteMapNode>
+            <siteMapNode title="Templates">
+                <siteMapNode controller="Grid" action="TemplatesServerSide" title="Server Templates" />
+                <siteMapNode controller="Grid" action="TemplatesClientSide" title="Client Templates" />
+                <siteMapNode controller="Grid" action="ServerRowTemplate" title="Server Row Template"  />
+                <siteMapNode controller="Grid" action="ClientRowTemplate" title="Client Row Template" />
+                <siteMapNode controller="Grid" action="ServerEditTemplates" title="Server Edit Templates" />
+                <siteMapNode controller="Grid" action="ClientEditTemplates" title="Client Edit Templates" />
+                <siteMapNode controller="Grid" action="CustomToolBar" title="Custom ToolBar Template" />
+                <siteMapNode controller="Grid" action="HeaderFooterTemplates" title="Header &#38; Footer Templates" />
+            </siteMapNode>
+            <siteMapNode title="Selection">
+                <siteMapNode controller="Grid" action="SelectionServerSide" title="Server Selection" />
+                <siteMapNode controller="Grid" action="SelectionClientSide" title="Client Selection" />
+            </siteMapNode>
+            <siteMapNode title="CheckBoxes">
+                <siteMapNode controller="Grid" action="CheckBoxesServerSide" title="Server CheckBoxes" />
+                <siteMapNode controller="Grid" action="CheckBoxesAjax" title="Ajax CheckBoxes" />
+            </siteMapNode>
+            <siteMapNode title="Custom Commands" isNew="true">
+                <siteMapNode controller="Grid" action="CustomCommand" title="Toolbar Command (CSV Export)" />
+                <siteMapNode controller="Grid" action="CustomColumnCommand" title="Column Command" isNew="true"/>
+            </siteMapNode>
+            <siteMapNode controller="Grid" action="ColumnResizing" title="Column Resizing" />
+            <siteMapNode controller="Grid" action="ColumnReordering" title="Column Reordering" />
+            <siteMapNode controller="Grid" action="ColumnSettings" title="Column Settings" />
+            <siteMapNode controller="Grid" action="ColumnContextMenu" title="Column ContextMenu" isNew="true"/>
+            <siteMapNode controller="Grid" action="AutoGenerateColumns" title="Auto Generated Columns" />
+            <siteMapNode controller="Grid" action="ForeignKeyColumn" title="ForeignKey Column" isNew="true"/>
+            <siteMapNode controller="Grid" action="CustomRoute" title="Custom Route" />
+            <siteMapNode controller="Grid" action="Localization" title="Localization" />
+            <siteMapNode controller="Grid" action="CustomFormatting" title="Custom Formatting" />
+            <siteMapNode controller="Grid" action="ClientSideEvents" title="Client-side Events" />
+            <siteMapNode controller="Grid" action="Accessibility" title="Accessibility" />
+            <siteMapNode controller="Grid" action="KeyboardNavigation" title="Keyboard navigation" />
+            <siteMapNode controller="Grid" action="RtlSupport" title="RTL support" />
+        </siteMapNode>
+        <siteMapNode title="Menu">
+            <siteMapNode controller="Menu" action="FirstLook" title="First Look"/>
+            <siteMapNode controller="Menu" action="SitemapBinding" title="SiteMap Binding" />
+            <siteMapNode controller="Menu" action="DataBindingToModel" title="Binding to Model" />
+            <siteMapNode controller="Menu" action="Templates" title="Templates" />
+            <siteMapNode controller="Menu" action="Orientation" title="Orientation" />
+            <siteMapNode controller="Menu" action="AnimationEffects" title="Animation Effects" />
+            <siteMapNode controller="Menu" action="ClientSideEvents" title="Client-side Events" />
+            <siteMapNode controller="Menu" action="ClientSideApi" title="Client-side API" />
+            <siteMapNode controller="Menu" action="Accessibility" title="Accessibility" />
+            <siteMapNode controller="Menu" action="Rtlsupport" title="RTL support" />
+            <siteMapNode controller="Menu" action="Sprites" title="Sprites" />
+        </siteMapNode>
+        <siteMapNode title="NumericTextBox">
+            <siteMapNode controller="NumericTextBox" action="FirstLook" title="First Look" />
+            <siteMapNode controller="NumericTextBox" action="EditTemplate" title="Edit Template" />
+            <siteMapNode controller="NumericTextBox" action="ServerValidation" title="Server Validation" />
+            <siteMapNode controller="NumericTextBox" action="ClientValidation" title="Client Validation" />
+            <siteMapNode controller="NumericTextBox" action="Globalization" title="Globalization" />
+            <siteMapNode controller="NumericTextBox" action="ClientSideEvents" title="Client-side Events" />
+            <siteMapNode controller="NumericTextBox" action="ClientSideApi" title="Client-side API" />
+            <siteMapNode controller="NumericTextBox" action="Accessibility" title="Accessibility" />
+            <siteMapNode controller="NumericTextBox" action="RtlSupport" title="RTL support" />
+        </siteMapNode>
+        <siteMapNode title="PanelBar">
+            <siteMapNode controller="PanelBar" action="FirstLook" title="First Look"/>
+            <siteMapNode controller="PanelBar" action="SitemapBinding" title="SiteMap Binding" />
+            <siteMapNode controller="PanelBar" action="DataBindingToModel" title="Binding to Model" />
+            <siteMapNode controller="PanelBar" action="Templates" title="Templates" />
+            <siteMapNode controller="PanelBar" action="AjaxLoading" title="Load on Demand of Content" />
+            <siteMapNode controller="PanelBar" action="AnimationEffects" title="Animation Effects" />
+            <siteMapNode controller="PanelBar" action="ClientSideEvents" title="Client-side Events" />
+            <siteMapNode controller="PanelBar" action="ClientSideApi" title="Client-side API" />
+            <siteMapNode controller="PanelBar" action="Accessibility" title="Accessibility" />
+            <siteMapNode controller="PanelBar" action="RtlSupport" title="RTL support" />
+            <siteMapNode controller="PanelBar" action="Sprites" title="Sprites" />
+        </siteMapNode>
+        <siteMapNode title="Slider">
+            <siteMapNode controller="Slider" action="FirstLook" title="First Look"/>
+            <siteMapNode controller="Slider" action="ClientSideEvents" title="Client-side Events"/>
+            <siteMapNode controller="Slider" action="ClientSideApi" title="Client-side API"/>
+            <siteMapNode controller="Slider" action="EditTemplate" title="Edit Template"/>  
+            <siteMapNode controller="Slider" action="ColorPicker" title="Color picker"/>
+            <siteMapNode controller="Slider" action="Accessibility" title="Accessibility"/>
+        </siteMapNode>
+        <siteMapNode title="Splitter">
+            <siteMapNode controller="Splitter" action="FirstLook" title="First Look"/>
+            <siteMapNode controller="Splitter" action="Orientation" title="Orientation"/>
+            <siteMapNode controller="Splitter" action="AjaxLoading" title="Load on Demand of Content"/>
+            <siteMapNode controller="Splitter" action="ClientSideEvents" title="Client-side Events"/>
+            <siteMapNode controller="Splitter" action="ClientSideApi" title="Client-side API"/>
+            <siteMapNode controller="Splitter" action="NestingComponents" title="Nesting Components"/>
+            <siteMapNode controller="Splitter" action="Accessibility" title="Accessibility" />
+        </siteMapNode>
+        <siteMapNode title="TabStrip">
+            <siteMapNode controller="TabStrip" action="FirstLook" title="First Look"/>
+            <siteMapNode controller="TabStrip" action="SitemapBinding" title="SiteMap Binding" />
+            <siteMapNode controller="TabStrip" action="DataBindingToModel" title="Binding to Model" />
+            <siteMapNode controller="TabStrip" action="AjaxLoading" title="Load on Demand of Content" />
+            <siteMapNode controller="TabStrip" action="AnimationEffects" title="Animation Effects" />
+            <siteMapNode controller="TabStrip" action="ClientSideEvents" title="Client-side Events" />
+            <siteMapNode controller="TabStrip" action="ClientSideApi" title="Client-side API" />
+            <siteMapNode controller="TabStrip" action="Accessibility" title="Accessibility" />
+            <siteMapNode controller="TabStrip" action="RtlSupport" title="RTL support" />
+            <siteMapNode controller="TabStrip" action="Sprites" title="Sprites" />
+        </siteMapNode>
+        <siteMapNode title="TreeView">
+            <siteMapNode controller="TreeView" action="FirstLook" title="First Look"/>
+            <siteMapNode controller="TreeView" action="DragandDrop" title="Drag &amp; Drop" />
+            <siteMapNode controller="TreeView" action="CheckBoxSupport" title="CheckBox Support" />
+            <siteMapNode controller="TreeView" action="SitemapBinding" title="SiteMap Binding" />
+            <siteMapNode controller="TreeView" action="DataBindingToModel" title="Binding to Model" />
+            <siteMapNode controller="TreeView" action="Templates" title="Templates" />
+            <siteMapNode controller="TreeView" action="AjaxLoading" title="Load on Demand" />
+            <siteMapNode controller="TreeView" action="AnimationEffects" title="Animation Effects"/>
+            <siteMapNode controller="TreeView" action="ClientSideEvents" title="Client-side Events" />
+            <siteMapNode controller="TreeView" action="ClientSideApi" title="Client-side API" />
+            <siteMapNode controller="TreeView" action="ClientSideBinding" title="Client-side Binding" />
+            <siteMapNode controller="TreeView" action="Accessibility" title="Accessibility" />
+            <siteMapNode controller="TreeView" action="RtlSupport" title="RTL support" />
+            <siteMapNode controller="TreeView" action="Sprites" title="Sprites" />
+        </siteMapNode>
+        <siteMapNode title="Window">
+            <siteMapNode controller="Window" action="FirstLook" title="First Look"/>
+            <siteMapNode controller="Window" action="AnimationEffects" title="Animation Effects"/>
+            <siteMapNode controller="Window" action="ClientSideEvents" title="Client-side Events"/>
+            <siteMapNode controller="Window" action="ClientSideApi" title="Client-side API"/>
+            <siteMapNode controller="Window" action="LoadingExternalPage" title="Loading External Page"/>
+            <siteMapNode controller="Window" action="Accessibility" title="Accessibility"/>
+            <siteMapNode controller="Window" action="RtlSupport" title="RTL support"/>
+            <siteMapNode controller="Window" action="PopupForm" title="Form in popup window"/>
+        </siteMapNode>
+		<siteMapNode title="Upload">
+			<siteMapNode controller="Upload" action="FirstLook" title="First Look" />
+			<siteMapNode controller="Upload" action="SyncUpload" title="Synchronous Upload" />
+			<siteMapNode controller="Upload" action="ClientSideEvents" title="Client-side Events" />
+			<siteMapNode controller="Upload" action="ClientSideApi" title="Client-side API" />
+			<siteMapNode controller="Upload" action="RtlSupport" title="RTL Support" />
+		</siteMapNode>
+    </siteMapNode>
+</siteMap>

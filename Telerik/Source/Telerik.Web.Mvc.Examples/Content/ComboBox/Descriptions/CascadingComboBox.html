@@ -1,0 +1,32 @@
+﻿<p>
+    This example shows how to implement related comboboxes using Telerik ComboBox for ASP.NET MVC.
+</p>
+<p>
+    Use the ComboBox CascadeTo() method to set the ID of the related combobox.
+</p>
+<pre class="prettyprint">
+&lt;%= Html.Telerik().ComboBox()
+        .Name("ComboBox1")
+        .CascadeTo("ComboBox2")
+%&gt;
+&lt;%= Html.Telerik().ComboBox()
+        .Name("ComboBox2")
+        .DataBinding(binding => binding.Ajax().Select("_GetItems", "Home"))
+%&gt;
+</pre>
+<p>
+    The second combobox ("ComboBox2") in this case will be disabled. Once you select a value from the first combobox ("ComboBox1") 
+    the second one will be enabled and populated.
+</p>
+<p>
+    If the second combobox uses "load on demand" binding then an Ajax request will be made
+    passing the selected value of the "ComboBox1". Here how the Action method should look like:
+</p>
+<pre class="prettyprint">
+public JsonResult _GetItems(string ComboBox1) 
+{
+    // use the value of the ComboBox1 to filter the data
+
+    //return List<SelecListItem> as JSON
+}
+</pre>
