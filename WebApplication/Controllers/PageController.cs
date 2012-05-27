@@ -32,7 +32,6 @@ namespace WebApplication.Controllers
             Page page = db.Pages.Single(e => e.Id == id);
             page.Published = true;
 
-            db.ObjectStateManager.ChangeObjectState(page, EntityState.Modified);
             db.SaveChanges();
 
             return RedirectToAction("Index");
@@ -47,7 +46,7 @@ namespace WebApplication.Controllers
             Page page = db.Pages.Single(e => e.Id == id);
             page.Published = false;
 
-            db.ObjectStateManager.ChangeObjectState(page, EntityState.Modified);
+            db.Entry(page).State = EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("Index");
@@ -83,7 +82,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Pages.AddObject(page);
+                db.Pages.Add(page);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
@@ -114,7 +113,7 @@ namespace WebApplication.Controllers
             if (ModelState.IsValid)
             {
                 db.Pages.Attach(page);
-                db.ObjectStateManager.ChangeObjectState(page, EntityState.Modified);
+                db.Entry(page).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -140,7 +139,7 @@ namespace WebApplication.Controllers
         public ActionResult DeleteConfirmed(int id)
         {            
             Page page = db.Pages.Single(p => p.Id == id);
-            db.Pages.DeleteObject(page);
+            db.Pages.Remove(page);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -40,10 +40,10 @@ namespace WebApplication.Controllers
             }
             if (ModelState.IsValid)
             {
-                db.Users.AddObject(new User { Username = model.UserName, Password = Common.CalculateMD5Hash(model.Password) });
+                db.Users.Add(new User { Username = model.UserName, Password = Common.CalculateMD5Hash(model.Password) });
 
-                db.Settings.AddObject(new Setting { Key = "Installed", Value = "true" });
-                db.Settings.AddObject(new Setting { Key = "Email", Value = model.Email });
+                db.Settings.Add(new Setting { Key = "Installed", Value = "true" });
+                db.Settings.Add(new Setting { Key = "Email", Value = model.Email });
 
                 db.SaveChanges();
                 return RedirectToAction("Index");

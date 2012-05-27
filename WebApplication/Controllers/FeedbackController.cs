@@ -39,7 +39,7 @@ namespace WebApplication.Controllers
                     return View(model);
                 }
 
-                db.FeedBacks.AddObject(new FeedBack { Checked = false, EmailAddress = model.EmailAddress, Message = model.Message, SendDate = DateTime.Now });
+                db.FeedBacks.Add(new FeedBack { Checked = false, EmailAddress = model.EmailAddress, Message = model.Message, SendDate = DateTime.Now });
                 db.SaveChanges();
 
                 ViewBag.GlobalMessage = Resources.Feedback.Index.Success;
@@ -99,7 +99,7 @@ namespace WebApplication.Controllers
         {
             var element = db.FeedBacks.Single(e => e.Id == id);
 
-            db.DeleteObject(element);
+            db.FeedBacks.Remove(element);
             db.SaveChanges();
 
             ViewBag.GlobalMessage = Resources.Common.Success;

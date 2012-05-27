@@ -49,7 +49,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Categories.AddObject(category);
+                db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
@@ -77,7 +77,7 @@ namespace WebApplication.Controllers
             if (ModelState.IsValid)
             {
                 db.Categories.Attach(category);
-                db.ObjectStateManager.ChangeObjectState(category, EntityState.Modified);
+                db.Entry(category).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -102,7 +102,7 @@ namespace WebApplication.Controllers
         public ActionResult DeleteConfirmed(int id)
         {            
             Category category = db.Categories.Single(c => c.Id == id);
-            db.Categories.DeleteObject(category);
+            db.Categories.Remove(category);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

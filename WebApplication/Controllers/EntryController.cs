@@ -35,7 +35,7 @@ namespace WebApplication.Controllers
             Entry entry = db.Entries.Single(e => e.Id == id);
             entry.Published = true;
 
-            db.ObjectStateManager.ChangeObjectState(entry, EntityState.Modified);
+            db.Entry(entry).State = EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("Index"); 
@@ -50,7 +50,7 @@ namespace WebApplication.Controllers
             Entry entry = db.Entries.Single(e => e.Id == id);
             entry.Published = false;
 
-            db.ObjectStateManager.ChangeObjectState(entry, EntityState.Modified);
+            db.Entry(entry).State = EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("Index"); 
@@ -93,7 +93,7 @@ namespace WebApplication.Controllers
                     Category category = db.Categories.Single(e => e.Id == id);
                     entry.Categories.Add(category);
                 }
-                db.Entries.AddObject(entry);
+                db.Entries.Add(entry);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
@@ -130,8 +130,8 @@ namespace WebApplication.Controllers
                     Category category = db.Categories.Single(e => e.Id == id);
                     entry.Categories.Add(category);
                 }
-                db.Entries.Attach(entry);
-                db.ObjectStateManager.ChangeObjectState(entry, EntityState.Modified);
+                
+                db.Entry(entry).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -156,7 +156,7 @@ namespace WebApplication.Controllers
         public ActionResult DeleteConfirmed(int id)
         {            
             Entry entry = db.Entries.Single(e => e.Id == id);
-            db.Entries.DeleteObject(entry);
+            db.Entries.Remove(entry);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
