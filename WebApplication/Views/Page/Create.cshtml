@@ -1,0 +1,74 @@
+﻿@model WebApplication.Page
+@{
+    ViewBag.Title = WebApplication.Resources.Common.Page + " - " + WebApplication.Resources.Common.Create;
+    ViewBag.PageTitle = WebApplication.Resources.Common.Pages;
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Html.BeginForm("Create", "Page", FormMethod.Post, new { @Class = "form label-inline uniform" }))
+{
+    <div class="content_pad">
+        <h3>@WebApplication.Resources.Common.Create</h3>
+        @{ Html.Telerik().TabStrip()
+            .Name("TabStrip")
+            .Effects(fx =>
+            {
+                fx.Expand();
+                fx.Opacity();
+                fx.OpenDuration(200)
+                .CloseDuration(200);
+            })
+            .Items(tabstrip =>
+            {
+                tabstrip.Add()
+                        .Text(WebApplication.Resources.Common.BasicData)
+                        .Content(@<text>
+            <h3>@WebApplication.Resources.Common.BasicData</h3>
+            @Html.ValidationSummary(true)
+            <div class="field" style="margin-top: 20px;">
+                @Html.LabelFor(model => model.huTitle, "Magyar cím")
+                @Html.TextBoxFor(model => model.huTitle, new { size = "50" })
+                @Html.ValidationMessageFor(model => model.huTitle)
+            </div>
+            <div class="field">
+                @Html.LabelFor(model => model.enTitle, "English title")
+                @Html.TextBoxFor(model => model.enTitle, new { size = "50" })
+                @Html.ValidationMessageFor(model => model.enTitle)
+            </div>
+            </text>)
+                        .Selected(true);
+
+                tabstrip.Add()
+                        .Text("Tartalom")
+                        .Content(@<text>
+            <h3>
+                Tartalom</h3>
+            @Html.ValidationSummary(true)
+            <div class="field" style="margin-top: 20px;">
+                @Html.LabelFor(model => model.huContent, "Magyar Tartalom")
+                @Html.FullTextAreaFor(model => model.huContent)
+                @Html.ValidationMessageFor(model => model.huContent)
+            </div>
+            </text>);
+                tabstrip.Add()
+                        .Text("Content")
+                        .Content(@<text>
+            <h3>
+                Content</h3>
+            @Html.ValidationSummary(true)
+            <div class="field" style="margin-top: 20px;">
+                @Html.LabelFor(model => model.enContent, "English content")
+                @Html.FullTextAreaFor(model => model.enContent)
+                @Html.ValidationMessageFor(model => model.enContent)
+            </div>
+            </text>);
+            })
+            .Render();
+        }
+    </div> 
+    <div class="content_pad">
+        <input type="submit" value="@WebApplication.Resources.Common.Save" />
+        @Html.ActionLinkButton(Url, "Index", "Page", null, WebApplication.Resources.Common.BackToList)
+    </div>
+}

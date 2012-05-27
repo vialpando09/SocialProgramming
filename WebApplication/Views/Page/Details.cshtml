@@ -1,0 +1,61 @@
+﻿@model WebApplication.Page
+@{
+    ViewBag.Title = WebApplication.Resources.Common.Page + " - " + WebApplication.Resources.Common.Details;
+    ViewBag.PageTitle = WebApplication.Resources.Common.Pages;
+}
+@using (Html.BeginForm("Create", "Page", FormMethod.Post, new { @Class = "form label-inline uniform" }))
+{
+    <div class="content_pad">
+        <h3>@WebApplication.Resources.Common.Create</h3>
+        @{ Html.Telerik().TabStrip()
+            .Name("TabStrip")
+            .Effects(fx =>
+            {
+                fx.Expand();
+                fx.Opacity();
+                fx.OpenDuration(200)
+                .CloseDuration(200);
+            })
+            .Items(tabstrip =>
+            {
+                tabstrip.Add()
+                        .Text("Magyar")
+                        .Content(@<text>
+            <div class="field">
+                @Html.LabelFor(model => model.huTitle, "Magyar cím")
+                <div class="content">
+                    @Html.DisplayFor(model => model.huTitle)
+                </div>
+            </div>
+            <div class="field">
+                @Html.LabelFor(model => model.huContent, "Magyar tartalom")
+                <div class="content">
+                    @Html.Raw(HttpUtility.HtmlDecode(Model.huContent))
+                </div>
+            </div>
+            </text>).Selected(true);
+                tabstrip.Add()
+                        .Text("English")
+                        .Content(@<text>
+            <div class="field">
+                @Html.LabelFor(model => model.enTitle, "English title")
+                <span class="content">
+                    @Html.DisplayFor(model => model.enTitle)
+                </span>
+            </div>
+            <div class="field">
+                @Html.LabelFor(model => model.enContent, "English content")
+                <span class="content">
+                    @Html.Raw(HttpUtility.HtmlDecode(Model.enContent))
+                </span>
+            </div>
+            </text>);
+            })
+            .Render();
+        }
+    </div> 
+    <div class="content_pad">
+        @Html.ActionLinkButton(Url, "Delete", "Page", new { id = Model.Id }, WebApplication.Resources.Common.Delete)
+        @Html.ActionLinkButton(Url, "Index", "Page", null, WebApplication.Resources.Common.BackToList)
+    </div>
+}

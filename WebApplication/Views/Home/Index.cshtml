@@ -1,0 +1,16 @@
+﻿@{
+    Layout = null;
+}
+@using MvcGlobalisationSupport;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@WebApplication.Resources.Shared.Error.Heading</title>
+</head>
+<body>
+    @Html.GlobalisedRouteLink(@WebApplication.Resources.Common.OtherLanguageName, @WebApplication.Resources.Common.OtherLanguageKey, ViewContext.RouteData)
+    <h2>
+        @WebApplication.Resources.Shared.Error.Content
+    </h2>
+</body>
+</html>

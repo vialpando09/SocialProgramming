@@ -1,0 +1,39 @@
+﻿@model WebApplication.FeedBack
+
+@{
+    ViewBag.Title = WebApplication.Resources.Common.Feedbacks + " - " + WebApplication.Resources.Common.Delete;
+    ViewBag.PageTitle = WebApplication.Resources.Common.Feedbacks;    
+}
+
+<div class="content_pad">
+    @using (Html.BeginForm("Details", "Category", FormMethod.Post, new { @Class = "form label-inline uniform" }))
+    {
+        <h3>@WebApplication.Resources.Common.Delete</h3>       
+        <h4>@WebApplication.Resources.Common.DeleteConfirm</h4>
+        <div class="field">
+            @Html.LabelFor(model => model.Message, WebApplication.Resources.Admin.Index.EmailAddress)
+            <span class="content">
+                @Html.DisplayFor(model => model.EmailAddress)
+            </span>
+        </div>
+
+        <div class="field">
+            @Html.LabelFor(model => model.Message, WebApplication.Resources.Admin.Index.SendDate)
+            <span class="content">
+                @Html.DisplayFor(model => model.SendDate)
+            </span>
+        </div>
+        
+        <div class="field">
+            @Html.LabelFor(model => model.Message, WebApplication.Resources.Admin.Index.Message)
+            <span class="content">
+                @Html.DisplayFor(model => model.Message)
+            </span>
+        </div>
+
+        <p>
+            <input type="submit" value="@WebApplication.Resources.Common.Delete" />
+            @Html.ActionLinkButton(Url, "Index", "Feedback", null, WebApplication.Resources.Common.BackToList)
+        </p>
+    }
+</div>

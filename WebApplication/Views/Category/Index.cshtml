@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WebApplication.Category>
+@using Telerik.Web.Mvc.UI
+@using WebApplication
+@{
+    ViewBag.Title = WebApplication.Resources.Common.Categories;
+    ViewBag.PageTitle = WebApplication.Resources.Common.Category;
+}
+
+<div class="content_pad">
+<p>
+        <input type="button" onclick="javascript:window.location.href='@Url.Action("Create", "Category")'" value="@WebApplication.Resources.Common.Create" />
+    </p>
+    
+@(Html.Telerik().Grid(Model)
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.huTitle).Title("Magyar cím");
+            columns.Bound(o => o.enTitle).Title("English title");
+            columns.Template(
+                @<text>
+                @Html.ActionLinkButton(Url, "Edit", "Category", new { id = item.Id }, WebApplication.Resources.Common.Edit)
+                @Html.ActionLinkButton(Url, "Delete", "Category", new { id = item.Id }, WebApplication.Resources.Common.Delete)
+                @Html.ActionLinkButton(Url, "Details", "Category", new { id = item.Id }, WebApplication.Resources.Common.Details)
+                </text>
+            ).Title("").Width(300);
+        })
+        .Scrollable(scrolling => scrolling.Enabled(false))
+        .Sortable(sorting => sorting.Enabled(true))
+        .Pageable(paging => paging.Enabled(true))
+        .Footer(true)
+)
+</div>

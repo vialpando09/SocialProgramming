@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = WebApplication.Resources.Install.Index.Title;
+}
+
+<h2>@WebApplication.Resources.Install.Index.Title</h2>
+<p>
+    @WebApplication.Resources.Install.Index.Content -
+    @Html.ActionLink(WebApplication.Resources.Common.Login, "Login", "Admin");
+</p>

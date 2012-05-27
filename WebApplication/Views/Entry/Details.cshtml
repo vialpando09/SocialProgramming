@@ -1,0 +1,139 @@
+﻿@model WebApplication.Entry
+
+@{
+    ViewBag.Title = WebApplication.Resources.Common.Entry + " - " + WebApplication.Resources.Common.Details;
+    ViewBag.PageTitle = WebApplication.Resources.Common.Entries;    
+}
+
+@using (Html.BeginForm("Details", "Category", FormMethod.Post, new { @Class = "form label-inline uniform" }))
+{        
+    <div class="content_pad">
+    <h3>@WebApplication.Resources.Common.Details</h3>
+    
+    @( Html.Telerik().TabStrip()
+        .Name("TabStrip")
+        .Effects(fx => fx.Expand()
+                        .Opacity()
+                        .OpenDuration(200)
+                        .CloseDuration(300)
+        )
+        .Items(tabstrip =>
+        {
+            tabstrip.Add()
+                .Text("Magyar verzió")
+                .Content(@<text>                                
+                    <div class="field">
+                        @Html.LabelFor(model => model.huTitle, "Magyar cím")
+                        <span class="content">
+                        @Html.DisplayFor(model => model.huTitle)
+                        </span>
+                    </div> 
+                            
+                    <div class="field">
+                        @Html.LabelFor(model => model.huIntroduction, "Magyar bevezető")
+                        <span class="content">
+                        @Html.Raw(HttpUtility.HtmlDecode(Model.huIntroduction))
+                        </span>
+                    </div> 
+
+                    <div class="field">
+                        @Html.LabelFor(model => model.huContent, "Magyar tartalom")
+                        <span class="content">
+                        @Html.Raw(HttpUtility.HtmlDecode(Model.huContent))
+                        </span>
+                    </div>
+
+                    <div class="field">
+                        @Html.LabelFor(model => model.huKeywords, "Kulcsszavak")
+                        <span class="content">
+                        @Html.DisplayFor(model => model.huKeywords)
+                        </span>
+                    </div> 
+                </text>)
+                .Selected(true);
+            tabstrip.Add()
+                .Text("English version")
+                .Content(@<text>                                
+                    <div class="field">
+                        @Html.LabelFor(model => model.enTitle, "English Title")
+                        <span class="content">
+                        @Html.DisplayFor(model => model.enTitle)
+                        </span>
+                    </div>
+    
+                    <div class="field">
+                        @Html.LabelFor(model => model.enIntroduction, "English introducion")
+                        <span class="content">
+                        @Html.Raw(HttpUtility.HtmlDecode(Model.enIntroduction))
+                        </span>
+                    </div> 
+    
+                        <div class="field">
+                        @Html.LabelFor(model => model.enContent, "English content")
+                        <span class="content">
+                         @Html.Raw(HttpUtility.HtmlDecode(Model.enContent))
+                        </span>
+                    </div>
+
+                    <div class="field">
+                        @Html.LabelFor(model => model.enKeywords, "Keywords")
+                        <span class="content">
+                        @Html.DisplayFor(model => model.enKeywords)
+                        </span>
+                    </div> 
+                </text>);
+            tabstrip.Add()
+                    .Text(WebApplication.Resources.Common.BasicData)
+                    .Content(@<text>                                
+                    <div class="field">
+                        @Html.LabelFor(model => model.Creator.Username, WebApplication.Resources.Common.CreatedBy)
+                        <span class="content">
+                        @Html.DisplayFor(model => model.Creator.Username)
+                        </span>
+                    </div> 
+      
+                    <div class="field">
+                        @Html.LabelFor(model => model.PublishedDate, WebApplication.Resources.Common.Date)
+                        <span class="content">
+                        @Html.DisplayFor(model => model.PublishedDate)
+                        </span>
+                    </div>
+
+                    <div class="field">
+                        @Html.Label(WebApplication.Resources.Common.Categories)
+                        <span class="content">
+                        @{
+                            if (Model.Categories != null)
+                            {
+                                foreach (var category in Model.Categories)
+                                {
+                                    if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+                                    {
+                                                <text>@category.enTitle </text>
+                                    }
+                                    else
+                                    {
+                                                <text>@category.huTitle </text>           
+                                    }
+                                }
+                            }
+                        }
+                        </span>
+                    </div>
+    
+                    <div class="field">
+                        @Html.LabelFor(model => model.PublishedDate, WebApplication.Resources.Common.Published)
+                        <span class="content">
+                        @Html.DisplayFor(model => model.Published)
+                        </span>
+                    </div>
+                </text>);
+        })
+    )
+    </div>
+    <div class="content_pad">
+        @Html.ActionLinkButton(Url, "Edit", "Entry", new { id = Model.Id }, WebApplication.Resources.Common.Edit)
+        @Html.ActionLinkButton(Url, "Index", "Entry", null, WebApplication.Resources.Common.BackToList)
+    </div>
+}
+

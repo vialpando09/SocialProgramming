@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebApplication.FeedBack>
+@using Telerik.Web.Mvc.UI;
+@using WebApplication
+@{
+    ViewBag.Title = WebApplication.Resources.Common.Feedbacks;
+    var checkedMessages = Model.Where(e => e.Checked);
+    var notCheckedMessages = Model.Where(e => !e.Checked);
+    ViewBag.PageTitle = WebApplication.Resources.Common.Feedbacks;    
+}
+
+<div class="content_pad">    
+<h3>@WebApplication.Resources.Common.NewMessages</h3>
+@(Html.Telerik().Grid(notCheckedMessages)
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.EmailAddress).Title(WebApplication.Resources.Common.EmailAddress).Width(200);
+            columns.Bound(o => o.SendDate).Title(WebApplication.Resources.Common.Date).Width(200);
+            columns.Template(
+                @<text>
+                @Html.ActionLinkButton(Url, "Details", "Feedback", new {id = item.Id}, WebApplication.Resources.Common.Details)
+                @Html.ActionLinkButton(Url, "MarkAsRead", "Feedback", new {id = item.Id}, WebApplication.Resources.Admin.Index.MarkRead)
+                @Html.ActionLinkButton(Url, "Delete", "Feedback", new {id = item.Id}, WebApplication.Resources.Common.Delete)
+                </text>
+            ).Title("").Width(200);
+        })
+        .Scrollable(scrolling => scrolling.Enabled(false))
+        .Sortable(sorting => sorting.Enabled(true))
+        .Pageable(paging => paging.Enabled(true))
+        .Footer(true)
+)
+<h3>@WebApplication.Resources.Common.OldMessages</h3>
+@(Html.Telerik().Grid(checkedMessages)
+        .Name("Grid2")
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.EmailAddress).Title(WebApplication.Resources.Common.EmailAddress).Width(200);
+            columns.Bound(o => o.SendDate).Title(WebApplication.Resources.Common.Date).Width(200);
+            columns.Template(
+                @<text>
+                @Html.ActionLinkButton(Url, "Details", "Feedback", new {id = item.Id}, WebApplication.Resources.Common.Details)
+                @Html.ActionLinkButton(Url, "MarkUnread", "Feedback", new {id = item.Id}, WebApplication.Resources.Admin.Index.MarkUnread)
+                @Html.ActionLinkButton(Url, "Delete", "Feedback", new {id = item.Id}, WebApplication.Resources.Common.Delete)
+                </text>
+            ).Title("").Width(200);
+        })
+        .Scrollable(scrolling => scrolling.Enabled(false))
+        .Sortable(sorting => sorting.Enabled(true))
+        .Pageable(paging => paging.Enabled(true))
+        .Footer(true)
+)
+</div>

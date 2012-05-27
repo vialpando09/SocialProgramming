@@ -1,0 +1,62 @@
+﻿@model WebApplication.Models.AdminModel
+@{
+    ViewBag.Title = WebApplication.Resources.Common.Admin;
+    ViewBag.PageTitle = WebApplication.Resources.Common.Admin;
+    var rssModel = ViewBag.RssFeed as WebApplication.Models.RssModel;
+}
+<div class="content_pad">
+    <div class="square">
+        <div class="inside">
+            <h3>@WebApplication.Resources.Admin.Index.CountOfEntries</h3>
+            <div>@WebApplication.Resources.Admin.Index.text1</div>
+            <h1>@Model.AllEntriesCount</h1>
+            <div>@WebApplication.Resources.Admin.Index.text2</div>
+        </div>
+    </div>
+    <div id="middle-square" class="square @if (Model.NewMessagesCount > 0)
+                                          {<text>red-square</text>}">
+        <div class="inside">
+            <h3>@WebApplication.Resources.Admin.Index.Messages</h3>
+            <div>@WebApplication.Resources.Admin.Index.text5</div>
+            <h1>@Model.NewMessagesCount</h1>
+            <div>@WebApplication.Resources.Admin.Index.text6</div>
+        </div>
+    </div>
+    <div class="square">
+        <div class="inside">
+            <h3>@WebApplication.Resources.Admin.Index.CountOfEntriesInThisMonth</h3>
+            <div>@WebApplication.Resources.Admin.Index.text3</div>
+            <h1>@Model.AllEntriesCountInThisMonth</h1>
+            <div>@WebApplication.Resources.Admin.Index.text4</div>
+        </div>
+    </div>
+    <div class="rssfeeds">
+        @(Html.Telerik().Grid(rssModel.Elements)
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Template
+                (
+                    @<text>
+        <h5>@item.Element("title").Value</h5>
+        @(new HtmlString(item.Element("description").Value))
+        <br />
+        @item.Element("pubDate").Value
+        (
+        @foreach (var element in item.Elements("category"))
+        {
+            <text>@element.Value </text>
+        }
+        )
+        <input type="button" value="@WebApplication.Resources.Common.Details" onclick="javascript:window.location.href='@item.Element("link").Value'" />
+        </text>
+
+                ).Title(rssModel.Title);
+        })
+        .Scrollable(scrolling => scrolling.Enabled(true))
+        .Sortable(sorting => sorting.Enabled(true))
+        .Pageable(paging => paging.Enabled(true))
+        .Footer(true)
+)
+    </div>
+</div>

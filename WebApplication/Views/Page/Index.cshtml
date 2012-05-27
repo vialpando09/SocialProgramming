@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebApplication.Page>
+@using WebApplication
+@using Telerik.Web.Mvc.UI
+@{
+    ViewBag.Title = WebApplication.Resources.Common.Pages;
+    ViewBag.PageTitle = WebApplication.Resources.Common.Pages;
+    var published = Model.Where(m => m.Published);
+    var notPublished = Model.Where(m => !m.Published);
+}
+<div class="content_pad">
+    @Html.ActionLinkButton(Url, "Create", "Page", null, WebApplication.Resources.Common.Create)
+    <h3>@WebApplication.Resources.Common.AlreadyPublished</h3>
+    @(Html.Telerik().Grid(published)
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.huTitle).Title("Magyar cím");
+            columns.Bound(o => o.enTitle).Title("English title");
+            columns.Bound(o => o.Creator.Username).Title(WebApplication.Resources.Common.CreatedBy);
+            columns.Template(
+                @<text>
+    @Html.ActionLinkButton(Url, "Edit", "Page", new { id = item.Id }, WebApplication.Resources.Common.Edit)
+    @Html.ActionLinkButton(Url, "Delete", "Page", new { id = item.Id }, WebApplication.Resources.Common.Delete)
+    @Html.ActionLinkButton(Url, "Details", "Page", new { id = item.Id }, WebApplication.Resources.Common.Details)
+    @Html.ActionLinkButton(Url, "UnPublish", "Page", new { id = item.Id }, WebApplication.Resources.Common.Unpublish)
+    </text>
+            ).Title("").Width(400);
+        })
+        .Scrollable(scrolling => scrolling.Enabled(false))
+        .Sortable(sorting => sorting.Enabled(true))
+        .Pageable(paging => paging.Enabled(true))
+        .Footer(true)
+    )
+    <h3>@WebApplication.Resources.Common.NotPublished</h3>
+    @(Html.Telerik().Grid(notPublished)
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.huTitle).Title("Magyar cím");
+            columns.Bound(o => o.enTitle).Title("English title");
+            columns.Bound(o => o.Creator.Username).Title(WebApplication.Resources.Common.CreatedBy);
+            columns.Template(
+                @<text>
+    @Html.ActionLinkButton(Url, "Edit", "Page", new { id = item.Id }, WebApplication.Resources.Common.Edit)
+    @Html.ActionLinkButton(Url, "Delete", "Page", new { id = item.Id }, WebApplication.Resources.Common.Delete)
+    @Html.ActionLinkButton(Url, "Details", "Page", new { id = item.Id }, WebApplication.Resources.Common.Details)
+    @Html.ActionLinkButton(Url, "Publish", "Page", new { id = item.Id }, WebApplication.Resources.Common.Publish)
+    </text>
+            ).Title("").Width(400);
+        })
+        .Scrollable(scrolling => scrolling.Enabled(false))
+        .Sortable(sorting => sorting.Enabled(true))
+        .Pageable(paging => paging.Enabled(true))
+        .Footer(true)
+    )
+</div>
