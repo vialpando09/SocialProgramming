@@ -1,47 +1,471 @@
-body
+﻿@font-face
 {
-    font-size: .85em;
-    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
-    color: #232323;
-    background-color: #fff;
+    font-family: LeagueGothicRegular;
+    src: url('./themes/main/league_gothic-webfont.woff'); /* IE9+ */
+    font-weight: bold;
 }
 
-header,
-footer,
-nav,
-section {
+ul.navigation-link
+{
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul.navigation-link li
+{
+    display: list-item;
+}
+
+ul.navigation-link li a::before
+{
+    content: '»';
+    font-size: 24px;
+    color: #BCBCBF;
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    top: -2px;
+    left: -1.0em;
+    font-weight: bolder;
+}
+
+ul.navigation-link li a
+{
+    background: white;
+    border-bottom: 1px solid #EFEFF0;
+    width: 290px;
+    margin-left: 7px;
+    line-height: 36px;
+    text-indent: 2.75em;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    font-family: "Helvetica Neue" , Helvetica, Arial, sans-serif;
+    font-size: 1.1em;
+    font-weight: bolder;
+    color: #878D95;    
+    -webkit-transition: color .25s linear;
+    transition: color .25s linear;
+    -webkit-transition: background-color .25s linear;
+    transition: background-color .25s linear;
+}
+
+ul.navigation-link li a:hover
+{
+    background-color: #0099ff;
+    color: White;
+}
+
+#search
+{
+    width: 291px;
+    height: 60px;
+    margin: 5px;
+    background: url('./themes/main/search_bg.png') no-repeat;
+    padding: 0;
+    text-align: left;
+    vertical-align: middle;
+    overflow: hidden;
+    display: block;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #C5C5C5;
+}
+
+#search-div
+{
+    width: 271px;
+    height: 30px;
+    margin: 15px 10px 0 10px;
+    padding: 0;
+    background: white url('./themes/main/search.png') 90% 40% no-repeat;
+    text-align: left;
+    vertical-align: middle;
+    overflow: hidden;
+    display: block;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+#search input
+{
+    margin-left: 10px;
+    margin-top: 4px;
+    width: 200px;
+    height: 20px;
+    border: none;
+    background: white;
+}
+
+html, body
+{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-size: .85em;
+    font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif;
+    color: #232323; /*background: url(./themes/main/background.png) fixed;*/
+    display: block;
+}
+
+/* -------------------------------------------------------------- 
+   Accordion
+-------------------------------------------------------------- */
+h2.accordion_panel
+{
+    background: url(./themes/admin/images/accordion_header.png) no-repeat;
+    width: 251px;
+    height: 36px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 36px;
+    margin: 0 0 0 5px;
+    padding: 0;
+    border: 1px solid #C5C5C5;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background-position: left bottom;
+    border-radius: 4px;
+}
+
+h2.accordion_panel
+{
+    color: #FFF;
+    text-decoration: none;
+    padding: 0 0 0 40px;
+}
+
+h2.active
+{
+    width: 626px;
+    margin: 5px;
+}
+
+h2.link
+{
+    background-position: left top;
+    padding: 0 0 0 40px;
+}
+
+h2.link a
+{
+    color: #222;
+    text-decoration: none;
+}
+
+#modules
+{
+    width: 304px;
+    float: right;
+    margin-bottom: 30px;
+}
+
+#image-bg
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.entry
+{
+    width: 656px;
+    margin: 5px;
+    padding: 5px;
+    background: #ffffff;
+    float: left;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.entry-title
+{
+    width: 656px;
+    line-height: 48px;
+    font-family: LeagueGothicRegular;
+    font-size: 36px;
+}
+
+.entry-info
+{
+    text-transform: capitalize;
+    width: 656px;
+    line-height: 18px;
+    font-family: Tahoma;
+    font-size: 10px;
+    font-style:italic;
+}
+
+.entry-content
+{
+    width: 646px;
+    padding: 5px;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+}
+
+.entry-bottom
+{
+    width: 656px;
+    height: 25px;
+}
+
+#wrapper
+{
+    width: 980px;
+    margin: 0 auto;
+}
+
+#top-menu
+{
+    width: 980px;
+    height: 60px;
+    background: url(./themes/main/top_bg.png) repeat;
+    position: fixed;
+    z-index: 15;
+    display: block;
+    outline: none;
+}
+
+#header
+{
+    width: 100%;
+    height: 200px;
+    position: relative;
+    z-index: 10;
+}
+
+#content_pad
+{
+    width: 980px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: rgba(229,229,229,0.5);
+    height: 100%;
+    display: inline-block;
+    -moz-border-radius: 0 4px 0 0;
+    -webkit-border-radius: 0 4px 0 0;
+    border-radius: 0 4px 0 0;
+}
+
+header, footer, nav, section
+{
+    display: block;
+}
+
+footer
+{
+    background: url(./themes/main/footer.jpg) no-repeat;
+    height: 150px;
+    width: 980px;
+    margin: 0 auto;
+    
+}
+
+/* -------------------------------------------------------------- 
+   Nav
+-------------------------------------------------------------- */
+#nav
+{
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+}
+
+#nav li
+{
+    background: #333 url(./themes/main/el_bg.png) repeat-x 0 0;
+    border: 1px solid #222;
+    border-bottom: none;
+    list-style-type: none;
+    float: left;
+    margin: 0 .2em 0 0;
+    position: relative;
+}
+
+#nav a
+{
+    height: 20px;
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    padding: 8px 15px 8px 15px;
+    position: relative;
+    text-shadow: 1px 1px 4px rgba(0,0,0,.5);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+#nav li.nav_dropdown a
+{
+    background: url(./themes/main/down_arrow.png) no-repeat 90% center;
+    padding-right: 32px;
+}
+
+#nav li.nav_current.nav_dropdown a
+{
+    background-image: url(./themes/main/down_arrow_333333.png);
+}
+
+
+
+#nav .nav_icon a
+{
+    padding-left: 32px;
+}
+#nav .nav_icon_only a
+{
+    background-position: 50% center !important;
+    padding: 8px 0;
+}
+
+#nav a span
+{
+    background-image: url(./themes/main/ui-icons_ffffff_256x240.png) !important;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 9px;
+    left: 8px;
+}
+
+#nav li.nav_current span
+{
+    background-image: url(./themes/main/ui-icons_222222_256x240.png) !important;
+}
+
+
+#nav li:hover
+{
+    background-color: #444;
+}
+#nav li.nav_current
+{
+    background-color: #e6e6e6 !important;
+}
+
+#nav li.nav_current a
+{
+    color: #333;
+    text-shadow: none;
+}
+
+
+
+#nav li:hover .nav_menu
+{
+    display: block;
+}
+
+#nav .nav_menu
+{
+    background: #444;
+    width: 160px;
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    display: none;
+    padding: 8px 8px 5px 8px;
+    border: 1px solid #222;
+    border-top: none;
+}
+
+#nav .nav_menu *
+{
+    background: none;
+    border: none !important;
+    float: none !important;
+    margin: 0 !important;
+}
+
+#nav .nav_menu li
+{
+    background: #eee !important;
+    margin-bottom: .5em !important;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#nav .nav_menu li:hover
+{
+    background-color: #CCC !important;
+}
+
+#nav .nav_menu a
+{
+    background-image: none !important;
+    color: #333 !important;
+    text-shadow: none !important;
+    padding: 7px 10px !important;
+}
+#nav .nav_menu .nav_sub
+{
+    background-image: url(./themes/admin/images/down_arrow_333333.png) !important;
+}
+
+
+/* #nav li:hover { z-index: 10000 !important; } */
+
+#nav .nav_menu li > ul
+{
+    background: #444;
+    width: 160px;
+    padding: 8px;
+    position: absolute;
+    right: 100%;
+    top: 0;
+    display: none;
+}
+
+#nav .nav_menu li:hover > ul
+{
     display: block;
 }
 
 /* Styles for basic forms
 -----------------------------------------------------------*/
 
-fieldset 
+fieldset
 {
-    border:1px solid #ddd;
-    padding:0 1.4em 1.4em 1.4em;
-    margin:0 0 1.5em 0;
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
 }
 
-legend 
+legend
 {
-    font-size:1.2em;
+    font-size: 1.2em;
     font-weight: bold;
 }
 
-textarea 
+textarea
 {
     min-height: 75px;
 }
 
-.editor-label 
+.editor-label
 {
     margin: 1em 0 0 0;
 }
 
-.editor-field 
+.editor-field
 {
-    margin:0.5em 0 0 0;
+    margin: 0.5em 0 0 0;
 }
 
 

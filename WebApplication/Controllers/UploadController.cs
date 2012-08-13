@@ -7,11 +7,11 @@ using System.IO;
 
 namespace WebApplication.Controllers
 {
-    public class UploadController : Controller
+    public class UploadController : BaseController
     {
-        //        // GET: /Upload/
-
-
+        //        
+        // GET: /Upload/
+        
         [LoginAuthorize]
         public ActionResult Save(IEnumerable<HttpPostedFileBase> attachments)
         {

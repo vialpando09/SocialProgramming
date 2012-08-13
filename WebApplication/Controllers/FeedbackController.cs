@@ -6,12 +6,10 @@ using CaptchaSupport;
 
 namespace WebApplication.Controllers
 {
-    public class FeedbackController : Controller, IDisposable
+    public class FeedbackController : BaseController
     {
         //
         // GET: /Feedback/
-
-        private readonly ModelContainer db = new ModelContainer();
 
         [LoginAuthorize]
         public ActionResult Index()
@@ -111,12 +109,6 @@ namespace WebApplication.Controllers
         public CaptchaImageResult ShowCaptchaImage()
         {
             return new CaptchaImageResult();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-            db.Dispose();
         }
     }
 }

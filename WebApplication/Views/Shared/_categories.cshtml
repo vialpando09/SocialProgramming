@@ -1,0 +1,22 @@
+﻿<div class="accordion_container" style="min-height: 38px;">
+    <h2 class="accordion_panel">@WebApplication.Resources.Common.Categories</h2>
+</div>
+<div style="width: 291px; height: 2px;"></div>
+
+<ul class="navigation-link">
+@foreach (var item in (IEnumerable<Category>)ViewBag.Categories)
+{
+        <li><a class="navigation-link" href="/Category/">
+            @if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+            {
+                <text><a class="navigation-link" href="en/Category/@item.Id/@item.enTitle.Urlable()">@item.enTitle</a></text>
+            }
+            else
+            {
+                <text><a class="navigation-link" href="/Category/@item.Id/@item.huTitle.Urlable()">@item.huTitle</a></text>
+            }
+        </a></li>
+
+}
+</ul>
+<div style="width: 291px; height: 2px;"></div>

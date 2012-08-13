@@ -74,6 +74,8 @@
     </Compile>
     <Compile Include="Common.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ArchiveController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Controllers\ImageBrowserController.cs" />
     <Compile Include="Controllers\InstallController.cs" />
     <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Entry.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -187,6 +190,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Login.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Modules\Titles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Titles.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Modules\Titles.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Titles.en.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Shared\Error.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -358,12 +371,26 @@
     <Content Include="Content\Telerik\treeview-line.png" />
     <Content Include="Content\Telerik\treeview-nodes-rtl.png" />
     <Content Include="Content\Telerik\treeview-nodes.png" />
+    <Content Include="Content\themes\admin\images\accordion_header.png" />
     <Content Include="Content\themes\admin\images\down_arrow.png" />
     <Content Include="Content\themes\admin\images\down_arrow_333333.png" />
     <Content Include="Content\themes\admin\images\code.gif" />
     <Content Include="Content\themes\admin\images\ui-icons_222222_256x240.png" />
     <Content Include="Content\themes\admin\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui-1.8.12.custom.css" />
+    <Content Include="Content\themes\main\accordion_header.png" />
+    <Content Include="Content\themes\main\background.png" />
+    <Content Include="Content\themes\main\bg.jpg" />
+    <Content Include="Content\themes\main\code.gif" />
+    <Content Include="Content\themes\main\down_arrow.png" />
+    <Content Include="Content\themes\main\down_arrow_333333.png" />
+    <Content Include="Content\themes\main\el_bg.png" />
+    <Content Include="Content\themes\main\footer.jpg" />
+    <Content Include="Content\themes\main\search_bg.png" />
+    <Content Include="Content\themes\main\top_bg.png" />
+    <Content Include="Content\themes\main\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\main\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\main\search.png" />
     <Content Include="Content\Transparent\active.png" />
     <Content Include="Content\Transparent\editor.png" />
     <Content Include="Content\Transparent\gradient.png" />
@@ -412,6 +439,11 @@
     <Content Include="Content\Windows7\slider-v.gif" />
     <Content Include="Content\Windows7\sprite-vertical.png" />
     <Content Include="Content\Windows7\sprite.png" />
+    <Content Include="Scripts\dashboard.js" />
+    <Content Include="Scripts\jquery-1.5.2.min.js" />
+    <Content Include="Scripts\jquery.tagcanvas.js" />
+    <Content Include="Scripts\jquery.visualize.js" />
+    <Content Include="Scripts\widgets.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.12.custom.min.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -830,6 +862,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Login.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Modules\Titles.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Titles.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Modules\Titles.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Titles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Shared\Error.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Error.en.Designer.cs</LastGenOutput>
@@ -846,9 +886,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>_Layout.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CaptchaSupport\CaptchaSupport.csproj">
@@ -955,6 +992,7 @@
     <Content Include="Views\Upload\_Content.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\themes\main\league_gothic-webfont.woff" />
     <None Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
@@ -963,10 +1001,22 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Modules.cshtml" />
+    <Content Include="Views\Shared\_search.cshtml" />
+    <Content Include="Views\Shared\_moduleTemplate.cshtml" />
+    <Content Include="Views\Shared\_tagcloud.cshtml" />
+    <Content Include="Views\Shared\_categories.cshtml" />
+    <Content Include="Views\Shared\_archive.cshtml" />
+    <Content Include="Views\Shared\_entriesList.cshtml" />
+    <Content Include="Views\Home\Entry.cshtml" />
+    <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Home\Tag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,10 +9,8 @@ using WebApplication;
 
 namespace WebApplication.Controllers
 { 
-    public class PageController : Controller
+    public class PageController : BaseController
     {
-        private ModelContainer db = new ModelContainer();
-
         //
         // GET: /Page/
 
@@ -82,12 +80,12 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                page.UserId = int.Parse((string)Session["UserId"]);
                 db.Pages.Add(page);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
 
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Username", page.UserId);
             return View(page);
         }
         
@@ -98,7 +96,6 @@ namespace WebApplication.Controllers
         public ActionResult Edit(int id)
         {
             Page page = db.Pages.Single(p => p.Id == id);
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Username", page.UserId);
             return View(page);
         }
 
@@ -112,12 +109,12 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                page.UserId = int.Parse((string)Session["UserId"]);
                 db.Pages.Attach(page);
                 db.Entry(page).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Username", page.UserId);
             return View(page);
         }
 

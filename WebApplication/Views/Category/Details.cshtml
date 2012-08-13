@@ -4,28 +4,36 @@
     ViewBag.Title = WebApplication.Resources.Common.Category + " - " + WebApplication.Resources.Common.Details;
     ViewBag.PageTitle = WebApplication.Resources.Common.Category;
 }
-
+@section AdditionScriptsEnd{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.5.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.visualize.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/widgets.js")"></script>
+}
+@section AdditionalOnready{
+jQuery('.accordion_container').accordion();
+}
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 <div class="content_pad">
-        <h3>@WebApplication.Resources.Common.Details</h3>
-        @using (Html.BeginForm("Details", "Category", FormMethod.Post, new { @Class = "form label-inline uniform" }))
-        {
-            @Html.ValidationSummary(true)
-            <div class="field">
-                @Html.LabelFor(model => model.huTitle, "Magyar cím")
-                <span class="content">
-                @Html.DisplayFor(model => model.huTitle)
-                </span>
+    <h3>@WebApplication.Resources.Common.Details</h3>
+    @using (Html.BeginForm("Details", "Category", FormMethod.Post, new { @Class = "form label-inline uniform" }))
+    {
+        <div class="accordion_container" style="min-height: 429px;">
+            <h2 class="accordion_panel active">
+                <a href="#">@WebApplication.Resources.Common.BasicData</a></h2>
+            <div class="accordion_content" style="display: block;">
+                @Html.ValidationSummary(true)
+                <div class="field" style="margin-top: 20px;">
+                    @Html.LabelFor(model => model.huTitle, "Magyar cím")
+                    @Html.DisplayFor(model => model.huTitle)
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.enTitle, "English title")
+                    @Html.DisplayFor(model => model.enTitle)
+                </div>
             </div>
-
-            <div class="field">
-                @Html.LabelFor(model => model.enTitle, "English title")
-                <span class="content">
-                @Html.DisplayFor(model => model.enTitle)
-                </span>
-            </div>
-        }
+        </div>
+    }
 </div>
 <div class="content_pad" style="top: 40px;">
     @Html.ActionLinkButton(Url, "Index", "Category", null, WebApplication.Resources.Common.BackToList)

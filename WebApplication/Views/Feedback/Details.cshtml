@@ -3,32 +3,42 @@
     ViewBag.Title = WebApplication.Resources.Common.Feedbacks + " - " + WebApplication.Resources.Common.Details;
     ViewBag.PageTitle = WebApplication.Resources.Common.Feedbacks;    
 }
+@section AdditionScriptsEnd{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.5.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.visualize.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/widgets.js")"></script>
+}
+@section AdditionalOnready{
+jQuery('.accordion_container').accordion();
+}
 <div class="content_pad">
     @using (Html.BeginForm("Details", "Category", FormMethod.Post, new { @Class = "form label-inline uniform" }))
     {
         <h3>@WebApplication.Resources.Common.Details</h3>       
-
-        <div class="field">
-            @Html.LabelFor(model => model.Message, WebApplication.Resources.Admin.Index.EmailAddress)
-            <span class="content">
-                @Html.DisplayFor(model => model.EmailAddress)
-            </span>
+        <div class="accordion_container" style="min-height: 429px;">
+            <h2 class="accordion_panel active">
+                <a href="#">Magyar verzió</a></h2>
+            <div class="accordion_content" style="display: block;">
+                <div class="field">
+                    @Html.LabelFor(model => model.Message, WebApplication.Resources.Admin.Index.EmailAddress)
+                    <span class="content">
+                        @Html.DisplayFor(model => model.EmailAddress)
+                    </span>
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.Message, WebApplication.Resources.Admin.Index.SendDate)
+                    <span class="content">
+                        @Html.DisplayFor(model => model.SendDate)
+                    </span>
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.Message, WebApplication.Resources.Admin.Index.Message)
+                    <span class="content">
+                        @Html.Raw(HttpUtility.HtmlDecode(Model.Message))
+                    </span>
+                </div>
+            </div>
         </div>
-
-        <div class="field">
-            @Html.LabelFor(model => model.Message, WebApplication.Resources.Admin.Index.SendDate)
-            <span class="content">
-                @Html.DisplayFor(model => model.SendDate)
-            </span>
-        </div>
-        
-        <div class="field">
-            @Html.LabelFor(model => model.Message, WebApplication.Resources.Admin.Index.Message)
-            <span class="content">
-                @Html.Raw(HttpUtility.HtmlDecode(Model.Message))
-            </span>
-        </div>
-
         <p>
             @Html.ActionLinkButton(Url, "Delete", "Feedback", new { id = Model.Id }, WebApplication.Resources.Common.Delete)
             @Html.ActionLinkButton(Url, "Index", "Feedback", null, WebApplication.Resources.Common.BackToList)

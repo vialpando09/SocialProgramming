@@ -20,8 +20,8 @@ namespace WebApplication
 
             return new HtmlString(
                 html.Telerik().Editor()
-                    .Name("Editor")
-                    .Value(content)
+                    .Name(data.PropertyName)
+                    .Value(HttpUtility.HtmlDecode(content))
                     .Tools(tools => tools.Clear()
                         .FormatBlock()
                         .FontName()

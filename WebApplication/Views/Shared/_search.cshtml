@@ -1,0 +1,10 @@
+﻿<div id="search" title="Type and hit enter">
+    <div id="search-div">
+        @using(Html.BeginForm("Search", "Home", FormMethod.Get))
+        {
+            <input id="filter" name="filter" onblur="if (this.value == &quot;&quot;) {this.value = &quot;Search&quot;;}"
+                onfocus="if (this.value == &quot;Search&quot;) {this.value = &quot;&quot;;}"
+                type="text" value="Search" />
+        }
+    </div>
+</div>

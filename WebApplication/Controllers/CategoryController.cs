@@ -9,10 +9,9 @@ using WebApplication;
 
 namespace WebApplication.Controllers
 { 
-    public class CategoryController : Controller
+    public class CategoryController : BaseController
     {
-        private ModelContainer db = new ModelContainer();
-
+        
         //
         // GET: /Category/
         [LoginAuthorize]

@@ -7,6 +7,7 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using System.Security.Policy;
+using WebApplication.Controllers;
 
 namespace WebApplication
 {
@@ -16,6 +17,12 @@ namespace WebApplication
         {
             string result = "<input type=\"button\" onclick=\"javascript:window.location.href='" + url.Action(action, controller, routeValues) + "'\" value=\""+ value +"\" />";
             return new MvcHtmlString(result);   
+        }
+
+        public static MvcHtmlString ActionLinkButton(this HtmlHelper helper, string url, string value)
+        {
+            string result = "<input type=\"button\" onclick=\"javascript:window.location.href='" + url + "'\" value=\"" + value + "\" />";
+            return new MvcHtmlString(result);
         }
     }
 
@@ -58,6 +65,19 @@ namespace WebApplication
         }
     }
 
+    public class BasicAction : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            base.OnActionExecuting(filterContext);
+            ModelContainer db = ((BaseController)filterContext.Controller).Db;
+            dynamic viewBag = filterContext.Controller.ViewBag;
+            viewBag.Tags = db.Keywords;
+            viewBag.Categories = db.Categories;
+            viewBag.Archive = db.Entries.Where(e => e.Published).Select(e => e.PublishedDate);        
+        }
+    }
+
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public sealed class EmailAddressAttribute : DataTypeAttribute, IClientValidatable
     {
@@ -96,6 +116,27 @@ namespace WebApplication
 
     public static class Common
     {
+        public static string Urlable(this string text)
+        {
+            text = text.ToLower();
+            text = text.Replace('ö', 'o');
+            text = text.Replace('ő', 'o');
+            text = text.Replace('ó', 'o');
+            text = text.Replace('ü', 'u');
+            text = text.Replace('ú', 'u');
+            text = text.Replace('ű', 'u');
+            text = text.Replace('í', 'i');
+            text = text.Replace('á', 'a');
+            text = text.Replace('é', 'e');
+            text = text.Replace(' ', '_');
+            text = text.Replace('#', '_');
+            text = text.Replace('$', '_');
+            text = text.Replace('.', '_');
+            text = text.Replace('&', '_');
+
+            return text;
+        }
+
         public static string CalculateMD5Hash(string input)
         {
             if (input == null)

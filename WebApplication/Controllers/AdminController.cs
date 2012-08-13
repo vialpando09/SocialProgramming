@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace WebApplication.Controllers
 {
-    public class AdminController : Controller, IDisposable
+    public class AdminController : BaseController
     {
         private static RssModel GetRssFeed(string BlogUrl)
         {
@@ -26,8 +26,7 @@ namespace WebApplication.Controllers
 
         //
         // GET: /Admin/
-        private readonly ModelContainer db = new ModelContainer();
-
+        
         [LoginAuthorize]
         public ViewResult Index()
         {
@@ -41,6 +40,7 @@ namespace WebApplication.Controllers
             return View(model);
         }
 
+        [BasicAction]
         public ActionResult Login()
         {
             if (string.IsNullOrEmpty((string)Session["UserId"]))

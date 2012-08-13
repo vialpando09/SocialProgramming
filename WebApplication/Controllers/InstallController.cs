@@ -7,12 +7,10 @@ using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    public class InstallController : Controller
+    public class InstallController : BaseController
     {
         //
         // GET: /Install/
-
-        private readonly ModelContainer db = new ModelContainer();
 
         public ActionResult Index()
         {

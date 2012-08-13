@@ -1,0 +1,19 @@
+﻿@model IEnumerable<WebApplication.Entry>
+@if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+{
+    ViewBag.Title = ((Category)ViewBag.Category).enTitle;
+    <div class="accordion_container" style="min-height: 38px;">
+        <h2 class="accordion_panel active">
+            @(((Category)ViewBag.Category).enTitle)</h2>
+    </div>
+}
+else
+{
+    ViewBag.Title = ((Category)ViewBag.Category).huTitle;
+    <div class="accordion_container" style="min-height: 38px;">
+        <h2 class="accordion_panel active">
+            @(((Category)ViewBag.Category).huTitle)</h2>
+    </div> 
+}
+
+@Html.Partial("_entriesList", Model)

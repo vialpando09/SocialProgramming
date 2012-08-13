@@ -3,149 +3,179 @@
     ViewBag.Title = WebApplication.Resources.Common.Entry + " - " + WebApplication.Resources.Common.Create;
     ViewBag.PageTitle = WebApplication.Resources.Common.Entries;
     var categories = (IEnumerable<WebApplication.Category>)ViewBag.Categories;
-    var selectedCategories = ((List<int>)ViewBag.SelectedCategories);    
-}
+    var selectedCategories = ((List<int>)ViewBag.SelectedCategories);
+    var enKeywords = (IEnumerable<WebApplication.Keyword>)ViewBag.enKeywords;
+    var huKeywords = (IEnumerable<WebApplication.Keyword>)ViewBag.huKeywords;
 
-@{Html.Telerik().Window()
-    .Name("UploadForm")
-    .Title("Submit feedback")
-    .Content(@<text>
-        @(Html.Telerik().Upload()
-            .Name("attachments")
-            .Multiple(true)
-            .Async(async => async
-                .Save("Save", "Upload")
-                .Remove("Remove", "Upload")
-                .AutoUpload(true)
-            )
-        )
-        </text>)
-    .Width(400)
-    .Height(400)
-    .Draggable(true)
-    .Modal(true)
-    .Visible(false)
-    .Render();
+    string currEnKeywords = "";
+    string currHuKeywords = "";
+    if(Model != null)
+    {
+        foreach (var item in Model.Keywords)
+        {
+            if(item.Type)
+            {
+                if (currEnKeywords != "")
+                {
+                    currEnKeywords += ", ";
+                }
+                currEnKeywords += item.Value;
+            }
+            else{
+                if (currHuKeywords != "")
+                {
+                    currHuKeywords += ", ";
+                }
+                currHuKeywords += item.Value;
+            }
+        }
+    }
 }
-
+@section AdditionScriptsEnd{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.5.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.visualize.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/widgets.js")"></script>
+}
+@section AdditionalOnready{
+jQuery('.accordion_container').accordion();
+}
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 @using (Html.BeginForm("Create", "Entry", FormMethod.Post, new { @Class = "form label-inline uniform" }))
 {
     <div class="content_pad">
         <h3>@WebApplication.Resources.Common.Create</h3>
-        @{ Html.Telerik().TabStrip()
-            .Name("TabStrip")
-            .Effects(fx => fx.Expand()
-                         .Opacity()
-                         .OpenDuration(200)
-                         .CloseDuration(300)
-            )
-            .Items(tabstrip =>
-            {
-                tabstrip.Add()
-                        .Text(WebApplication.Resources.Common.Title)
-                        .Content(@<text>
-            <h3>@WebApplication.Resources.Common.Title</h3>
-            @Html.ValidationSummary(true)
-            <div class="field" style="margin-top: 20px;">
-                @Html.LabelFor(model => model.huTitle, "Magyar cím")
-                @Html.TextBoxFor(model => model.huTitle, new { size = "50" })
-                @Html.ValidationMessageFor(model => model.huTitle)
+        <div class="accordion_container" style="min-height: 429px;">
+            <h2 class="accordion_panel active">
+                <a href="#">@WebApplication.Resources.Common.Title</a></h2>
+            <div class="accordion_content" style="display: block;">
+                @Html.ValidationSummary(true)
+                <div class="field" style="margin-top: 20px;">
+                    @Html.LabelFor(model => model.huTitle, "Magyar cím")
+                    @Html.TextBoxFor(model => model.huTitle, new { size = "50" })
+                    @Html.ValidationMessageFor(model => model.huTitle)
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.enTitle, "English title")
+                    @Html.TextBoxFor(model => model.enTitle, new { size = "50" })
+                    @Html.ValidationMessageFor(model => model.enTitle)
+                </div>
             </div>
-            <div class="field">
-                @Html.LabelFor(model => model.enTitle, "English title")
-                @Html.TextBoxFor(model => model.enTitle, new { size = "50" })
-                @Html.ValidationMessageFor(model => model.enTitle)
+            <!-- .accordion_content -->
+            <h2 class="accordion_panel">
+                <a href="#">Bevezető</a></h2>
+            <div class="accordion_content" style="display: none;">
+                @Html.ValidationSummary(true)
+                <div class="field" style="margin-top: 20px; padding: 0 40px;">
+                    @Html.FullTextAreaFor(model => model.huIntroduction)
+                    @Html.ValidationMessageFor(model => model.huIntroduction)
+                </div>
             </div>
-            </text>)
-                        .Selected(true);
-                tabstrip.Add()
-                        .Text("Bevezető")
-                        .Content(@<text>
-            <h3>
-                Bevezető</h3>
-            @Html.ValidationSummary(true)
-            <div class="field" style="margin-top: 20px;">
-                @Html.LabelFor(model => model.huIntroduction, "Magyar bevezető")
-                @Html.FullTextAreaFor(model => model.huIntroduction)
-                @Html.ValidationMessageFor(model => model.huIntroduction)
+            <!-- .accordion_content -->
+            <h2 class="accordion_panel">
+                <a href="#">Introduction</a></h2>
+            <div class="accordion_content" style="display: none;">
+                @Html.ValidationSummary(true)
+                <div class="field" style="margin-top: 20px; padding: 0 40px;">
+                    @Html.FullTextAreaFor(model => model.enIntroduction)
+                    @Html.ValidationMessageFor(model => model.enIntroduction)
+                </div>
             </div>
-            </text>);
-                tabstrip.Add()
-                        .Text("Introduction")
-                        .Content(@<text>
-            <h3>
-                Introduction</h3>
-            @Html.ValidationSummary(true)
-            <div class="field" style="margin-top: 20px;">
-                @Html.LabelFor(model => model.enIntroduction, "English introduction")
-                @Html.FullTextAreaFor(model => model.enIntroduction)
-                @Html.ValidationMessageFor(model => model.enIntroduction)
+            <!-- .accordion_content -->
+            <h2 class="accordion_panel">
+                <a href="#">Tartalom</a></h2>
+            <div class="accordion_content" style="display: none;">
+                @Html.ValidationSummary(true)
+                <div class="field" style="margin-top: 20px; padding: 0 40px;">
+                    @Html.FullTextAreaFor(model => model.huContent)
+                    @Html.ValidationMessageFor(model => model.huContent)
+                </div>
             </div>
-            </text>);
-                tabstrip.Add()
-                        .Text("Tartalom")
-                        .Content(@<text>
-            <h3>
-                Tartalom</h3>
-            @Html.ValidationSummary(true)
-            <div class="field" style="margin-top: 20px;">
-                @Html.LabelFor(model => model.huContent, "Magyar Tartalom")
-                @Html.FullTextAreaFor(model => model.huContent)
-                @Html.ValidationMessageFor(model => model.huContent)
+            <!-- .accordion_content -->
+            <h2 class="accordion_panel">
+                <a href="#">Content</a></h2>
+            <div class="accordion_content" style="display: none;">
+                @Html.ValidationSummary(true)
+                <div class="field" style="margin-top: 20px; padding: 0 40px;">
+                    @Html.FullTextAreaFor(model => model.enContent)
+                    @Html.ValidationMessageFor(model => model.enContent)
+                </div>
             </div>
-            </text>);
-                tabstrip.Add()
-                        .Text("Content")
-                        .Content(@<text>
-            <h3>
-                Content</h3>
-            @Html.ValidationSummary(true)
-            <div class="field" style="margin-top: 20px;">
-                @Html.LabelFor(model => model.enContent, "English content")
-                @Html.FullTextAreaFor(model => model.enContent)
-                @Html.ValidationMessageFor(model => model.enContent)
+            <!-- .accordion_content -->
+            <h2 class="accordion_panel">
+                <a href="#">@WebApplication.Resources.Common.Keywords</a></h2>
+            <div class="accordion_content" style="display: none;">
+                @Html.ValidationSummary(true)
+                <div class="field" style="margin-top: 20px;">
+                    @Html.LabelFor(model => model.Keywords, "Kulcsszavak")
+                    @(Html.Telerik().AutoComplete()
+                    .Name("huKeywords")
+                    .Encode(false)
+                    .Value(currHuKeywords)
+                    .BindTo(huKeywords.Select(e => e.Value)) 
+                    .AutoFill(true)
+                    .HtmlAttributes(new { style = string.Format("width:{0}px", 200) }) 
+                    .HighlightFirstMatch(true) 
+                    .Filterable(filtering => 
+                    {        
+                      filtering.FilterMode(AutoCompleteFilterMode.StartsWith);                        
+                    })
+                    .Multiple(multi =>
+                    { 
+                        multi.Separator(", ")
+                            .Enabled(true);
+                    }) 
+                    )
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.Keywords, "Keywords")
+                    @(Html.Telerik().AutoComplete()
+                    .Name("enKeywords")
+                    .Encode(false)
+                    .Value(currEnKeywords)
+                    .BindTo(enKeywords.Select(e => e.Value)) 
+                    .AutoFill(true)
+                    .HtmlAttributes(new { style = string.Format("width:{0}px", 200) }) 
+                    .HighlightFirstMatch(true) 
+                    .Filterable(filtering => 
+                    {        
+                      filtering.FilterMode(AutoCompleteFilterMode.StartsWith);                        
+                    })
+                    .Multiple(multi =>
+                    { 
+                        multi.Separator(", ")
+                            .Enabled(true);
+                    }) 
+                    )
+                </div>
             </div>
-            </text>);
-                tabstrip.Add()
-                        .Text(WebApplication.Resources.Common.Keywords)
-                        .Content(@<text>
-            <h3>@WebApplication.Resources.Common.Keywords</h3>
-            @Html.ValidationSummary(true)
-            <div class="field" style="margin-top: 20px;">
-            </div>
-            </text>);
-                tabstrip.Add()
-                        .Text(WebApplication.Resources.Common.Categories)
-                        .Content(@<text>
-            <h3>@WebApplication.Resources.Common.Categories</h3>
-            @Html.ValidationSummary(true)
-            <div class="field" style="margin-top: 20px;">
-                @foreach (var category in categories)
-                {
-                    HtmlString selectedValue = new HtmlString("");
-                    if (selectedCategories.Contains(category.Id))
+            <!-- .accordion_content -->
+            <h2 class="accordion_panel">
+                <a href="#">@WebApplication.Resources.Common.Categories</a></h2>
+            <div class="accordion_content" style="display: none;">
+                @Html.ValidationSummary(true)
+                <div class="field" style="margin-top: 20px;">
+                    @foreach (var category in categories)
                     {
-                        selectedValue = new HtmlString("checked = \"checked\"");
+                        HtmlString selectedValue = new HtmlString("");
+                        if (selectedCategories.Contains(category.Id))
+                        {
+                            selectedValue = new HtmlString("checked = \"checked\"");
+                        }
+                        if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+                        {
+                            <label style="width: 200px">@category.enTitle</label><input type="checkbox" @selectedValue name="selectedCategories" value="@category.Id" /><br />
+                        }
+                        else
+                        {
+                            <label style="width: 200px">@category.huTitle</label><input type="checkbox" @selectedValue name="selectedCategories" value="@category.Id" /><br />                
+                        }
                     }
-                    if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
-                    {
-                    <input type="checkbox" @selectedValue name="selectedCategories" value="@category.Id" />@category.enTitle<br />
-                    }
-                    else
-                    {
-                    <input type="checkbox" @selectedValue name="selectedCategories" value="@category.Id" />@category.huTitle <br />                
-                    }
-                }
+                </div>
             </div>
-            </text>);
-            })
-            .Render();
-        }
+        </div>
     </div>
     <div class="content_pad">
-        <input type="button" value="Upload" onclick="javascript:showForm()" />
         <input type="submit" value="@WebApplication.Resources.Common.Save" />
         @Html.ActionLinkButton(Url, "Index", "Entry", null, WebApplication.Resources.Common.BackToList)
     </div>

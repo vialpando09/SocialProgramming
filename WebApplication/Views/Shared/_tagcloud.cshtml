@@ -1,0 +1,29 @@
+﻿<div class="accordion_container" style="min-height: 38px;">
+    <h2 class="accordion_panel">@WebApplication.Resources.Modules.Titles.TagCloud</h2>
+</div>
+<div style="background-color: #fff; width: 290px; margin: 2px 0 3px 7px;">
+<div id="myCanvasContainer">
+    <canvas width="290" height="290" id="myCanvas">
+        <p>Anything in here will be replaced on browsers that support the canvas element</p>
+    </canvas>
+</div>
+</div>
+<div id="tags">
+    <ul>
+        
+        @if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+        {
+            foreach (var item in ((IEnumerable<Keyword>)ViewBag.Tags).Where(e => e.Type))
+            {
+                <li><a href="Tag/@item.Value">@item.Value</a></li>        
+            }
+        }
+        else
+        {
+            foreach (var item in ((IEnumerable<Keyword>)ViewBag.Tags).Where(e => !e.Type))
+            {
+                <li><a href="Tag/@item.Value">@item.Value</a></li>        
+            }
+        }
+    </ul>
+</div>

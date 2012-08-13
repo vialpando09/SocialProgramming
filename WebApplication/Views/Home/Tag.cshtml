@@ -1,0 +1,18 @@
+﻿@model IEnumerable<WebApplication.Entry>
+@if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+{
+    ViewBag.Title = "Tag: " + ((string)ViewBag.Tag);
+    <div class="accordion_container" style="min-height: 38px;">
+        <h2 class="accordion_panel active">
+            Tag: @((string)ViewBag.Tag)</h2>
+    </div>
+}
+else
+{
+    ViewBag.Title = "Címke: " + ((string)ViewBag.Tag);
+    <div class="accordion_container" style="min-height: 38px;">
+        <h2 class="accordion_panel active">
+            Címke: @((string)ViewBag.Tag)</h2>
+    </div> 
+}
+@Html.Partial("_entriesList", Model)

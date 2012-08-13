@@ -1,131 +1,152 @@
 ﻿@model WebApplication.Entry
-
 @{
     ViewBag.Title = WebApplication.Resources.Common.Entry + " - " + WebApplication.Resources.Common.Details;
-    ViewBag.PageTitle = WebApplication.Resources.Common.Entries;    
-}
+    ViewBag.PageTitle = WebApplication.Resources.Common.Entries;
 
+    string currEnKeywords = "";
+    string currHuKeywords = "";
+    if (Model != null)
+    {
+        foreach (var item in Model.Keywords)
+        {
+            if (item.Type)
+            {
+                if (currEnKeywords != "")
+                {
+                    currEnKeywords += ", ";
+                }
+                currEnKeywords += item.Value;
+            }
+            else
+            {
+                if (currHuKeywords != "")
+                {
+                    currHuKeywords += ", ";
+                }
+                currHuKeywords += item.Value;
+            }
+        }
+    }
+}
+@section AdditionScriptsEnd{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.5.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.visualize.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/widgets.js")"></script>
+}
+@section AdditionalOnready{
+jQuery('.accordion_container').accordion();
+}
 @using (Html.BeginForm("Details", "Category", FormMethod.Post, new { @Class = "form label-inline uniform" }))
 {        
     <div class="content_pad">
-    <h3>@WebApplication.Resources.Common.Details</h3>
-    
-    @( Html.Telerik().TabStrip()
-        .Name("TabStrip")
-        .Effects(fx => fx.Expand()
-                        .Opacity()
-                        .OpenDuration(200)
-                        .CloseDuration(300)
-        )
-        .Items(tabstrip =>
-        {
-            tabstrip.Add()
-                .Text("Magyar verzió")
-                .Content(@<text>                                
-                    <div class="field">
-                        @Html.LabelFor(model => model.huTitle, "Magyar cím")
-                        <span class="content">
+        <h3>@WebApplication.Resources.Common.Details</h3>
+        <div class="accordion_container" style="min-height: 429px;">
+            <h2 class="accordion_panel active">
+                <a href="#">Magyar verzió</a></h2>
+            <div class="accordion_content" style="display: block;">
+                <div class="field">
+                    @Html.LabelFor(model => model.huTitle, "Cím")
+                    <span class="content">
                         @Html.DisplayFor(model => model.huTitle)
-                        </span>
-                    </div> 
-                            
-                    <div class="field">
-                        @Html.LabelFor(model => model.huIntroduction, "Magyar bevezető")
-                        <span class="content">
+                    </span>
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.huIntroduction, "Bevezető")
+                    <span class="content">
                         @Html.Raw(HttpUtility.HtmlDecode(Model.huIntroduction))
-                        </span>
-                    </div> 
-
-                    <div class="field">
-                        @Html.LabelFor(model => model.huContent, "Magyar tartalom")
-                        <span class="content">
+                    </span>
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.huContent, "Tartalom")
+                    <span class="content">
                         @Html.Raw(HttpUtility.HtmlDecode(Model.huContent))
-                        </span>
-                    </div>
-
-                    <div class="field">
-                    </div> 
-                </text>)
-                .Selected(true);
-            tabstrip.Add()
-                .Text("English version")
-                .Content(@<text>                                
-                    <div class="field">
-                        @Html.LabelFor(model => model.enTitle, "English Title")
-                        <span class="content">
+                    </span>
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.huContent, "Kulcsszavak")
+                    <span class="content">
+                        @currHuKeywords
+                    </span>
+                </div>
+            </div>
+            <!-- .accordion_content -->
+            <h2 class="accordion_panel">
+                <a href="#">English version</a></h2>
+            <div class="accordion_content" style="display: none;">
+                <div class="field">
+                    @Html.LabelFor(model => model.enTitle, "Title")
+                    <span class="content">
                         @Html.DisplayFor(model => model.enTitle)
-                        </span>
-                    </div>
-    
-                    <div class="field">
-                        @Html.LabelFor(model => model.enIntroduction, "English introducion")
-                        <span class="content">
+                    </span>
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.enIntroduction, "Introducion")
+                    <span class="content">
                         @Html.Raw(HttpUtility.HtmlDecode(Model.enIntroduction))
-                        </span>
-                    </div> 
-    
-                        <div class="field">
-                        @Html.LabelFor(model => model.enContent, "English content")
-                        <span class="content">
-                         @Html.Raw(HttpUtility.HtmlDecode(Model.enContent))
-                        </span>
-                    </div>
-
-                    <div class="field">
-                    </div> 
-                </text>);
-            tabstrip.Add()
-                    .Text(WebApplication.Resources.Common.BasicData)
-                    .Content(@<text>                                
-                    <div class="field">
-                        @Html.LabelFor(model => model.Creator.Username, WebApplication.Resources.Common.CreatedBy)
-                        <span class="content">
+                    </span>
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.enContent, "Content")
+                    <span class="content">
+                        @Html.Raw(HttpUtility.HtmlDecode(Model.enContent))
+                    </span>
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.enContent, "Keywords")
+                    <span class="content">
+                        @currEnKeywords
+                    </span>
+                </div>
+            </div>
+            <!-- .accordion_content -->
+            <h2 class="accordion_panel">
+                <a href="#">@WebApplication.Resources.Common.BasicData</a></h2>
+            <div class="accordion_content" style="display: none;">
+                <div class="field">
+                    @Html.LabelFor(model => model.Creator.Username, WebApplication.Resources.Common.CreatedBy)
+                    <span class="content">
                         @Html.DisplayFor(model => model.Creator.Username)
-                        </span>
-                    </div> 
-      
-                    <div class="field">
-                        @Html.LabelFor(model => model.PublishedDate, WebApplication.Resources.Common.Date)
-                        <span class="content">
+                    </span>
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.PublishedDate, WebApplication.Resources.Common.Date)
+                    <span class="content">
                         @Html.DisplayFor(model => model.PublishedDate)
-                        </span>
-                    </div>
-
-                    <div class="field">
-                        @Html.Label(WebApplication.Resources.Common.Categories)
-                        <span class="content">
-                        @{
-                            if (Model.Categories != null)
+                    </span>
+                </div>
+                <div class="field">
+                    @Html.Label(WebApplication.Resources.Common.Categories)
+                    <span class="content">
+                    @{
+                        if (Model.Categories != null)
+                        {
+                            foreach (var category in Model.Categories)
                             {
-                                foreach (var category in Model.Categories)
+                                if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
                                 {
-                                    if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
-                                    {
                                                 <text>@category.enTitle </text>
-                                    }
-                                    else
-                                    {
+                                }
+                                else
+                                {
                                                 <text>@category.huTitle </text>           
-                                    }
                                 }
                             }
                         }
-                        </span>
-                    </div>
-    
-                    <div class="field">
-                        @Html.LabelFor(model => model.PublishedDate, WebApplication.Resources.Common.Published)
-                        <span class="content">
+                    }
+                    </span>
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.PublishedDate, WebApplication.Resources.Common.Published)
+                    <span class="content">
                         @Html.DisplayFor(model => model.Published)
-                        </span>
-                    </div>
-                </text>);
-        })
-    )
+                    </span>
+                </div>
+            </div>
+            <!-- .accordion_content -->
+        </div>
     </div>
     <div class="content_pad">
         @Html.ActionLinkButton(Url, "Edit", "Entry", new { id = Model.Id }, WebApplication.Resources.Common.Edit)
         @Html.ActionLinkButton(Url, "Index", "Entry", null, WebApplication.Resources.Common.BackToList)
     </div>
 }
-

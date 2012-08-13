@@ -12,10 +12,8 @@ using Telerik.Web.Mvc.Extensions;
 
 namespace WebApplication.Controllers
 { 
-    public class EntryController : Controller
+    public class EntryController : BaseController
     {
-        private ModelContainer db = new ModelContainer();
-
         //
         // GET: /Entry/
 
@@ -73,6 +71,8 @@ namespace WebApplication.Controllers
         {
             ViewBag.Categories = db.Categories.Select(e => e);
             ViewBag.SelectedCategories = new List<int>();
+            ViewBag.enKeywords = db.Keywords.Where(e => e.Type == true);
+            ViewBag.huKeywords = db.Keywords.Where(e => e.Type == false);
             return View();
         } 
 
@@ -81,8 +81,10 @@ namespace WebApplication.Controllers
         [LoginAuthorize]
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create(Entry entry, int[] selectedCategories)
+        public ActionResult Create(Entry entry, int[] selectedCategories, string huKeywords, string enKeywords)
         {
+            KeywordsProcedure(entry, huKeywords, enKeywords);
+
             if (ModelState.IsValid)
             {
                 entry.UserId = int.Parse((string)Session["UserId"]);
@@ -100,8 +102,11 @@ namespace WebApplication.Controllers
 
             ViewBag.Categories = db.Categories.Select(e => e);
             ViewBag.SelectedCategories = selectedCategories.ToList();
+            ViewBag.enKeywords = db.Keywords.Where(e => e.Type == true);
+            ViewBag.huKeywords = db.Keywords.Where(e => e.Type == false);
             return View(entry);
         }
+
         
         //
         // GET: /Entry/Edit/5
@@ -111,6 +116,8 @@ namespace WebApplication.Controllers
             Entry entry = db.Entries.Single(e => e.Id == id);
             ViewBag.Categories = db.Categories.Select(e => e);
             ViewBag.SelectedCategories = entry.Categories.Select(e => e.Id).ToList<int>();
+            ViewBag.enKeywords = db.Keywords.Where(e => e.Type == true);
+            ViewBag.huKeywords = db.Keywords.Where(e => e.Type == false);
             return View(entry);
         }
 
@@ -119,8 +126,10 @@ namespace WebApplication.Controllers
         [LoginAuthorize]
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(Entry entry, int[] selectedCategories)
+        public ActionResult Edit(Entry entry, int[] selectedCategories, string huKeywords, string enKeywords)
         {
+            KeywordsProcedure(entry, huKeywords, enKeywords);
+
             if (ModelState.IsValid)
             {
                 entry.UserId = int.Parse((string)Session["UserId"]);
@@ -137,6 +146,8 @@ namespace WebApplication.Controllers
             }
             ViewBag.Categories = db.Categories.Select(e => e);
             ViewBag.SelectedCategories = selectedCategories.ToList();
+            ViewBag.enKeywords = db.Keywords.Where(e => e.Type == true);
+            ViewBag.huKeywords = db.Keywords.Where(e => e.Type == false);
             return View(entry);
         }
 
@@ -161,6 +172,33 @@ namespace WebApplication.Controllers
             return RedirectToAction("Index");
         }
 
+        private void KeywordsProcedure(Entry entry, string huKeywords, string enKeywords)
+        {
+            entry.Keywords.Clear();
+
+            string[] separators = { ", " };
+            var huKeywordsList = huKeywords.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var enKeywordsList = enKeywords.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            foreach (var item in huKeywordsList)
+            {
+                var keyword = db.Keywords.SingleOrDefault(e => e.Value == item && !e.Type);
+                if (keyword == null)
+                    keyword = new Keyword { Type = false, Value = item };
+
+                entry.Keywords.Add(keyword);
+            }
+
+            foreach (var item in enKeywordsList)
+            {
+                var keyword = db.Keywords.SingleOrDefault(e => e.Value == item && e.Type);
+                if (keyword == null)
+                    keyword = new Keyword { Type = true, Value = item };
+
+                entry.Keywords.Add(keyword);
+            }
+        }
+        
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

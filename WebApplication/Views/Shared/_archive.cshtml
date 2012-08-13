@@ -1,0 +1,49 @@
+﻿<div class="accordion_container" style="min-height: 38px;">
+    <h2 class="accordion_panel">@WebApplication.Resources.Modules.Titles.Archive</h2>
+</div>
+@{
+    string lang = "";
+    if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+    {
+        lang = "en/";
+    }
+    int year = DateTime.Now.Year;
+    int month = DateTime.Now.Month;
+    int lastYear = ((IEnumerable<DateTime>)ViewBag.Archive).ToList().LastOrDefault().Year;
+    int lastMonth = ((IEnumerable<DateTime>)ViewBag.Archive).ToList().LastOrDefault().Month;
+
+    var months = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.MonthNames
+         .TakeWhile(m => m != String.Empty)
+         .Select(m => m)
+         .ToList();
+
+        // Ez év hónapjai    
+        // Előző évek -> Korábban OK
+        // Kezdési dátum
+}
+<div style="width: 291px; height: 2px;">
+</div>
+<ul class="navigation-link">
+    @if (lastYear != year)
+    {
+        int count = 0;
+        for (int currMonth = month; currMonth > 0; currMonth--)
+        {
+            int currCount = ((IEnumerable<DateTime>)ViewBag.Archive).Where(e => e.Year == year && e.Month == currMonth).Count();
+            count += currCount;
+        <li><a href="@lang/Archive/@year/@month">@(year). @months[currMonth - 1] (@currCount)</a></li>
+        }
+        int more = ((IEnumerable<DateTime>)ViewBag.Archive).Count() - count;
+        <li><a href="@lang/Archive/More">@WebApplication.Resources.Modules.Titles.Earlier (@more)</a></li>
+    }
+    else
+    {
+        for (int currMonth = month; currMonth >= lastMonth; currMonth--)
+        {
+            int currCount = ((IEnumerable<DateTime>)ViewBag.Archive).Where(e => e.Year == year && e.Month == currMonth).Count();
+        <li><a href="@lang/Archive/@year/@month">@(year). @months[currMonth - 1] (@currCount)</a></li>
+        }
+    }
+</ul>
+<div style="width: 291px; height: 2px;">
+</div>
