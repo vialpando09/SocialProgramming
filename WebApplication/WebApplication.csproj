@@ -405,12 +405,16 @@
     <Content Include="Content\themes\main\down_arrow.png" />
     <Content Include="Content\themes\main\down_arrow_333333.png" />
     <Content Include="Content\themes\main\el_bg.png" />
+    <Content Include="Content\themes\main\error_icon.png" />
     <Content Include="Content\themes\main\footer.jpg" />
+    <Content Include="Content\themes\main\info_icon.png" />
     <Content Include="Content\themes\main\search_bg.png" />
+    <Content Include="Content\themes\main\success_icon.png" />
     <Content Include="Content\themes\main\top_bg.png" />
     <Content Include="Content\themes\main\ui-icons_222222_256x240.png" />
     <Content Include="Content\themes\main\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\themes\main\search.png" />
+    <Content Include="Content\themes\main\warning_icon.png" />
     <Content Include="Content\Transparent\active.png" />
     <Content Include="Content\Transparent\editor.png" />
     <Content Include="Content\Transparent\gradient.png" />
