@@ -250,6 +250,10 @@
     <Content Include="Content\Default\treeview-nodes-rtl.png" />
     <Content Include="Content\Default\treeview-nodes.png" />
     <Content Include="Content\feedback.css" />
+    <Content Include="Content\fonts\BebasNeue-webfont.svg" />
+    <Content Include="Content\fonts\Dharma Type Font License.txt" />
+    <Content Include="Content\fonts\fontomas-webfont.svg" />
+    <Content Include="Content\fonts\franchise-bold-webfont.svg" />
     <Content Include="Content\font\fontello.svg" />
     <Content Include="Content\font\iconic_stroke-webfont.svg" />
     <Content Include="Content\font\iconic_stroke.svg" />
@@ -455,10 +459,6 @@
     <Content Include="Content\Windows7\slider-v.gif" />
     <Content Include="Content\Windows7\sprite-vertical.png" />
     <Content Include="Content\Windows7\sprite.png" />
-    <Content Include="Content\fonts\BebasNeue-webfont.svg" />
-    <Content Include="Content\fonts\Dharma Type Font License.txt" />
-    <Content Include="Content\fonts\fontomas-webfont.svg" />
-    <Content Include="Content\fonts\franchise-bold-webfont.svg" />
     <Content Include="pthreadGC2.dll" />
     <Content Include="Scripts\dashboard.js" />
     <Content Include="Scripts\jquery-1.5.2.min.js" />
@@ -1026,6 +1026,15 @@
     <Content Include="Content\font\iconic_stroke.otf" />
     <Content Include="Content\font\iconic_stroke.ttf" />
     <Content Include="Content\themes\main\league_gothic-webfont.woff" />
+    <Content Include="Content\fonts\BebasNeue-webfont.eot" />
+    <Content Include="Content\fonts\BebasNeue-webfont.ttf" />
+    <Content Include="Content\fonts\BebasNeue-webfont.woff" />
+    <Content Include="Content\fonts\fontomas-webfont.eot" />
+    <Content Include="Content\fonts\fontomas-webfont.ttf" />
+    <Content Include="Content\fonts\fontomas-webfont.woff" />
+    <Content Include="Content\fonts\franchise-bold-webfont.eot" />
+    <Content Include="Content\fonts\franchise-bold-webfont.ttf" />
+    <Content Include="Content\fonts\franchise-bold-webfont.woff" />
     <None Include="Content\font\fontello.eot" />
     <None Include="Content\font\fontello.ttf" />
     <None Include="Content\font\fontello.woff" />
@@ -1071,15 +1080,6 @@
     <Content Include="Views\Home\ArchiveMore.cshtml" />
     <Content Include="Views\Home\AjaxLoadArchiveMore.cshtml" />
     <Content Include="Views\Home\Page.cshtml" />
-    <Content Include="Content\fonts\BebasNeue-webfont.eot" />
-    <Content Include="Content\fonts\BebasNeue-webfont.ttf" />
-    <Content Include="Content\fonts\BebasNeue-webfont.woff" />
-    <Content Include="Content\fonts\fontomas-webfont.eot" />
-    <Content Include="Content\fonts\fontomas-webfont.ttf" />
-    <Content Include="Content\fonts\fontomas-webfont.woff" />
-    <Content Include="Content\fonts\franchise-bold-webfont.eot" />
-    <Content Include="Content\fonts\franchise-bold-webfont.ttf" />
-    <Content Include="Content\fonts\franchise-bold-webfont.woff" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
