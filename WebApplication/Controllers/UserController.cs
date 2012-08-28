@@ -208,7 +208,7 @@ namespace WebApplication.Controllers
                     error = true;
                 }
 
-                if (db.Users.Where(e => e.Username == model.RegUserName).FirstOrDefault() != null)
+                if (model.RegUserName.ToLower().Contains("vialpando") || model.RegUserName.ToLower().Contains("vi4lp4ndo") || db.Users.Where(e => e.Username == model.RegUserName).FirstOrDefault() != null)
                 {
                     ViewData.ModelState.AddModelError("RegUserName", Resources.Common.UsernameUsed);
                     error = true;

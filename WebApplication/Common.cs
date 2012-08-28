@@ -16,27 +16,10 @@ using System.Web.Mail;
 using System.ComponentModel;
 using System.IO;
 using System.Web;
+using System.Globalization;
 
 namespace WebApplication
 {
-    public class Db
-    {
-        private static ModelContainer instance;
-
-        private Db() { }
-
-        public static ModelContainer Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new ModelContainer();
-                }
-                return instance;
-            }
-        }
-    }
 
     public class EditableUser
     {
@@ -179,7 +162,7 @@ namespace WebApplication
                         HttpContext.Current.Response.Cookies.Add(myCookie);
                     }
                 }
-            }        
+            }
         }
     }
 
@@ -322,7 +305,7 @@ namespace WebApplication
         }
 
         public static string SiteName = "VialpandoBlog";
-        public static string SiteAddress = "http://localhost:39304/";
+        public static string SiteAddress = "http://vialpando.apphb.com/";
         public static string NoReplyPassword = "DreBr5wE";
         public static string NoReplyAddress = "vialpando.blog@gmail.com";
         public static string SmtpServer = "smtp.gmail.com";
@@ -400,18 +383,29 @@ namespace WebApplication
 
         public static void SendValidationMail(string toAddress, string code, string username)
         {
-            // Passing the values and make a email formate to display
-            string subject = SiteName + " - Aktiváció/Activation";
-            string link = SiteAddress + "User/RegistrationActivation/?code=" + code;
-            string body = "<p>Hi " + username + "!</p>";
-            body += "<p>Thanks for your registration! Here is your activation link: ";
-            body += "<a href=\"" + link + "\">" + link + "</a></p>";
-            body += "<p>Click on the link, or copy it into your browser's address field.</p>";
-            body += "______________________________<br />";
-            body += "<p>Szia " + username + "!</p>";
-            body += "<p>Köszi, hogy regisztráltál! Itt az aktivációs linked: ";
-            body += "<a href=\"" + link + "\">" + link + "</a></p>";
-            body += "<p>Kattints rá, vagy másold a böngésződ cím mezőjébe.</p>";
+            string subject;
+            string link;
+            string body;
+            if (CultureInfo.CurrentCulture.Name == "hu-HU")
+            {
+                // Passing the values and make a email formate to display
+                subject = SiteName + " - Aktiváció";
+                link = SiteAddress + "User/RegistrationActivation/?code=" + code;
+                body = "<p>Szia " + username + "!</p>";
+                body += "<p>Köszi, hogy regisztráltál! Itt az aktivációs linked: ";
+                body += "<a href=\"" + link + "\">" + link + "</a></p>";
+                body += "<p>Kattints rá, vagy másold a böngésződ cím mezőjébe.</p>";
+            }
+            else
+            {
+                // Passing the values and make a email formate to display
+                subject = SiteName + " - Activation";
+                link = SiteAddress + "User/RegistrationActivation/?code=" + code;
+                body = "<p>Hi " + username + "!</p>";
+                body += "<p>Thanks for your registration! Here is your activation link: ";
+                body += "<a href=\"" + link + "\">" + link + "</a></p>";
+                body += "<p>Click on the link, or copy it into your browser's address field.</p>";
+            }
 
             var message = new System.Net.Mail.MailMessage();
             message.From = new System.Net.Mail.MailAddress(NoReplyAddress);
@@ -435,15 +429,24 @@ namespace WebApplication
 
         public static void SendNewPasswordMail(string toAddress, string password, string username)
         {
-            // Passing the values and make a email formate to display
-            string subject = SiteName + " - Elfelejtett jelszó/Forgotten password";
-            string body = "<p>Hi " + username + "!</p>";
-            body += "<p>Here is your new password: " + password;
-            body += "<p>Now you can log in again.</p>";
-            body += "______________________________<br />";
-            body += "<p>Szia " + username + "!</p>";
-            body += "<p>Itt az új jelszavad: " + password;
-            body += "<p>Most már megint be tudsz lépni.</p>";
+            string subject;
+            string body;
+            if (CultureInfo.CurrentCulture.Name == "hu-HU")
+            {
+                // Passing the values and make a email formate to display
+                subject = SiteName + " - Elfelejtett jelszó";
+                body = "<p>Szia " + username + "!</p>";
+                body += "<p>Itt az új jelszavad: " + password;
+                body += "<p>Most már megint be tudsz lépni.</p>";
+            }
+            else
+            {
+                // Passing the values and make a email formate to display
+                subject = SiteName + " - Forgotten password";
+                body = "<p>Hi " + username + "!</p>";
+                body += "<p>Here is your new password: " + password;
+                body += "<p>Now you can log in again.</p>";
+            }
 
             var message = new System.Net.Mail.MailMessage();
             message.From = new System.Net.Mail.MailAddress(NoReplyAddress);
