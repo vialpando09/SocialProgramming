@@ -44,7 +44,7 @@ namespace WebApplication
             RouteValueDictionary loginRouteValueDictionary = new RouteValueDictionary(new { controller = "Admin", action = "Login" });
 
             routes.Add("LoginGlobalised", new GlobalisedRoute(LoginRouteUrl, loginRouteValueDictionary));
-            routes.Add("SitemapGlobalised", new GlobalisedRoute(EntryRouteUrl, sitemapRouteValueDictionary));
+            routes.Add("SitemapGlobalised", new GlobalisedRoute(SitemapRouteUrl, sitemapRouteValueDictionary));
             routes.Add("PageGlobalised", new GlobalisedRoute(PageRouteUrl, pageRouteValueDictionary));
             routes.Add("EntryGlobalised", new GlobalisedRoute(EntryRouteUrl, entryRouteValueDictionary));
             routes.Add("CategoryGlobalised", new GlobalisedRoute(CategoryRouteUrl, categoryRouteValueDictionary));

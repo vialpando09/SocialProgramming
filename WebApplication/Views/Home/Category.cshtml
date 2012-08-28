@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<WebApplication.Entry>
-@if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+@if (Culture != "hu-HU")
 {
     ViewBag.Title = ((Category)ViewBag.Category).enTitle;
     <div class="accordion_container" style="min-height: 38px;">

@@ -126,7 +126,7 @@ jQuery('.accordion_container').accordion();
                         {
                             foreach (var category in Model.Categories)
                             {
-                                if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+                                if (Culture != "hu-HU")
                                 {
                                                 <text>@category.enTitle </text>
                                 }

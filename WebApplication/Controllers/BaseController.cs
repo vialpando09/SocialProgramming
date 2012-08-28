@@ -20,8 +20,8 @@ namespace WebApplication.Controllers
             {
                 // Some browsers send file names with full path. This needs to be stripped.
                 var fileName = Path.GetFileName(file.FileName);
-                var physicalPath = Path.Combine(Server.MapPath("~/Images"), fileName);
-                var relativePath = Path.Combine("/Images", fileName);
+                var physicalPath = Path.Combine(Server.MapPath("~/App_Data/Images"), fileName);
+                var relativePath = Path.Combine("/App_Data/Images", fileName);
                 // The files are not actually saved in this demo
                 file.SaveAs(physicalPath);
 
@@ -38,7 +38,7 @@ namespace WebApplication.Controllers
             foreach (var fullName in fileNames)
             {
                 var fileName = Path.GetFileName(fullName);
-                var physicalPath = Path.Combine(Server.MapPath("~/Images"), fileName);
+                var physicalPath = Path.Combine(Server.MapPath("~/App_Data/Images"), fileName);
 
                 // TODO: Verify user permissions
                 if (System.IO.File.Exists(physicalPath))
@@ -48,7 +48,7 @@ namespace WebApplication.Controllers
                 }
 
                 if (attachments != null)
-                    attachments.Remove(Path.Combine("/Images", fileName));
+                    attachments.Remove(Path.Combine("/App_Data/Images", fileName));
             }
             if (attachments != null)
                 TempData["FeaturedImage"] = attachments;

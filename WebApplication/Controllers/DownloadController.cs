@@ -23,7 +23,7 @@ namespace WebApplication.Controllers
             string path = Server.MapPath("~/App_Data/Files/" + file.Name);
             if (System.IO.File.Exists(path))
             {
-                Response.AddHeader("Content-Disposition", "attachment; filename=\""+ path +"\"");
+                Response.AddHeader("Content-Disposition", "attachment; filename=\""+ file.Name +"\"");
                 Response.AddHeader("Content-Type", "application/force-download");
                 return File(path, Common.GetMimeType(file.Name));
             }

@@ -12,10 +12,10 @@
     {
         att = "<div class=\"attachments-span\"></div>";
     }
-    if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+    if (Culture != "hu-HU")
     {
     <div class="entry">
-        <div class="entry-title">@item.enTitle @(new MvcHtmlString(att))
+        <div class="entry-title">@Culture @item.enTitle @(new MvcHtmlString(att))
         </div>
         <div class="entry-info">
             <span style="margin: 0 10px 0 0;">Date: @item.PublishedDate.ToLongDateString()</span><span style="margin: 0 10px 0 0;">&#149;</span>
@@ -42,7 +42,7 @@
     else
     {
     <div class="entry">
-        <div class="entry-title">@item.huTitle @(new MvcHtmlString(att))
+        <div class="entry-title">@Culture @item.huTitle @(new MvcHtmlString(att))
         </div>
         <div class="entry-info">
             <span style="margin: 0 10px 0 0;">Dátum: @item.PublishedDate.ToLongDateString()</span><span style="margin: 0 10px 0 0;"> &#149;</span>

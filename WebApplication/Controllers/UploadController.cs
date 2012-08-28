@@ -19,7 +19,7 @@ namespace WebApplication.Controllers
             foreach (var file in attachments)
             {
                 // Some browsers send file names with full path. This needs to be stripped.
-                var path = Server.MapPath("~/Images");
+                var path = Server.MapPath("~/App_Data/Images");
                 if(!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -41,7 +41,7 @@ namespace WebApplication.Controllers
             foreach (var fullName in fileNames)
             {
                 var fileName = Path.GetFileName(fullName);
-                var physicalPath = Path.Combine(Server.MapPath("~/Images"), fileName);
+                var physicalPath = Path.Combine(Server.MapPath("~/App_Data/Images"), fileName);
 
                 // TODO: Verify user permissions
                 if (System.IO.File.Exists(physicalPath))

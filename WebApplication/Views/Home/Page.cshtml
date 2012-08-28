@@ -1,5 +1,5 @@
 ﻿@model WebApplication.Page
-@if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+@if (Culture != "hu-HU")
 {
     ViewBag.Title = Model.enTitle;
     <div class="entry">

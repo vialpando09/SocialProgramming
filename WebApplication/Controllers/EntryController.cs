@@ -112,7 +112,6 @@ namespace WebApplication.Controllers
                 }
                 if (featuredImage != null && featuredImage.Count > 0)
                     entry.FeaturedImage = featuredImage[0];
-
                 else
                     entry.FeaturedImage = "";
 
@@ -169,7 +168,7 @@ namespace WebApplication.Controllers
 
             if (ModelState.IsValid)
             {
-                entry.UserId = int.Parse((string)Session["UserId"]);
+                entry.UserId = int.Parse((string)Session["UserId"]);                
                 entry.Categories.Clear();
                 foreach (var id in selectedCategories.ToList())
                 {
@@ -199,8 +198,12 @@ namespace WebApplication.Controllers
                 if (featuredImage != null && featuredImage.Count > 0)
                 {
                     string[] fileName = { Path.GetFileName(entry.FeaturedImage) };
-                    this.Delete("~/Images", fileName);
+                    this.Delete("~/App_Data/Images", fileName);
                     entry.FeaturedImage = featuredImage[0];
+                }
+                else if (string.IsNullOrEmpty(entry.FeaturedImage))
+                {
+                    entry.FeaturedImage = "";
                 }
 
                 db.Entry(entry).State = EntityState.Modified;
@@ -246,7 +249,7 @@ namespace WebApplication.Controllers
             if (!string.IsNullOrEmpty(entry.FeaturedImage))
             {
                 string[] filenames = { Path.GetFileName(entry.FeaturedImage) };
-                this.Delete("~/Images", filenames);
+                this.Delete("~/App_Data/Images", filenames);
             }
             var categories = entry.Categories.ToList();
             foreach (var category in categories)

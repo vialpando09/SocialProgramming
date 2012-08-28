@@ -239,6 +239,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ASPNETDB.MDF" />
+    <Content Include="App_Data\aspnetdb_log.ldf">
+      <DependentUpon>ASPNETDB.MDF</DependentUpon>
+    </Content>
     <Content Include="Content\Default\editor.png" />
     <Content Include="Content\Default\imagebrowser.png" />
     <Content Include="Content\Default\loading.gif" />
@@ -1053,6 +1057,8 @@
     <Content Include="Content\fonts\franchise-bold-webfont.eot" />
     <Content Include="Content\fonts\franchise-bold-webfont.ttf" />
     <Content Include="Content\fonts\franchise-bold-webfont.woff" />
+    <None Include="App_Data\Files\inoti.snippet" />
+    <None Include="App_Data\Files\propi.snippet" />
     <None Include="Content\font\fontello.eot" />
     <None Include="Content\font\fontello.ttf" />
     <None Include="Content\font\fontello.woff" />
@@ -1102,7 +1108,9 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\Images\Entries\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

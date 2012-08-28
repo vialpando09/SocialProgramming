@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>inoti</Title>
+			<Shortcut>inoti</Shortcut>
+			<Description>Code snippet to implent INotifyPropertyChanged interface</Description>
+			<Author>VialpandoBlog</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Code Language="csharp">
+        <![CDATA[#region Implement INotifyPropertyChanged
+  public event PropertyChangedEventHandler PropertyChanged;
+  public void RaisePropertyChanged(string propertyName)
+  {
+      PropertyChangedEventHandler handler = PropertyChanged;
+      if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+  }
+  #endregion
+	$end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

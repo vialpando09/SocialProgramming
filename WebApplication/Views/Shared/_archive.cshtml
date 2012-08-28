@@ -3,7 +3,7 @@
 </div>
 @{
     string lang = "";
-    if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+    if (Culture != "hu-HU")
     {
         lang = "en/";
     }

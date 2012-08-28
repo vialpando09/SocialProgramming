@@ -199,7 +199,7 @@ jQuery('.accordion_container').accordion();
                         {
                             selectedValue = new HtmlString("checked = \"checked\"");
                         }
-                        if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+                        if (Culture != "hu-HU")
                         {
                         <label style="width: 200px">@category.enTitle</label><input type="checkbox" @selectedValue name="selectedCategories" value="@category.Id" /><br />
                         }

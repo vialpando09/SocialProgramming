@@ -7,7 +7,7 @@
 @foreach (var item in (IEnumerable<Category>)ViewBag.Categories)
 {
         <li><a class="navigation-link" href="/Category/">
-            @if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+            @if (Culture != "hu-HU")
             {
                 <text><a class="navigation-link" href="en/Category/@item.Id/@item.enTitle.Urlable()">@item.enTitle</a></text>
             }

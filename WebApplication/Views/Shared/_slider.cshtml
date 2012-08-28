@@ -20,7 +20,7 @@
         <div id="fragment-@i" class="ui-tabs-panel" style="">
             <img src="@Model.ElementAt(i - 1).FeaturedImage" alt="" />
             <div class="info">
-                @if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+                @if (Culture != "hu-HU")
                 {   
                     <h2>@Model.ElementAt(i - 1).enTitle</h2>
                     <p>@Model.ElementAt(i - 1).enIntroduction</p>

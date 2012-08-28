@@ -11,7 +11,7 @@
 <div id="tags">
     <ul>
         
-        @if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+        @if (Culture != "hu-HU")
         {
             foreach (var item in ((IEnumerable<Keyword>)ViewBag.Tags).Where(e => e.Type))
             {

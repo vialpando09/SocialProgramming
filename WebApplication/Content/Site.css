@@ -265,6 +265,18 @@ h2.link a
     font-style: italic;
 }
 
+.entry-content p
+{
+    text-align: justify;
+}
+
+.entry-content .code
+{
+    font-size: 11px;
+    color: Teal;
+    font-family: Monospace;
+}
+
 .entry-content
 {
     width: 636px;
