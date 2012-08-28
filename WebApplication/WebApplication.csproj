@@ -250,12 +250,8 @@
     <Content Include="Content\Default\treeview-nodes-rtl.png" />
     <Content Include="Content\Default\treeview-nodes.png" />
     <Content Include="Content\feedback.css" />
-    <Content Include="Content\font\iconic_stroke-webfont.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\font\iconic_stroke.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\font\iconic_stroke-webfont.svg" />
+    <Content Include="Content\font\iconic_stroke.svg" />
     <Content Include="Content\Forest\editor.png" />
     <Content Include="Content\Forest\imagebrowser.png" />
     <Content Include="Content\Forest\loading.gif" />
@@ -794,7 +790,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1016,27 +1014,13 @@
     <Content Include="Views\Upload\_Content.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\font\.DS_Store">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\font\iconic_stroke-webfont.eot">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\font\iconic_stroke-webfont.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\font\iconic_stroke-webfont.woff">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\font\iconic_stroke.eot">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\font\iconic_stroke.otf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\font\iconic_stroke.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\font\.DS_Store" />
+    <Content Include="Content\font\iconic_stroke-webfont.eot" />
+    <Content Include="Content\font\iconic_stroke-webfont.ttf" />
+    <Content Include="Content\font\iconic_stroke-webfont.woff" />
+    <Content Include="Content\font\iconic_stroke.eot" />
+    <Content Include="Content\font\iconic_stroke.otf" />
+    <Content Include="Content\font\iconic_stroke.ttf" />
     <None Include="Content\themes\main\league_gothic-webfont.woff" />
     <None Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
