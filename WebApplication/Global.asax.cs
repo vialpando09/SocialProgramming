@@ -15,7 +15,8 @@ namespace WebApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            //filters.Add(new HandleErrorAttribute());
+            GlobalFilters.Filters.Add(new GlobalAutoLoginAction());
         }
 
         public static void RegisterRoutes(RouteCollection routes)
@@ -70,10 +71,7 @@ namespace WebApplication
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
-            GlobalFilters.Filters.Add(new GlobalAutoLoginAction());
-            GlobalFilters.Filters.Add(new HandleErrorAttribute());
-
+            
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
