@@ -72,6 +72,7 @@ namespace WebApplication
             AreaRegistration.RegisterAllAreas();
 
             GlobalFilters.Filters.Add(new GlobalAutoLoginAction());
+            GlobalFilters.Filters.Add(new HandleErrorAttribute());
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
