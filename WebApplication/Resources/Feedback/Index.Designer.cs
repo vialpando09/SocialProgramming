@@ -106,7 +106,7 @@ namespace WebApplication.Resources.Feedback {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Üsd be a fenti kódot.
+        ///   Looks up a localized string similar to Üsd be a fenti kódot (Kis-, nagybetű érztékeny).
         /// </summary>
         public static string VerificationMessage {
             get {

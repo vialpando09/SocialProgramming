@@ -133,6 +133,6 @@
     <value>Verification code</value>
   </data>
   <data name="VerificationMessage" xml:space="preserve">
-    <value>Enter the code above</value>
+    <value>Enter the code above (Case-sensitive)</value>
   </data>
 </root>

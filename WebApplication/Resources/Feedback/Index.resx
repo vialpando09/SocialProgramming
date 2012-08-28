@@ -133,6 +133,6 @@
     <value>Ellenőrző kód</value>
   </data>
   <data name="VerificationMessage" xml:space="preserve">
-    <value>Üsd be a fenti kódot</value>
+    <value>Üsd be a fenti kódot (Kis-, nagybetű érztékeny)</value>
   </data>
 </root>
