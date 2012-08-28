@@ -51,7 +51,7 @@ namespace WebApplication.Controllers
         [BasicAction]
         public ActionResult Index()
         {
-            var entries = db.Entries.Where(e => e.IsFeatured && e.Published).Take(TakeNumber).Union(db.Entries.Where(e => !e.IsFeatured && e.Published).Take(TakeNumber)).ToList();
+            var entries = db.Entries.Include("Categories").Include("Files").Where(e => e.IsFeatured && e.Published).Take(TakeNumber).Union(db.Entries.Include("Categories").Include("Files").Where(e => !e.IsFeatured && e.Published).Take(TakeNumber));
             ViewBag.AjaxType = "AjaxLoadEntries";
             ViewBag.max = TakeNumber;
             return View(entries);
@@ -67,7 +67,7 @@ namespace WebApplication.Controllers
                 {
                     list.Add(int.Parse(id));
                 }
-                var model = db.Entries.Include("Creator").Where(e => !list.Contains(e.Id) && e.Published).Take(TakeNumber);
+                var model = db.Entries.Where(e => !list.Contains(e.Id) && e.Published).Take(TakeNumber);
                 ViewBag.ids = ids;
                 ViewBag.max = TakeNumber;
                 return View(model);

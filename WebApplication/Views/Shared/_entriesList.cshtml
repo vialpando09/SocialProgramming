@@ -8,10 +8,8 @@
     string date = year.ToString() + ((month < 10) ? "0" : "") + month.ToString() + ((day < 10) ? "0" : "") + day.ToString();
     string url = "Entries/"+date+"/"+item.Id+"/";
     string att = "";
-    if (item.Files.Count > 0)
-    {
-        att = "<div class=\"attachments-span\"></div>";
-    }
+    att = "<div class=\"attachments-span\"></div>";
+    
     if (Culture != "hu-HU")
     {
     <div class="entry">

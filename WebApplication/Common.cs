@@ -19,6 +19,25 @@ using System.Web;
 
 namespace WebApplication
 {
+    public class Db
+    {
+        private static ModelContainer instance;
+
+        private Db() { }
+
+        public static ModelContainer Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new ModelContainer();
+                }
+                return instance;
+            }
+        }
+    }
+
     public class EditableUser
     {
 
