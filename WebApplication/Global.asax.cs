@@ -70,16 +70,6 @@ namespace WebApplication
 
         protected void Application_Start()
         {
-            var configuration = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-            var connectionString = configuration.ConnectionStrings.ConnectionStrings["ModelContainer"].ConnectionString;
-            if (!connectionString.Contains("MultipleActiveResultSets=True;"))
-            {
-                connectionString += "MultipleActiveResultSets=True;";
-            }
-
-            configuration.ConnectionStrings.ConnectionStrings["ModelContainer"].ConnectionString = connectionString;
-            configuration.Save();
-
             AreaRegistration.RegisterAllAreas();
             
             RegisterGlobalFilters(GlobalFilters.Filters);
