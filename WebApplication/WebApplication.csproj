@@ -1014,7 +1014,6 @@
     <Content Include="Views\Upload\_Content.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\font\.DS_Store" />
     <Content Include="Content\font\iconic_stroke-webfont.eot" />
     <Content Include="Content\font\iconic_stroke-webfont.ttf" />
     <Content Include="Content\font\iconic_stroke-webfont.woff" />
