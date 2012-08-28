@@ -18,13 +18,14 @@ namespace WebApplication.Controllers
             List<string> list = new List<string>();
             foreach (var file in featuredImage)
             {
+                var path = Server.MapPath("~/App_Data/Images");
                 // Some browsers send file names with full path. This needs to be stripped.
                 var fileName = Path.GetFileName(file.FileName);
-                var physicalPath = Path.Combine(Server.MapPath("~/App_Data/Images"), fileName);
+                var physicalPath = Path.Combine(path, fileName);
                 var relativePath = Path.Combine("/App_Data/Images", fileName);
+                
                 // The files are not actually saved in this demo
                 file.SaveAs(physicalPath);
-
                 list.Add(relativePath);
             }
             TempData["FeaturedImage"] = list;
@@ -65,10 +66,16 @@ namespace WebApplication.Controllers
             // The Name of the Upload component is "attachments" 
             foreach (var file in attachments)
             {
+                var path = Server.MapPath("~/App_Data/Files");
                 // Some browsers send file names with full path. This needs to be stripped.
                 var fileName = Path.GetFileName(file.FileName);
-                var physicalPath = Path.Combine(Server.MapPath("~/App_Data/Files"), fileName);
+                var physicalPath = Path.Combine(path, fileName);
                 var relativePath = Path.Combine("/App_Data/Files", fileName);
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                
                 // The files are not actually saved in this demo
                 file.SaveAs(physicalPath);
 
