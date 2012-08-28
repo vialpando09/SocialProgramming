@@ -161,21 +161,31 @@ namespace WebApplication.Controllers
         [ValidateInput(false)]
         public ActionResult Edit(Entry entry, int[] selectedCategories, string huKeywords, string enKeywords, string toDeleteFiles)
         {
-            KeywordsProcedure(entry, huKeywords, enKeywords);
+            var toEditEntry = db.Entries.Where(e => e.Id == entry.Id).First();
+            KeywordsProcedure(toEditEntry, huKeywords, enKeywords);
 
             var attachments = TempData["Attachments"] as List<string>;
             var featuredImage = TempData["FeaturedImage"] as List<string>;
 
             if (ModelState.IsValid)
             {
-                entry.UserId = int.Parse((string)Session["UserId"]);                
-                entry.Categories.Clear();
+                toEditEntry.enContent = entry.enContent;
+                toEditEntry.enIntroduction = entry.enIntroduction;
+                toEditEntry.enTitle = entry.enTitle;
+                toEditEntry.huContent = entry.huContent;
+                toEditEntry.huIntroduction = entry.huIntroduction;
+                toEditEntry.huTitle = entry.huTitle;
+                toEditEntry.IsFeatured = entry.IsFeatured;
+                toEditEntry.Keywords = entry.Keywords;
+                toEditEntry.Published = entry.Published;
+                toEditEntry.PublishedDate = entry.PublishedDate;                
+                toEditEntry.UserId = int.Parse((string)Session["UserId"]);
+                toEditEntry.Categories.Clear();
                 foreach (var id in selectedCategories.ToList())
                 {
                     Category category = db.Categories.Single(e => e.Id == id);
-                    entry.Categories.Add(category);
+                    toEditEntry.Categories.Add(category);
                 }
-
                 //Delete to delete
                 List<string> fileNames = new List<string>();
                 foreach (var idString in toDeleteFiles.Split(',').Where(e => e != ""))
@@ -183,6 +193,7 @@ namespace WebApplication.Controllers
                     int id = int.Parse(idString);
                     var file = db.Files.Where(e => e.Id == id).First();
                     fileNames.Add(file.Name);
+                    toEditEntry.Files.Remove(file);
                     db.Files.Remove(file);
                 }
                 this.Delete("~/App_Data/Files", fileNames.ToArray());
@@ -191,7 +202,7 @@ namespace WebApplication.Controllers
                 {
                     foreach (var att in attachments)
                     {
-                        WebApplication.File newAtt = new WebApplication.File { Entry = entry, Location = Guid.NewGuid().ToString(), Name = Path.GetFileName(att) };
+                        WebApplication.File newAtt = new WebApplication.File { Entry = toEditEntry, Location = Guid.NewGuid().ToString(), Name = Path.GetFileName(att) };
                         db.Files.Add(newAtt);
                     }
                 }
@@ -199,14 +210,12 @@ namespace WebApplication.Controllers
                 {
                     string[] fileName = { Path.GetFileName(entry.FeaturedImage) };
                     this.Delete("~/App_Data/Images", fileName);
-                    entry.FeaturedImage = featuredImage[0];
+                    toEditEntry.FeaturedImage = featuredImage[0];
                 }
                 else if (string.IsNullOrEmpty(entry.FeaturedImage))
                 {
-                    entry.FeaturedImage = "";
+                    toEditEntry.FeaturedImage = "";
                 }
-
-                db.Entry(entry).State = EntityState.Modified;
                 try
                 {
                     db.SaveChanges();

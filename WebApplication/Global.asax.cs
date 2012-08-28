@@ -15,8 +15,8 @@ namespace WebApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //filters.Add(new HandleErrorAttribute());
-            GlobalFilters.Filters.Add(new GlobalAutoLoginAction());
+            filters.Add(new HandleErrorAttribute());
+            filters.Add(new GlobalAutoLoginAction());
         }
 
         public static void RegisterRoutes(RouteCollection routes)
