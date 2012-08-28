@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 06/02/2012 13:13:40
+-- Date Created: 08/28/2012 08:52:36
 -- Generated from EDMX file: D:\Documents\GitHub\SocialProgramming\WebApplication\Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [SocialProgramming];
+USE [Vialpando];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -37,6 +37,12 @@ IF OBJECT_ID(N'[dbo].[FK_EntryKeyword_Keyword]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_EntryFile]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Files] DROP CONSTRAINT [FK_EntryFile];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CommentEntry]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Comments] DROP CONSTRAINT [FK_CommentEntry];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CommentUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Comments] DROP CONSTRAINT [FK_CommentUser];
 GO
 
 -- --------------------------------------------------
@@ -67,6 +73,12 @@ GO
 IF OBJECT_ID(N'[dbo].[Files]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Files];
 GO
+IF OBJECT_ID(N'[dbo].[Comments]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Comments];
+GO
+IF OBJECT_ID(N'[dbo].[VisitorDataSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[VisitorDataSet];
+GO
 IF OBJECT_ID(N'[dbo].[CategoryEntry]', 'U') IS NOT NULL
     DROP TABLE [dbo].[CategoryEntry];
 GO
@@ -90,7 +102,13 @@ GO
 CREATE TABLE [dbo].[Users] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Username] nvarchar(max)  NOT NULL,
-    [Password] nvarchar(max)  NOT NULL
+    [Password] nvarchar(max)  NOT NULL,
+    [Type] int  NOT NULL,
+    [ActivationCode] nvarchar(max)  NOT NULL,
+    [IsActivated] bit  NOT NULL,
+    [RegistrationDate] datetime  NOT NULL,
+    [EmailAddress] nvarchar(max)  NOT NULL,
+    [CookieHash] nvarchar(max)  NULL
 );
 GO
 
@@ -105,7 +123,9 @@ CREATE TABLE [dbo].[Entries] (
     [enContent] nvarchar(max)  NOT NULL,
     [UserId] int  NOT NULL,
     [huIntroduction] nvarchar(max)  NOT NULL,
-    [enIntroduction] nvarchar(max)  NOT NULL
+    [enIntroduction] nvarchar(max)  NOT NULL,
+    [IsFeatured] bit  NOT NULL,
+    [FeaturedImage] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -117,7 +137,8 @@ CREATE TABLE [dbo].[Pages] (
     [Published] bit  NOT NULL,
     [huContent] nvarchar(max)  NOT NULL,
     [enContent] nvarchar(max)  NOT NULL,
-    [UserId] int  NOT NULL
+    [UserId] int  NOT NULL,
+    [PublishedDate] datetime  NOT NULL
 );
 GO
 
@@ -153,6 +174,34 @@ CREATE TABLE [dbo].[Files] (
     [Name] nvarchar(max)  NOT NULL,
     [Location] nvarchar(max)  NOT NULL,
     [EntryId] int  NOT NULL
+);
+GO
+
+-- Creating table 'Comments'
+CREATE TABLE [dbo].[Comments] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Content] nvarchar(max)  NOT NULL,
+    [Date] datetime  NOT NULL,
+    [Entry_Id] int  NOT NULL,
+    [User_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'VisitorDataSet'
+CREATE TABLE [dbo].[VisitorDataSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [IpAddress] nvarchar(max)  NOT NULL,
+    [Country] nvarchar(max)  NOT NULL,
+    [Location] nvarchar(max)  NOT NULL,
+    [Date] datetime  NOT NULL,
+    [Latitude] nvarchar(max)  NOT NULL,
+    [Longitude] nvarchar(max)  NOT NULL,
+    [ZipCode] nvarchar(max)  NOT NULL,
+    [TimeZone] nvarchar(max)  NOT NULL,
+    [ISP] nvarchar(max)  NOT NULL,
+    [Domain] nvarchar(max)  NOT NULL,
+    [IDD] nvarchar(max)  NOT NULL,
+    [ConnectionType] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -219,6 +268,18 @@ GO
 -- Creating primary key on [Id] in table 'Files'
 ALTER TABLE [dbo].[Files]
 ADD CONSTRAINT [PK_Files]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Comments'
+ALTER TABLE [dbo].[Comments]
+ADD CONSTRAINT [PK_Comments]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'VisitorDataSet'
+ALTER TABLE [dbo].[VisitorDataSet]
+ADD CONSTRAINT [PK_VisitorDataSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -324,6 +385,34 @@ ADD CONSTRAINT [FK_EntryFile]
 CREATE INDEX [IX_FK_EntryFile]
 ON [dbo].[Files]
     ([EntryId]);
+GO
+
+-- Creating foreign key on [Entry_Id] in table 'Comments'
+ALTER TABLE [dbo].[Comments]
+ADD CONSTRAINT [FK_CommentEntry]
+    FOREIGN KEY ([Entry_Id])
+    REFERENCES [dbo].[Entries]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CommentEntry'
+CREATE INDEX [IX_FK_CommentEntry]
+ON [dbo].[Comments]
+    ([Entry_Id]);
+GO
+
+-- Creating foreign key on [User_Id] in table 'Comments'
+ALTER TABLE [dbo].[Comments]
+ADD CONSTRAINT [FK_CommentUser]
+    FOREIGN KEY ([User_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CommentUser'
+CREATE INDEX [IX_FK_CommentUser]
+ON [dbo].[Comments]
+    ([User_Id]);
 GO
 
 -- --------------------------------------------------

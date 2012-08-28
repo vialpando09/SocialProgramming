@@ -78,7 +78,7 @@ html body .t-button-bare{background:none!important;/*spares long selectors*/bord
 .t-icon-calendar{background-position:-48px -240px}
 .t-icon-clock{background-position:-64px -336px}
 .t-edit{background-position:0 -336px}
-.t-delete{background-position:-16px -336px}
+.t-delete{background-position:-48px -336px}
 .t-insert,.t-update{background-position:-32px -336px}
 .t-cancel{background-position:-48px -336px}
 .t-group-delete{background-position:0 -288px}

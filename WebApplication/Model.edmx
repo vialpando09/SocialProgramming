@@ -14,6 +14,8 @@
     <EntitySet Name="FeedBacks" EntityType="Model.Store.FeedBacks" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Keywords" EntityType="Model.Store.Keywords" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Files" EntityType="Model.Store.Files" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Comments" EntityType="Model.Store.Comments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VisitorDataSet" EntityType="Model.Store.VisitorDataSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CategoryEntry" EntityType="Model.Store.CategoryEntry" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EntryKeyword" EntityType="Model.Store.EntryKeyword" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="UserEntry" Association="Model.Store.UserEntry">
@@ -44,6 +46,14 @@
       <End Role="Entry" EntitySet="Entries" />
       <End Role="File" EntitySet="Files" />
     </AssociationSet>
+    <AssociationSet Name="CommentEntry" Association="Model.Store.CommentEntry">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="Entry" EntitySet="Entries" />
+    </AssociationSet>
+    <AssociationSet Name="CommentUser" Association="Model.Store.CommentUser">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Categories">
     <Key>
@@ -60,6 +70,12 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="ActivationCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActivated" Type="bit" Nullable="false" />
+    <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+    <Property Name="EmailAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CookieHash" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="Entries">
     <Key>
@@ -75,6 +91,8 @@
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="huIntroduction" Type="nvarchar(max)" Nullable="false" />
     <Property Name="enIntroduction" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsFeatured" Type="bit" Nullable="false" />
+    <Property Name="FeaturedImage" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Pages">
     <Key>
@@ -87,6 +105,7 @@
     <Property Name="huContent" Type="nvarchar(max)" Nullable="false" />
     <Property Name="enContent" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="PublishedDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Settings">
     <Key>
@@ -122,6 +141,34 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
     <Property Name="EntryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Entry_Id" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VisitorDataSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IpAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Latitude" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Longitude" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ZipCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TimeZone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ISP" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Domain" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IDD" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ConnectionType" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="CategoryEntry">
     <Key>
@@ -172,6 +219,30 @@
       </Principal>
       <Dependent Role="File">
         <PropertyRef Name="EntryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommentEntry">
+    <End Role="Comment" Type="Model.Store.Comments" Multiplicity="*" />
+    <End Role="Entry" Type="Model.Store.Entries" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Entry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="Entry_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommentUser">
+    <End Role="Comment" Type="Model.Store.Comments" Multiplicity="*" />
+    <End Role="User" Type="Model.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="User_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -256,6 +327,16 @@
             <End Role="Entry" EntitySet="Entries" />
             <End Role="File" EntitySet="Files" />
           </AssociationSet>
+          <EntitySet Name="Comments" EntityType="Model.Comment" />
+          <AssociationSet Name="CommentEntry" Association="Model.CommentEntry">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Entry" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="CommentUser" Association="Model.CommentUser">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="VisitorDataSet" EntityType="Model.VisitorData" />
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -275,6 +356,13 @@
           <Property Type="String" Name="Password" Nullable="false" />
           <NavigationProperty Name="MyEntries" Relationship="Model.UserEntry" FromRole="User" ToRole="Entry" />
           <NavigationProperty Name="MyPages" Relationship="Model.UserPage" FromRole="User" ToRole="Page" />
+          <Property Type="Int32" Name="Type" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="Model.CommentUser" FromRole="User" ToRole="Comment" />
+          <Property Type="String" Name="ActivationCode" Nullable="false" />
+          <Property Type="Boolean" Name="IsActivated" Nullable="false" />
+          <Property Type="DateTime" Name="RegistrationDate" Nullable="false" />
+          <Property Type="String" Name="EmailAddress" Nullable="false" />
+          <Property Type="String" Name="CookieHash" Nullable="true" />
         </EntityType>
         <EntityType Name="Entry">
           <Key>
@@ -294,6 +382,9 @@
           <Property Type="String" Name="enIntroduction" Nullable="false" />
           <NavigationProperty Name="Keywords" Relationship="Model.EntryKeyword" FromRole="Entry" ToRole="Keyword" />
           <NavigationProperty Name="Files" Relationship="Model.EntryFile" FromRole="Entry" ToRole="File" />
+          <NavigationProperty Name="Comments" Relationship="Model.CommentEntry" FromRole="Entry" ToRole="Comment" />
+          <Property Type="Boolean" Name="IsFeatured" Nullable="false" />
+          <Property Type="String" Name="FeaturedImage" Nullable="false" />
           </EntityType>
         <EntityType Name="Page">
           <Key>
@@ -307,6 +398,7 @@
           <Property Type="String" Name="enContent" Nullable="false" />
           <NavigationProperty Name="Creator" Relationship="Model.UserPage" FromRole="Page" ToRole="User" />
           <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="DateTime" Name="PublishedDate" Nullable="false" />
         </EntityType>
         <EntityType Name="Setting">
           <Key>
@@ -389,6 +481,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Content" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <NavigationProperty Name="Entry" Relationship="Model.CommentEntry" FromRole="Comment" ToRole="Entry" />
+          <NavigationProperty Name="User" Relationship="Model.CommentUser" FromRole="Comment" ToRole="User" />
+        </EntityType>
+        <Association Name="CommentEntry">
+          <End Type="Model.Comment" Role="Comment" Multiplicity="*" />
+          <End Type="Model.Entry" Role="Entry" Multiplicity="1" />
+        </Association>
+        <Association Name="CommentUser">
+          <End Type="Model.Comment" Role="Comment" Multiplicity="*" />
+          <End Type="Model.User" Role="User" Multiplicity="1" />
+        </Association>
+        <EntityType Name="VisitorData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="IpAddress" Nullable="false" />
+          <Property Type="String" Name="Country" Nullable="false" />
+          <Property Type="String" Name="Location" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="String" Name="Latitude" Nullable="false" />
+          <Property Type="String" Name="Longitude" Nullable="false" />
+          <Property Type="String" Name="ZipCode" Nullable="false" />
+          <Property Type="String" Name="TimeZone" Nullable="false" />
+          <Property Type="String" Name="ISP" Nullable="false" />
+          <Property Type="String" Name="Domain" Nullable="false" />
+          <Property Type="String" Name="IDD" Nullable="false" />
+          <Property Type="String" Name="ConnectionType" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -410,6 +538,12 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+          <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
+          <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="CookieHash" ColumnName="CookieHash" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -426,6 +560,8 @@
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="huIntroduction" ColumnName="huIntroduction" />
           <ScalarProperty Name="enIntroduction" ColumnName="enIntroduction" />
+          <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
+          <ScalarProperty Name="FeaturedImage" ColumnName="FeaturedImage" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -439,6 +575,7 @@
           <ScalarProperty Name="huContent" ColumnName="huContent" />
           <ScalarProperty Name="enContent" ColumnName="enContent" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -481,6 +618,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Comment)">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VisitorDataSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.VisitorData)">
+        <MappingFragment StoreEntitySet="VisitorDataSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+          <ScalarProperty Name="ISP" ColumnName="ISP" />
+          <ScalarProperty Name="Domain" ColumnName="Domain" />
+          <ScalarProperty Name="IDD" ColumnName="IDD" />
+          <ScalarProperty Name="ConnectionType" ColumnName="ConnectionType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="CategoryEntry" TypeName="Model.CategoryEntry" StoreEntitySet="CategoryEntry">
       <EndProperty Name="Category">
         <ScalarProperty Name="Id" ColumnName="Categories_Id" />
@@ -495,6 +660,22 @@
       </EndProperty>
       <EndProperty Name="Keyword">
         <ScalarProperty Name="Id" ColumnName="Keywords_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CommentEntry" TypeName="Model.CommentEntry" StoreEntitySet="Comments">
+      <EndProperty Name="Entry">
+        <ScalarProperty Name="Id" ColumnName="Entry_Id" />
+      </EndProperty>
+      <EndProperty Name="Comment">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CommentUser" TypeName="Model.CommentUser" StoreEntitySet="Comments">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Comment">
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
@@ -517,34 +698,44 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Model" >
-        <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="4.375" PointY="0.5" Height="1.787985026041667" />
-        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="0.625" PointY="0.5" Height="1.59568359375" />
-        <EntityTypeShape EntityType="Model.Entry" Width="1.5" PointX="2.5" PointY="0.5" Height="3.3263964843749996" />
-        <EntityTypeShape EntityType="Model.Page" Width="1.5" PointX="0.625" PointY="2.875" Height="2.5571907552083317" />
-        <EntityTypeShape EntityType="Model.Setting" Width="1.5" PointX="6.25" PointY="0.5" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="6.25" PointY="0.5" Height="1.787985026041667" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="0.625" PointY="0.5" Height="3.326396484375" />
+        <EntityTypeShape EntityType="Model.Entry" Width="1.5" PointX="4.375" PointY="0.5" Height="4.2879036458333335" />
+        <EntityTypeShape EntityType="Model.Page" Width="1.5" PointX="0.625" PointY="4.125" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="Model.Setting" Width="1.5" PointX="8.125" PointY="0.5" Height="1.5956835937499996" />
         <AssociationConnector Association="Model.UserEntry">
-          <ConnectorPoint PointX="2.125" PointY="1.4901432291666668" />
-          <ConnectorPoint PointX="2.5" PointY="1.4901432291666668" />
+          <ConnectorPoint PointX="2.125" PointY="0.78125" />
+          <ConnectorPoint PointX="4.375" PointY="0.78125" />
         </AssociationConnector>
         <AssociationConnector Association="Model.CategoryEntry">
-          <ConnectorPoint PointX="4.375" PointY="1.3939925130208337" />
-          <ConnectorPoint PointX="4" PointY="1.3939925130208337" />
+          <ConnectorPoint PointX="6.25" PointY="1.3939925130208335" />
+          <ConnectorPoint PointX="5.875" PointY="1.3939925130208335" />
         </AssociationConnector>
         <AssociationConnector Association="Model.UserPage">
-          <ConnectorPoint PointX="1.375" PointY="2.4802864583333335" />
-          <ConnectorPoint PointX="1.375" PointY="2.875" />
+          <ConnectorPoint PointX="1.375" PointY="3.826396484375" />
+          <ConnectorPoint PointX="1.375" PointY="4.125" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model.FeedBack" Width="1.5" PointX="6.25" PointY="2.375" Height="1.9802864583333326" />
-        <EntityTypeShape EntityType="Model.Keyword" Width="1.5" PointX="4.375" PointY="2.625" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="Model.FeedBack" Width="1.5" PointX="6.25" PointY="4.75" Height="1.9802864583333326" />
+        <EntityTypeShape EntityType="Model.Keyword" Width="1.5" PointX="6.25" PointY="2.625" Height="1.7879850260416665" />
         <AssociationConnector Association="Model.EntryKeyword">
-          <ConnectorPoint PointX="4" PointY="3.3218489583333333" />
-          <ConnectorPoint PointX="4.375" PointY="3.3218489583333333" />
+          <ConnectorPoint PointX="5.875" PointY="3.5189925130208337" />
+          <ConnectorPoint PointX="6.25" PointY="3.5189925130208337" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model.File" Width="1.5" PointX="2.5" PointY="4.75" Height="1.9802864583333335" />
+        <EntityTypeShape EntityType="Model.File" Width="1.5" PointX="2.5" PointY="3.375" Height="1.9802864583333335" />
         <AssociationConnector Association="Model.EntryFile">
-          <ConnectorPoint PointX="3.01256841081505" PointY="4.2109993489583326" />
-          <ConnectorPoint PointX="3.01256841081505" PointY="4.75" />
+          <ConnectorPoint PointX="4.375" PointY="4.0814518229166667" />
+          <ConnectorPoint PointX="4" PointY="4.0814518229166667" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="Model.Comment" Width="1.5" PointX="2.5" PointY="1.125" Height="1.9802864583333331" />
+        <AssociationConnector Association="Model.CommentEntry">
+          <ConnectorPoint PointX="4" PointY="2.1151432291666667" />
+          <ConnectorPoint PointX="4.375" PointY="2.1151432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.CommentUser">
+          <ConnectorPoint PointX="2.5" PointY="2.1151432291666667" />
+          <ConnectorPoint PointX="2.125" PointY="2.1151432291666667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.VisitorData" Width="1.5" PointX="8.125" PointY="2.625" Height="3.5186979166666656" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

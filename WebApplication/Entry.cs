@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace WebApplication
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class Entry
     {
         public Entry()
@@ -19,6 +19,7 @@ namespace WebApplication
             this.Categories = new HashSet<Category>();
             this.Keywords = new HashSet<Keyword>();
             this.Files = new HashSet<File>();
+            this.Comments = new HashSet<Comment>();
         }
     
         public int Id { get; set; }
@@ -31,10 +32,14 @@ namespace WebApplication
         public int UserId { get; set; }
         public string huIntroduction { get; set; }
         public string enIntroduction { get; set; }
+        public bool IsFeatured { get; set; }
+        public string FeaturedImage { get; set; }
     
         public virtual User Creator { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
         public virtual ICollection<Keyword> Keywords { get; set; }
         public virtual ICollection<File> Files { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
+    
 }

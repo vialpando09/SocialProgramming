@@ -48,39 +48,6 @@ namespace WebApplication.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public ActionResult Login(LoginModel model)
-        {
-            if (ModelState.IsValid)
-            {
-
-                var password = Common.CalculateMD5Hash(model.Password);
-                var user = (from u in db.Users
-                            where u.Username == model.UserName && u.Password == password
-                            select u).FirstOrDefault();
-
-                if (user != null)
-                {
-                    Session["UserId"] = user.Id.ToString();
-                    return RedirectToAction("Index");
-                }
-
-                ModelState.AddModelError("error", Resources.Admin.Login.Error);
-
-            }
-            return View(model);
-        }
-
-        [LoginAuthorize]
-        public ActionResult Logout()
-        {
-            Session["UserId"] = null;
-            ViewBag.GlobalHeader = Resources.Common.Information;
-            ViewBag.GlobalMessage = Resources.Common.LogoutMessage;
-
-            return RedirectToAction("Index", "Home");
-        }
-
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

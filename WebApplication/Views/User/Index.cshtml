@@ -1,0 +1,37 @@
+﻿@model IEnumerable<WebApplication.EditableUser>
+@using WebApplication
+@using Telerik.Web.Mvc.UI
+@{
+    ViewBag.Title = WebApplication.Resources.Common.Users;
+    ViewBag.PageTitle = WebApplication.Resources.Common.Users;
+}
+<div class="content_pad">
+    @(Html.Telerik().Grid(Model)
+            .Name("Grid")
+            .DataKeys(keys => keys.Add(c => c.Id))
+            .DataBinding(dataBinding => dataBinding.Server()
+                    .Select("Index", "User")
+                    .Insert("Insert", "User")
+                    .Update("Save", "User")
+                    .Delete("Delete", "User"))
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.Username).Title(WebApplication.Resources.Common.Username);
+            columns.Bound(o => o.EmailAddress).Title(WebApplication.Resources.Common.EmailAddress);
+            columns.Bound(o => o.RegistrationDate).Title(WebApplication.Resources.Common.Date);
+            columns.Bound(o => o.IsActivated).Title(WebApplication.Resources.Common.IsActivated);
+            columns.Bound(o => o.Password).Title(WebApplication.Resources.Common.Password);
+            columns.Bound(o => o.Type).Title(WebApplication.Resources.Common.Level);
+            columns.Command(commands =>
+            {
+                commands.Edit().ButtonType(GridButtonType.Image);
+                commands.Delete().ButtonType(GridButtonType.Image);
+            }).Width(180).Title("");
+        })
+                .Editable(editing => editing.Mode(GridEditMode.InLine))
+        .Scrollable(scrolling => scrolling.Enabled(false))
+        .Sortable(sorting => sorting.Enabled(true))
+        .Pageable(paging => paging.Enabled(true))
+        .Footer(true)
+    )
+</div>

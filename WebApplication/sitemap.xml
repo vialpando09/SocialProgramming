@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.90">
+  <url xmlns="">
+    <loc>http://localhost:28285/hu/</loc>
+    <lastmod>2012-08-22-T14:44:14+01:00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url xmlns="">
+    <loc>http://localhost:28285/en/</loc>
+    <lastmod>2012-08-22-T14:44+01:00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>

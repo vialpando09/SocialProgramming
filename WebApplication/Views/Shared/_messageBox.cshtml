@@ -1,0 +1,24 @@
+﻿@model MessageTypes
+@using WebApplication
+@{
+        
+    if(Model == MessageTypes.Information)
+    {
+    <div onclick="$(this).fadeOut('slow')" class="Box infoBox">
+        @ViewBag.GlobalHeader @ViewBag.GlobalMessage</div>
+    }
+    else if (Model == MessageTypes.Success)
+    {
+    <div onclick="$(this).fadeOut('slow')" class="Box successBox">
+        @ViewBag.GlobalHeader @ViewBag.GlobalMessage</div>
+    }
+    else if (Model == MessageTypes.Warning)
+    {
+    <div onclick="$(this).fadeOut('slow')" class="Box warningBox">
+        @ViewBag.GlobalHeader @ViewBag.GlobalMessage</div>
+    } else if (Model == MessageTypes.Error)
+    {
+    <div onclick="$(this).fadeOut('slow')" class="Box errorBox">
+        @ViewBag.GlobalHeader @ViewBag.GlobalMessage</div>
+    }
+}

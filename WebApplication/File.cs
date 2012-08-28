@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace WebApplication
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class File
     {
         public int Id { get; set; }
@@ -21,4 +21,5 @@ namespace WebApplication
     
         public virtual Entry Entry { get; set; }
     }
+    
 }

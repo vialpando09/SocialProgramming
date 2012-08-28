@@ -1,0 +1,27 @@
+﻿@model WebApplication.Models.FeedbackModel
+<div class="box">
+    @{using (Html.BeginForm("Send", "Feedback", FormMethod.Post))
+      {
+        <h1>
+            @WebApplication.Resources.Feedback.Index.Title</h1>
+        <fieldset id="user-message">
+            @Html.Label(WebApplication.Resources.Common.EmailAddress)
+            @Html.ValidationMessageFor(model => model.EmailAddress)
+            @Html.EditorFor(model => model.EmailAddress)
+            @Html.Label(WebApplication.Resources.Common.Content)
+            @Html.ValidationMessageFor(model => model.Message)
+            @Html.TextAreaFor(model => model.Message)
+            @Html.Label(WebApplication.Resources.Feedback.Index.VerificationCode)
+            @Html.ValidationMessage("CaptchaError")
+            <div class="img">
+                <img src="/Feedback/ShowCaptchaImage" alt="captcha" />
+            </div>
+            @WebApplication.Resources.Feedback.Index.VerificationMessage
+            @Html.TextBoxFor(model => model.CaptchaText)
+            <input type="submit" value="@WebApplication.Resources.Common.Send" name="submit" class="submit" />
+            <input type="button" value="@WebApplication.Resources.Common.Cancel" onclick="document.getElementById('contactme').style.visibility = 'hidden'"
+                name="submit" class="submit" />
+        </fieldset>
+        <!-- end user-message -->
+      }}
+</div>

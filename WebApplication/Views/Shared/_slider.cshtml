@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Entry>
+<div id="featured">
+    <ul class="ui-tabs-nav">
+        @for (int i = 1; i <= Model.Count(); i++)
+        {
+            if (i == 1)
+            {
+            <text><li class="ui-tabs-nav-item ui-tabs-selected" id="nav-fragment-1"><a href="#fragment-1">
+                <span></span></a></li></text>
+            }
+            else
+            {
+            <text><li class="ui-tabs-nav-item" id="nav-fragment-@i"><a href="#fragment-@i"><span>
+            </span></a></li></text>
+            }
+        }
+    </ul>
+    @for (int i = 1; i <= Model.Count(); i++)
+    {        
+        <div id="fragment-@i" class="ui-tabs-panel" style="">
+            <img src="@Model.ElementAt(i - 1).FeaturedImage" alt="" />
+            <div class="info">
+                @if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+                {   
+                    <h2>@Model.ElementAt(i - 1).enTitle</h2>
+                    <p>@Model.ElementAt(i - 1).enIntroduction</p>
+                }
+                else
+                {
+                    <h2>@Model.ElementAt(i - 1).huTitle</h2>
+                    <p>@Model.ElementAt(i - 1).huIntroduction</p>
+                }
+            </div>
+        </div>        
+    }
+</div>

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace WebApplication
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class FeedBack
     {
         public int Id { get; set; }
@@ -20,4 +20,5 @@ namespace WebApplication
         public System.DateTime SendDate { get; set; }
         public bool Checked { get; set; }
     }
+    
 }

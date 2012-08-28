@@ -61,7 +61,7 @@ namespace WebApplication.Resources.Admin {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Felhasználó név és/vagy jelszó nem megfelelő.
+        ///   Looks up a localized string similar to Felhasználó név és/vagy jelszó nem megfelelő..
         /// </summary>
         public static string Error {
             get {

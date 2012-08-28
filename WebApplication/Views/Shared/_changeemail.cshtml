@@ -1,0 +1,20 @@
+﻿@model WebApplication.Models.NewEmailModel
+<div class="box">
+    @{using (Html.BeginForm("ChangeEmail", "User", FormMethod.Post))
+      {
+        <h1>
+            @WebApplication.Resources.Common.ChangeEmail</h1>
+        <fieldset id="user-message">
+            @Html.Label(WebApplication.Resources.Common.NewEmail)
+            @Html.ValidationMessageFor(model => model.NewEmail)
+            @Html.EditorFor(model => model.NewEmail)
+            @Html.Label(WebApplication.Resources.Common.Password)
+            @Html.ValidationMessageFor(model => model.EmailOldPassword)
+            @Html.EditorFor(model => model.EmailOldPassword)
+            <input type="submit" value="@WebApplication.Resources.Common.Save" name="submit" class="submit" />
+            <input type="button" value="@WebApplication.Resources.Common.Cancel" onclick="document.getElementById('changeemail').style.visibility = 'hidden'"
+                name="submit" class="submit" />
+        </fieldset>
+        <!-- end user-message -->
+      }}
+</div>

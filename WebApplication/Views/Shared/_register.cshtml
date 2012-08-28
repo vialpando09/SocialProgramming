@@ -1,0 +1,33 @@
+﻿@model WebApplication.Models.RegisterModel
+<div class="box">
+    @{using (Html.BeginForm("Registration", "User", FormMethod.Post))
+      {
+        <h1>
+            @WebApplication.Resources.Common.Registration</h1>
+        <fieldset id="user-message">
+            @Html.Label(WebApplication.Resources.Common.Username)
+            @Html.ValidationMessageFor(model => model.RegUserName)
+            @Html.EditorFor(model => model.RegUserName)
+            @Html.Label(WebApplication.Resources.Common.EmailAddress)
+            @Html.ValidationMessageFor(model => model.RegEmail)
+            @Html.EditorFor(model => model.RegEmail)
+            @Html.Label(WebApplication.Resources.Common.Password)
+            @Html.ValidationMessageFor(model => model.RegPassword)
+            @Html.EditorFor(model => model.RegPassword)
+            @Html.Label(WebApplication.Resources.Common.ConfirmPassword)
+            @Html.ValidationMessageFor(model => model.RegConfirmPassword)
+            @Html.EditorFor(model => model.RegConfirmPassword)
+            @Html.Label(WebApplication.Resources.Feedback.Index.VerificationCode)
+            @Html.ValidationMessage("CaptchaError")
+            <div class="img">
+                <img src="/Feedback/ShowCaptchaImage" alt="captcha" />
+            </div>
+            @WebApplication.Resources.Feedback.Index.VerificationMessage
+            @Html.TextBoxFor(model => model.RegCaptchaText)
+            <input type="submit" value="@WebApplication.Resources.Common.Registration" name="submit" class="submit" />
+            <input type="button" value="@WebApplication.Resources.Common.Cancel" onclick="document.getElementById('register').style.visibility = 'hidden'"
+                name="submit" class="submit" />
+        </fieldset>
+        <!-- end user-message -->
+      }}
+</div>

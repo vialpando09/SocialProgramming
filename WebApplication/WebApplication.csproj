@@ -72,19 +72,26 @@
     <Compile Include="Category.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Comment.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Common.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ArchiveController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\DownloadController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageBrowserController.cs" />
     <Compile Include="Controllers\InstallController.cs" />
     <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Entry.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -227,6 +234,9 @@
     <Compile Include="User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="VisitorData.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Default\editor.png" />
@@ -239,6 +249,9 @@
     <Content Include="Content\Default\treeview-line.png" />
     <Content Include="Content\Default\treeview-nodes-rtl.png" />
     <Content Include="Content\Default\treeview-nodes.png" />
+    <Content Include="Content\feedback.css" />
+    <Content Include="Content\font\iconic_stroke-webfont.svg" />
+    <Content Include="Content\font\iconic_stroke.svg" />
     <Content Include="Content\Forest\editor.png" />
     <Content Include="Content\Forest\imagebrowser.png" />
     <Content Include="Content\Forest\loading.gif" />
@@ -259,6 +272,7 @@
     <Content Include="Content\Hay\treeview-line.png" />
     <Content Include="Content\Hay\treeview-nodes-rtl.png" />
     <Content Include="Content\Hay\treeview-nodes.png" />
+    <Content Include="Content\login-css.css" />
     <Content Include="Content\Metro\editor.png" />
     <Content Include="Content\Metro\imagebrowser.png" />
     <Content Include="Content\Metro\loading.gif" />
@@ -330,6 +344,7 @@
     <Content Include="Content\Sitefinity\treeview-line.png" />
     <Content Include="Content\Sitefinity\treeview-nodes-rtl.png" />
     <Content Include="Content\Sitefinity\treeview-nodes.png" />
+    <Content Include="Content\slider.css" />
     <Content Include="Content\Sunset\editor.png" />
     <Content Include="Content\Sunset\imagebrowser.png" />
     <Content Include="Content\Sunset\loading.gif" />
@@ -439,6 +454,7 @@
     <Content Include="Content\Windows7\slider-v.gif" />
     <Content Include="Content\Windows7\sprite-vertical.png" />
     <Content Include="Content\Windows7\sprite.png" />
+    <Content Include="pthreadGC2.dll" />
     <Content Include="Scripts\dashboard.js" />
     <Content Include="Scripts\jquery-1.5.2.min.js" />
     <Content Include="Scripts\jquery.tagcanvas.js" />
@@ -829,18 +845,22 @@
     <EmbeddedResource Include="Resources\Common.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Common.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Common.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Common.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Feedback\Index.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Feedback\Index.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Install\Index.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -992,6 +1012,13 @@
     <Content Include="Views\Upload\_Content.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\font\.DS_Store" />
+    <None Include="Content\font\iconic_stroke-webfont.eot" />
+    <None Include="Content\font\iconic_stroke-webfont.ttf" />
+    <None Include="Content\font\iconic_stroke-webfont.woff" />
+    <None Include="Content\font\iconic_stroke.eot" />
+    <None Include="Content\font\iconic_stroke.otf" />
+    <None Include="Content\font\iconic_stroke.ttf" />
     <None Include="Content\themes\main\league_gothic-webfont.woff" />
     <None Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1012,6 +1039,29 @@
     <Content Include="Views\Home\Entry.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Home\Tag.cshtml" />
+    <Content Include="Views\Shared\_socialprofiles.cshtml" />
+    <Content Include="Views\Shared\login.cshtml" />
+    <Content Include="Views\Shared\_messageBox.cshtml" />
+    <Content Include="Views\Shared\_feedback.cshtml" />
+    <Content Include="Views\Shared\_register.cshtml" />
+    <Content Include="Views\Shared\_forgotten.cshtml" />
+    <Content Include="Views\Shared\_changepassword.cshtml" />
+    <Content Include="Views\Shared\_changeemail.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\DisplayTemplates\Type.cshtml" />
+    <Content Include="Views\User\EditorTemplates\Type.cshtml" />
+    <Content Include="Views\Shared\_slider.cshtml" />
+    <Content Include="Views\Download\Index.cshtml" />
+    <Content Include="Views\Home\AjaxLoadEntries.cshtml" />
+    <Content Include="Views\Home\AjaxLoadCategory.cshtml" />
+    <Content Include="Views\Home\AjaxLoadTag.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\AjaxLoadSearch.cshtml" />
+    <Content Include="Views\Home\Archive.cshtml" />
+    <Content Include="Views\Home\AjaxLoadArchive.cshtml" />
+    <Content Include="Views\Home\ArchiveMore.cshtml" />
+    <Content Include="Views\Home\AjaxLoadArchiveMore.cshtml" />
+    <Content Include="Views\Home\Page.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1034,7 +1084,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>39304</DevelopmentServerPort>
+          <DevelopmentServerPort>28285</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

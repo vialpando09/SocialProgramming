@@ -37,6 +37,28 @@
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.5.2.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.visualize.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/widgets.js")"></script>
+    <script type="text/javascript">
+        function deleteFile(id) {
+            if ($("#attachment-" + id).hasClass("deleted-element")) {
+                $("#attachment-" + id).removeClass("deleted-element");
+                $("#attachment-link-" + id).html("Törlés");
+                var str = $("#toDeleteFiles").val();
+                var splitResult = str.split(",");
+                var index = splitResult.indexOf(String(id));
+                splitResult.splice(index, 1);
+                var value = splitResult.join(",");
+                $("#toDeleteFiles").val(value);
+            } else {
+                $("#attachment-" + id).addClass("deleted-element");
+                $("#attachment-link-" + id).html("Mégse");                
+                var str = $("#toDeleteFiles").val();
+                var splitResult = str.split(",");
+                splitResult.splice(splitResult.length, 0, id);
+                var value = splitResult.join();
+                $("#toDeleteFiles").val(value);
+            }
+        }
+    </script>
 }
 @section AdditionalOnready{
 jQuery('.accordion_container').accordion();
@@ -45,8 +67,11 @@ jQuery('.accordion_container').accordion();
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 @using (Html.BeginForm("Edit", "Entry", FormMethod.Post, new { @Class = "form label-inline uniform" }))
 {
+    <input type="hidden" id="toDeleteFiles" value="" name="toDeleteFiles" />
     <div class="content_pad">
         <h3>@WebApplication.Resources.Common.Edit</h3>
+        @Html.HiddenFor(model => model.FeaturedImage)
+        @Html.HiddenFor(model => model.Published)
         <div class="accordion_container" style="min-height: 429px;">
             <h2 class="accordion_panel active">
                 <a href="#">@WebApplication.Resources.Common.Title</a></h2>
@@ -102,6 +127,62 @@ jQuery('.accordion_container').accordion();
                 <div class="field" style="margin-top: 20px; padding: 0 40px;">
                     @Html.FullTextAreaFor(model => model.enContent)
                     @Html.ValidationMessageFor(model => model.enContent)
+                </div>
+            </div>
+            <h2 class="accordion_panel">
+                <a href="#">@WebApplication.Resources.Common.Attachment</a></h2>
+            <div class="accordion_content" style="display: block;">
+                @Html.ValidationSummary(true)
+                <div class="field" style="margin-top: 20px;">
+                <label>@WebApplication.Resources.Common.Attachment</label>
+                    @(Html.Telerik().Upload()
+                        .Name("attachments")
+                        .Multiple(true)
+                        .Async(async => async
+                            .Save("Upload", "User")
+                            .Remove("DeleteFiles", "User")
+                            .AutoUpload(true)
+                        )
+                    )
+                    <label style="margin-top: 5px;">@WebApplication.Resources.Common.Original</label>
+                    <div class="attachments" style="margin-top: 30px;">
+                    @{
+                        foreach (var item in Model.Files)
+                        {
+                            <text><span id="attachment-link-@item.Id" style="cursor: pointer; color: Red; margin-right: 10px;" onclick="deleteFile('@item.Id')">Törlés</span>@Html.ActionLink(item.Name + " (" + Common.GetMimeType(item.Name) + ")", "Index", "Download", new { id = item.Location }, new { target = "_blank" })
+                                <br />
+                            </text>
+                        }
+                    }
+                    </div>
+                </div>
+            </div>
+            <h2 class="accordion_panel">
+                <a href="#">@WebApplication.Resources.Common.FeaturedPart</a></h2>
+            <div class="accordion_content" style="display: block;">
+                @Html.ValidationSummary(true)
+                <div class="field" style="margin-top: 20px;">
+                    @Html.LabelFor(model => model.IsFeatured, WebApplication.Resources.Common.SetFeatured)
+                    @Html.CheckBoxFor(model => model.IsFeatured, new { size = "50" })
+                    @Html.ValidationMessageFor(model => model.IsFeatured)      
+                    <br />              
+                    <label style="margin-top: 5px;">@WebApplication.Resources.Common.Image</label>
+                    @(Html.Telerik().Upload()
+                        .Name("featuredImage")
+                        .Multiple(true)
+                        .Async(async => async
+                            .Save("UploadImage", "Upload")
+                            .Remove("DeleteImage", "Upload")
+                            .AutoUpload(true)
+                        )
+                    )
+                    <label style="margin-top: 5px;">@WebApplication.Resources.Common.Original</label>
+                    <div class="attachments" style="margin-top: 30px;">
+                    @if (!string.IsNullOrEmpty(Model.FeaturedImage))
+                    {
+                        <img src="@Model.FeaturedImage" />
+                    }
+                    </div>
                 </div>
             </div>
             <!-- .accordion_content -->

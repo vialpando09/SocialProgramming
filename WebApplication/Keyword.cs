@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace WebApplication
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class Keyword
     {
         public Keyword()
@@ -25,4 +25,5 @@ namespace WebApplication
     
         public virtual ICollection<Entry> Entries { get; set; }
     }
+    
 }

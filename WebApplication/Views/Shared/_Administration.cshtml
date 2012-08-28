@@ -28,7 +28,15 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-
+    </script>
+        <script type="text/javascript">
+            $(document).ready(function () {               
+                if ($('.Box').length > 0) {
+                    setTimeout(function () {
+                        $('.Box').fadeOut('fast');
+                    }, 3000); // <-- time in milliseconds
+                }
+            });
     </script>
 </head>
 <body>
@@ -50,7 +58,7 @@
         <div id="header">
             <div class="content_pad">
                 <h1>
-                    <span id="title">SocialProgramming</span><br />
+                    <span id="title">Vialpando<span style="color: Teal;">Blog</span></span><br />
                     <span id="sub-title">@WebApplication.Resources.Common.Admin</span></h1>
                 <ul id="nav">
                     <li class="nav_icon"><a href="@Url.Action("Index", "Home", null)"><span class="ui-icon ui-icon-home">
@@ -71,8 +79,8 @@
                                  { <text>nav_current </text>}}nav_icon"><a href="@Url.Action("Index", "Page", null)">
                                      <span class="ui-icon ui-icon-document"></span>@WebApplication.Resources.Common.Pages</a></li>
                     <li class="@{if ("Statistic" == (string)ViewContext.RouteData.Values["controller"])
-                                 { <text>nav_current </text>}}nav_icon"><a href="@Url.Action("Index", "Page", null)">
-                                     <span class="ui-icon ui-icon-star"></span>@WebApplication.Resources.Common.Statistic</a></li>
+                                 { <text>nav_current </text>}}nav_icon"><a href="@Url.Action("Index", "User", null)">
+                                     <span class="ui-icon ui-icon-person"></span>@WebApplication.Resources.Common.Users</a></li>
                 </ul>
             </div>
             <!-- .content_pad -->

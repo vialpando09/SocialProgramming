@@ -1,0 +1,20 @@
+﻿@model WebApplication.Models.ForgottenPasswordModel
+<div class="box">
+    @{using (Html.BeginForm("ForgottenPassword", "User", FormMethod.Post))
+      {
+        <h1>
+            @WebApplication.Resources.Common.ForgotPassword</h1>
+        <fieldset id="user-message">
+            @Html.Label(WebApplication.Resources.Common.Username)
+            @Html.ValidationMessageFor(model => model.ForUserName)
+            @Html.EditorFor(model => model.ForUserName)
+            @Html.Label(WebApplication.Resources.Common.EmailAddress)
+            @Html.ValidationMessageFor(model => model.ForEmailAddress)
+            @Html.EditorFor(model => model.ForEmailAddress)
+            <input type="submit" value="@WebApplication.Resources.Common.Send" name="submit" class="submit" />
+            <input type="button" value="@WebApplication.Resources.Common.Cancel" onclick="document.getElementById('forgotten').style.visibility = 'hidden'"
+                name="submit" class="submit" />
+        </fieldset>
+        <!-- end user-message -->
+      }}
+</div>

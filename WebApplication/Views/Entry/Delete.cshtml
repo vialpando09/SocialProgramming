@@ -38,7 +38,7 @@
 jQuery('.accordion_container').accordion();
 }
 
-@using (Html.BeginForm("Delete", "Category", FormMethod.Post, new { @Class = "form label-inline uniform" }))
+@using (Html.BeginForm("Delete", "Entry", FormMethod.Post, new { @Class = "form label-inline uniform" }))
 {
         
     <div class="content_pad">
@@ -144,9 +144,29 @@ jQuery('.accordion_container').accordion();
                     <span class="content">
                         @Html.DisplayFor(model => model.Published)
                     </span>
-                </div>
-            </div>
+                </div>                
+             </div>                
             <!-- .accordion_content -->
+            <h2 class="accordion_panel">
+                <a href="#">@WebApplication.Resources.Common.Attachment</a></h2>
+            <div class="accordion_content" style="display: none;">
+            <div class="field">
+                    @if (!string.IsNullOrEmpty(Model.FeaturedImage))
+                    {
+                        <img src="@Model.FeaturedImage" />
+                    }
+                   <div class="attachments" style="margin-top: 30px;">
+                        @{
+                            foreach (var item in Model.Files)
+                            {
+                                <text>@Html.ActionLink(item.Name + " (" + Common.GetMimeType(item.Name) + ")", "Index", "Download", new { id = item.Location }, new { target = "_blank" })
+                                    <br />
+                                </text>
+                            }
+                        }
+                    </div>
+                 </div>
+            </div>
         </div>
     </div>
     <div class="content_pad">

@@ -15,10 +15,10 @@ namespace CaptchaSupport
         {
             Bitmap bmp = new Bitmap(100, 30);
             Graphics g = Graphics.FromImage(bmp);
-            g.Clear(Color.Navy);
+            g.Clear(Color.White);
             string randomString = GetCaptchaString(6);
             context.HttpContext.Session["CaptchaString"] = randomString;
-            g.DrawString(randomString, new Font("Courier", 16), new SolidBrush(Color.WhiteSmoke), 2, 2);
+            g.DrawString(randomString, new Font("Courier", 16), new SolidBrush(Color.DarkGray), 2, 2);
             HttpResponseBase response = context.HttpContext.Response;
             response.ContentType = "image/jpeg";
             bmp.Save(response.OutputStream, ImageFormat.Jpeg);

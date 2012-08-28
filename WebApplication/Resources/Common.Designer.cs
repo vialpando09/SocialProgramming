@@ -61,11 +61,29 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Az activációs emailt elküldtük a megadott címre..
+        /// </summary>
+        public static string ActivationSent {
+            get {
+                return ResourceManager.GetString("ActivationSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adminisztráció.
         /// </summary>
         public static string Admin {
             get {
                 return ResourceManager.GetString("Admin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adminisztrátor.
+        /// </summary>
+        public static string Administrator {
+            get {
+                return ResourceManager.GetString("Administrator", resourceCulture);
             }
         }
         
@@ -79,11 +97,29 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Csatolmányok.
+        /// </summary>
+        public static string Attachment {
+            get {
+                return ResourceManager.GetString("Attachment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vissza a listához.
         /// </summary>
         public static string BackToList {
             get {
                 return ResourceManager.GetString("BackToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fel a tetejére.
+        /// </summary>
+        public static string BackToTheTop {
+            get {
+                return ResourceManager.GetString("BackToTheTop", resourceCulture);
             }
         }
         
@@ -124,11 +160,65 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email címed cseréje.
+        /// </summary>
+        public static string ChangeEmail {
+            get {
+                return ResourceManager.GetString("ChangeEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change language.
         /// </summary>
         public static string ChangeLanguage {
             get {
                 return ResourceManager.GetString("ChangeLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jelszavad cseréje.
+        /// </summary>
+        public static string ChangePass {
+            get {
+                return ResourceManager.GetString("ChangePass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kommentedet töröltük..
+        /// </summary>
+        public static string CommentDeleted {
+            get {
+                return ResourceManager.GetString("CommentDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ide írhatod az üzenetedet....
+        /// </summary>
+        public static string CommentPlaceholder {
+            get {
+                return ResourceManager.GetString("CommentPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kommentek.
+        /// </summary>
+        public static string Comments {
+            get {
+                return ResourceManager.GetString("Comments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kommentedet feltöltöttük..
+        /// </summary>
+        public static string CommentSend {
+            get {
+                return ResourceManager.GetString("CommentSend", resourceCulture);
             }
         }
         
@@ -241,6 +331,15 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Az email címed megváltozott..
+        /// </summary>
+        public static string EmailChanged {
+            get {
+                return ResourceManager.GetString("EmailChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Az email cím nem megfelelő.
         /// </summary>
         public static string EmailValidation {
@@ -268,11 +367,38 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hiba.
+        ///   Looks up a localized string similar to Hoppá, ez itt hiba üzenet!.
         /// </summary>
         public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Egy hiba keletkezett az adatbázisban. Kérlek később próbáld meg újra..
+        /// </summary>
+        public static string ErrorDatabase {
+            get {
+                return ResourceManager.GetString("ErrorDatabase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kiemelt bejegyzések.
+        /// </summary>
+        public static string FeaturedEntries {
+            get {
+                return ResourceManager.GetString("FeaturedEntries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kiemelt részhez.
+        /// </summary>
+        public static string FeaturedPart {
+            get {
+                return ResourceManager.GetString("FeaturedPart", resourceCulture);
             }
         }
         
@@ -286,11 +412,29 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Elfelejtett jelszó.
+        /// </summary>
+        public static string ForgotPassword {
+            get {
+                return ResourceManager.GetString("ForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kezdőlap.
         /// </summary>
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kép.
+        /// </summary>
+        public static string Image {
+            get {
+                return ResourceManager.GetString("Image", resourceCulture);
             }
         }
         
@@ -304,11 +448,29 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aktiválva.
+        /// </summary>
+        public static string IsActivated {
+            get {
+                return ResourceManager.GetString("IsActivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kulcsszavak.
         /// </summary>
         public static string Keywords {
             get {
                 return ResourceManager.GetString("Keywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Szint.
+        /// </summary>
+        public static string Level {
+            get {
+                return ResourceManager.GetString("Level", resourceCulture);
             }
         }
         
@@ -340,6 +502,15 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sikeresen bejelentkeztél..
+        /// </summary>
+        public static string LoginMessage {
+            get {
+                return ResourceManager.GetString("LoginMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kijelentkezés.
         /// </summary>
         public static string Logout {
@@ -358,6 +529,24 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to További bejegyzések.
+        /// </summary>
+        public static string MoreEntries {
+            get {
+                return ResourceManager.GetString("MoreEntries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Új email cím.
+        /// </summary>
+        public static string NewEmail {
+            get {
+                return ResourceManager.GetString("NewEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Olvasatlan üzenetek.
         /// </summary>
         public static string NewMessages {
@@ -367,11 +556,56 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Az új jelszavadat emailben elküldtük..
+        /// </summary>
+        public static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Új jelszó.
+        /// </summary>
+        public static string NewPw {
+            get {
+                return ResourceManager.GetString("NewPw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nincs megjelenítendő elem.
         /// </summary>
         public static string NoElement {
             get {
                 return ResourceManager.GetString("NoElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nincs találat..
+        /// </summary>
+        public static string NoResult {
+            get {
+                return ResourceManager.GetString("NoResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A fájlok letöltéséhez előbb jelentkezz be..
+        /// </summary>
+        public static string NotPermissionAttachments {
+            get {
+                return ResourceManager.GetString("NotPermissionAttachments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Komment küldéséhez be kell jelentkezned az oldalra..
+        /// </summary>
+        public static string NotPermissionComment {
+            get {
+                return ResourceManager.GetString("NotPermissionComment", resourceCulture);
             }
         }
         
@@ -399,6 +633,33 @@ namespace WebApplication.Resources {
         public static string OldMessages {
             get {
                 return ResourceManager.GetString("OldMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Régi jelszó.
+        /// </summary>
+        public static string OldPw {
+            get {
+                return ResourceManager.GetString("OldPw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eredeti.
+        /// </summary>
+        public static string Original {
+            get {
+                return ResourceManager.GetString("Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ...vagy Regisztrálj!.
+        /// </summary>
+        public static string OrRegister {
+            get {
+                return ResourceManager.GetString("OrRegister", resourceCulture);
             }
         }
         
@@ -475,6 +736,42 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A jelszó megváltozott..
+        /// </summary>
+        public static string PwChanged {
+            get {
+                return ResourceManager.GetString("PwChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Olvasó.
+        /// </summary>
+        public static string Reader {
+            get {
+                return ResourceManager.GetString("Reader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regisztráció.
+        /// </summary>
+        public static string Registration {
+            get {
+                return ResourceManager.GetString("Registration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to emlékezz rám.
+        /// </summary>
+        public static string RememberMe {
+            get {
+                return ResourceManager.GetString("RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kötelező.
         /// </summary>
         public static string Required {
@@ -493,11 +790,47 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keresés.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Küldés.
         /// </summary>
         public static string Send {
             get {
                 return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beállítás kiemelt.
+        /// </summary>
+        public static string SetFeatured {
+            get {
+                return ResourceManager.GetString("SetFeatured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oldaltérkép.
+        /// </summary>
+        public static string Sitemap {
+            get {
+                return ResourceManager.GetString("Sitemap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Közzösségi profilok.
+        /// </summary>
+        public static string SocialProfiles {
+            get {
+                return ResourceManager.GetString("SocialProfiles", resourceCulture);
             }
         }
         
@@ -511,11 +844,20 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A művelet sikeres volt.
+        ///   Looks up a localized string similar to Hurráááá!.
         /// </summary>
         public static string Success {
             get {
                 return ResourceManager.GetString("Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Szuper Adminisztrátor.
+        /// </summary>
+        public static string SuperAdministrator {
+            get {
+                return ResourceManager.GetString("SuperAdministrator", resourceCulture);
             }
         }
         
@@ -538,11 +880,74 @@ namespace WebApplication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sikeresen aktiváltad fiókodat. Most már be tudsz lépni az oldalra!.
+        /// </summary>
+        public static string UserActivated {
+            get {
+                return ResourceManager.GetString("UserActivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ez a felhasználó már aktiválta a fiókját..
+        /// </summary>
+        public static string UserAlreadyActivated {
+            get {
+                return ResourceManager.GetString("UserAlreadyActivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Felhasználó név.
         /// </summary>
         public static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A felhasználói név már használatban van..
+        /// </summary>
+        public static string UsernameUsed {
+            get {
+                return ResourceManager.GetString("UsernameUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ilyen felhasználó nem található. Probálj meg inkább regisztrálni!.
+        /// </summary>
+        public static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Felhasználók.
+        /// </summary>
+        public static string Users {
+            get {
+                return ResourceManager.GetString("Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Üdvözlet.
+        /// </summary>
+        public static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A jelszó nem helyes.
+        /// </summary>
+        public static string WrongPassword {
+            get {
+                return ResourceManager.GetString("WrongPassword", resourceCulture);
             }
         }
     }

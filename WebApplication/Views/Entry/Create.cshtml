@@ -9,11 +9,11 @@
 
     string currEnKeywords = "";
     string currHuKeywords = "";
-    if(Model != null)
+    if (Model != null)
     {
         foreach (var item in Model.Keywords)
         {
-            if(item.Type)
+            if (item.Type)
             {
                 if (currEnKeywords != "")
                 {
@@ -21,7 +21,8 @@
                 }
                 currEnKeywords += item.Value;
             }
-            else{
+            else
+            {
                 if (currHuKeywords != "")
                 {
                     currHuKeywords += ", ";
@@ -101,6 +102,42 @@ jQuery('.accordion_container').accordion();
                     @Html.ValidationMessageFor(model => model.enContent)
                 </div>
             </div>
+            <h2 class="accordion_panel">
+                <a href="#">@WebApplication.Resources.Common.Attachment</a></h2>
+            <div class="accordion_content" style="display: block;">
+                @Html.ValidationSummary(true)
+                <div class="field" style="margin-top: 20px;">
+                <label>@WebApplication.Resources.Common.Attachment</label>
+                    @(Html.Telerik().Upload()
+                        .Name("attachments")
+                        .Multiple(true)
+                        .Async(async => async
+                            .Save("Upload", "User")
+                            .Remove("DeleteFiles", "User")
+                            .AutoUpload(true)
+                        )
+                    )
+                </div>
+            </div>
+            <h2 class="accordion_panel">
+                <a href="#">@WebApplication.Resources.Common.FeaturedPart</a></h2>
+            <div class="accordion_content" style="display: block;">
+                @Html.ValidationSummary(true)
+                <div class="field" style="margin-top: 20px;">
+                    @Html.LabelFor(model => model.IsFeatured, WebApplication.Resources.Common.SetFeatured)
+                    @Html.CheckBoxFor(model => model.IsFeatured, new { size = "50" })
+                    @Html.ValidationMessageFor(model => model.IsFeatured)
+                    @(Html.Telerik().Upload()
+                        .Name("featuredImage")
+                        .Multiple(true)
+                        .Async(async => async
+                            .Save("UploadImage", "Upload")
+                            .Remove("DeleteImage", "Upload")
+                            .AutoUpload(true)
+                        )
+                    )
+                </div>
+            </div>
             <!-- .accordion_content -->
             <h2 class="accordion_panel">
                 <a href="#">@WebApplication.Resources.Common.Keywords</a></h2>
@@ -112,19 +149,19 @@ jQuery('.accordion_container').accordion();
                     .Name("huKeywords")
                     .Encode(false)
                     .Value(currHuKeywords)
-                    .BindTo(huKeywords.Select(e => e.Value)) 
+                    .BindTo(huKeywords.Select(e => e.Value))
                     .AutoFill(true)
-                    .HtmlAttributes(new { style = string.Format("width:{0}px", 200) }) 
-                    .HighlightFirstMatch(true) 
-                    .Filterable(filtering => 
-                    {        
-                      filtering.FilterMode(AutoCompleteFilterMode.StartsWith);                        
+                    .HtmlAttributes(new { style = string.Format("width:{0}px", 200) })
+                    .HighlightFirstMatch(true)
+                    .Filterable(filtering =>
+                    {
+                        filtering.FilterMode(AutoCompleteFilterMode.StartsWith);
                     })
                     .Multiple(multi =>
-                    { 
+                    {
                         multi.Separator(", ")
                             .Enabled(true);
-                    }) 
+                    })
                     )
                 </div>
                 <div class="field">
@@ -133,19 +170,19 @@ jQuery('.accordion_container').accordion();
                     .Name("enKeywords")
                     .Encode(false)
                     .Value(currEnKeywords)
-                    .BindTo(enKeywords.Select(e => e.Value)) 
+                    .BindTo(enKeywords.Select(e => e.Value))
                     .AutoFill(true)
-                    .HtmlAttributes(new { style = string.Format("width:{0}px", 200) }) 
-                    .HighlightFirstMatch(true) 
-                    .Filterable(filtering => 
-                    {        
-                      filtering.FilterMode(AutoCompleteFilterMode.StartsWith);                        
+                    .HtmlAttributes(new { style = string.Format("width:{0}px", 200) })
+                    .HighlightFirstMatch(true)
+                    .Filterable(filtering =>
+                    {
+                        filtering.FilterMode(AutoCompleteFilterMode.StartsWith);
                     })
                     .Multiple(multi =>
-                    { 
+                    {
                         multi.Separator(", ")
                             .Enabled(true);
-                    }) 
+                    })
                     )
                 </div>
             </div>
@@ -164,11 +201,11 @@ jQuery('.accordion_container').accordion();
                         }
                         if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
                         {
-                            <label style="width: 200px">@category.enTitle</label><input type="checkbox" @selectedValue name="selectedCategories" value="@category.Id" /><br />
+                        <label style="width: 200px">@category.enTitle</label><input type="checkbox" @selectedValue name="selectedCategories" value="@category.Id" /><br />
                         }
                         else
                         {
-                            <label style="width: 200px">@category.huTitle</label><input type="checkbox" @selectedValue name="selectedCategories" value="@category.Id" /><br />                
+                        <label style="width: 200px">@category.huTitle</label><input type="checkbox" @selectedValue name="selectedCategories" value="@category.Id" /><br />                
                         }
                     }
                 </div>

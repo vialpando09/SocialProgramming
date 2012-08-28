@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Entry>
+
+@{
+    Layout = null;
+}
+<div>
+@Html.Partial("_entriesList", Model)
+@if (Model.Count() == (int)ViewBag.max)
+{
+    <div class="loader" id="#loadMore">
+        <div class="l"><input type="hidden" value="@(ViewBag.ids + "," + string.Join(",", Model.Select(e => e.Id).ToArray()))" id="entry-ids" /></div>
+    </div>
+}
+</div>

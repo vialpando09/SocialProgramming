@@ -7,24 +7,33 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace WebApplication
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class User
     {
         public User()
         {
             this.MyEntries = new HashSet<Entry>();
             this.MyPages = new HashSet<Page>();
+            this.Comments = new HashSet<Comment>();
         }
     
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public int Type { get; set; }
+        public string ActivationCode { get; set; }
+        public bool IsActivated { get; set; }
+        public System.DateTime RegistrationDate { get; set; }
+        public string EmailAddress { get; set; }
+        public string CookieHash { get; set; }
     
         public virtual ICollection<Entry> MyEntries { get; set; }
         public virtual ICollection<Page> MyPages { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
+    
 }

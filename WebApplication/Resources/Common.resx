@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActivationSent" xml:space="preserve">
+    <value>Az activációs emailt elküldtük a megadott címre.</value>
+  </data>
   <data name="Admin" xml:space="preserve">
     <value>Adminisztráció</value>
   </data>
@@ -138,8 +141,14 @@
   <data name="Category" xml:space="preserve">
     <value>Kategória</value>
   </data>
+  <data name="ChangeEmail" xml:space="preserve">
+    <value>Email címed cseréje</value>
+  </data>
   <data name="ChangeLanguage" xml:space="preserve">
     <value>Change language</value>
+  </data>
+  <data name="ChangePass" xml:space="preserve">
+    <value>Jelszavad cseréje</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Jelszó újra</value>
@@ -187,10 +196,19 @@
     <value>Bejegyzés</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Hiba</value>
+    <value>Hoppá, ez itt hiba üzenet!</value>
+  </data>
+  <data name="ErrorDatabase" xml:space="preserve">
+    <value>Egy hiba keletkezett az adatbázisban. Kérlek később próbáld meg újra.</value>
+  </data>
+  <data name="FeaturedEntries" xml:space="preserve">
+    <value>Kiemelt bejegyzések</value>
   </data>
   <data name="Feedbacks" xml:space="preserve">
     <value>Visszajelzések</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Elfelejtett jelszó</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Kezdőlap</value>
@@ -210,14 +228,23 @@
   <data name="LoginButton" xml:space="preserve">
     <value>Belépés</value>
   </data>
+  <data name="LoginMessage" xml:space="preserve">
+    <value>Sikeresen bejelentkeztél.</value>
+  </data>
   <data name="Logout" xml:space="preserve">
     <value>Kijelentkezés</value>
   </data>
   <data name="LogoutMessage" xml:space="preserve">
     <value>Sikeresen kijelentkezett.</value>
   </data>
+  <data name="MoreEntries" xml:space="preserve">
+    <value>További bejegyzések</value>
+  </data>
   <data name="NewMessages" xml:space="preserve">
     <value>Olvasatlan üzenetek</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Az új jelszavadat emailben elküldtük.</value>
   </data>
   <data name="NoElement" xml:space="preserve">
     <value>Nincs megjelenítendő elem</value>
@@ -230,6 +257,9 @@
   </data>
   <data name="OldMessages" xml:space="preserve">
     <value>Olvasott üzenetek</value>
+  </data>
+  <data name="OrRegister" xml:space="preserve">
+    <value>...vagy Regisztrálj!</value>
   </data>
   <data name="OtherLanguageKey" xml:space="preserve">
     <value>en</value>
@@ -255,6 +285,9 @@
   <data name="Published" xml:space="preserve">
     <value>Publikálva van</value>
   </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Regisztráció</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>Kötelező</value>
   </data>
@@ -264,11 +297,14 @@
   <data name="Send" xml:space="preserve">
     <value>Küldés</value>
   </data>
+  <data name="SocialProfiles" xml:space="preserve">
+    <value>Közzösségi profilok</value>
+  </data>
   <data name="Statistic" xml:space="preserve">
     <value>Statisztika</value>
   </data>
   <data name="Success" xml:space="preserve">
-    <value>A művelet sikeres volt</value>
+    <value>Hurráááá!</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Cím</value>
@@ -276,7 +312,106 @@
   <data name="Unpublish" xml:space="preserve">
     <value>Visszavonás</value>
   </data>
+  <data name="UserActivated" xml:space="preserve">
+    <value>Sikeresen aktiváltad fiókodat. Most már be tudsz lépni az oldalra!</value>
+  </data>
+  <data name="UserAlreadyActivated" xml:space="preserve">
+    <value>Ez a felhasználó már aktiválta a fiókját.</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>Felhasználó név</value>
+  </data>
+  <data name="UsernameUsed" xml:space="preserve">
+    <value>A felhasználói név már használatban van.</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>Ilyen felhasználó nem található. Probálj meg inkább regisztrálni!</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Üdvözlet</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>A jelszó nem helyes</value>
+  </data>
+  <data name="EmailChanged" xml:space="preserve">
+    <value>Az email címed megváltozott.</value>
+  </data>
+  <data name="NewEmail" xml:space="preserve">
+    <value>Új email cím</value>
+  </data>
+  <data name="NewPw" xml:space="preserve">
+    <value>Új jelszó</value>
+  </data>
+  <data name="OldPw" xml:space="preserve">
+    <value>Régi jelszó</value>
+  </data>
+  <data name="PwChanged" xml:space="preserve">
+    <value>A jelszó megváltozott.</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Felhasználók</value>
+  </data>
+  <data name="IsActivated" xml:space="preserve">
+    <value>Aktiválva</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Szint</value>
+  </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>Adminisztrátor</value>
+  </data>
+  <data name="Reader" xml:space="preserve">
+    <value>Olvasó</value>
+  </data>
+  <data name="SuperAdministrator" xml:space="preserve">
+    <value>Szuper Adminisztrátor</value>
+  </data>
+  <data name="Attachment" xml:space="preserve">
+    <value>Csatolmányok</value>
+  </data>
+  <data name="FeaturedPart" xml:space="preserve">
+    <value>Kiemelt részhez</value>
+  </data>
+  <data name="SetFeatured" xml:space="preserve">
+    <value>Beállítás kiemelt</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Kép</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Eredeti</value>
+  </data>
+  <data name="CommentDeleted" xml:space="preserve">
+    <value>Kommentedet töröltük.</value>
+  </data>
+  <data name="CommentPlaceholder" xml:space="preserve">
+    <value>Ide írhatod az üzenetedet...</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Kommentek</value>
+  </data>
+  <data name="CommentSend" xml:space="preserve">
+    <value>Kommentedet feltöltöttük.</value>
+  </data>
+  <data name="NotPermissionAttachments" xml:space="preserve">
+    <value>A fájlok letöltéséhez előbb jelentkezz be.</value>
+  </data>
+  <data name="NotPermissionComment" xml:space="preserve">
+    <value>Komment küldéséhez be kell jelentkezned az oldalra.</value>
+  </data>
+  <data name="NoResult" xml:space="preserve">
+    <value>Nincs találat.</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Keresés</value>
+  </data>
+  <data name="BackToTheTop" xml:space="preserve">
+    <value>Fel a tetejére</value>
+  </data>
+  <data name="Sitemap" xml:space="preserve">
+    <value>Oldaltérkép</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>emlékezz rám</value>
   </data>
 </root>

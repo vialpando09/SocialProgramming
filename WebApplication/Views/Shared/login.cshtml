@@ -1,0 +1,64 @@
+﻿@model WebApplication.Models.LoginModel
+@using WebApplication
+<div id="login-wrapper">
+    <div id="login-login" class="login-animate login-form">
+        @{if (ViewBag.Logged == false)
+          {
+              using (Html.BeginForm("Login", "Home", FormMethod.Post))
+              {
+            <h1>
+                @WebApplication.Resources.Common.Login</h1>
+            <p>
+                @Html.LabelFor(model => model.UserName, new Dictionary<string, object> { { "class", "uname" }, { "data-icon", "u" } }, "")
+                @Html.TextBoxFor(model => model.UserName, new Dictionary<string, object> { { "required", "required" }, { "placeholder", WebApplication.Resources.Common.Username } })
+                @Html.ValidationMessageFor(model => model.UserName)
+            </p>
+            <p>
+                @Html.LabelFor(model => model.Password, new Dictionary<string, object> { { "class", "youpasswd" }, { "data-icon", "p" } }, "")
+                @Html.PasswordFor(model => model.Password, new Dictionary<string, object> { { "required", "required" }, { "placeholder", WebApplication.Resources.Common.Password } })
+                @Html.ValidationMessageFor(model => model.Password)
+            </p>
+            <p class="login-rememberme">
+                <label for="loginkeeping">
+                    <span onclick="document.getElementById('register').style.visibility = 'visible'">@WebApplication.Resources.Common.OrRegister</span><br />
+                    <span onclick="document.getElementById('forgotten').style.visibility = 'visible'">(@WebApplication.Resources.Common.ForgotPassword)</span></label>
+            </p>
+            <p class="login-login login-button">
+                    @Html.CheckBoxFor(model => model.RememberMe)
+                    <label style="position: absolute; right: 40px;" for="rememberme">
+                        @WebApplication.Resources.Common.RememberMe</label>
+                    <input type="submit" value="@WebApplication.Resources.Common.Login" />
+            </p>
+              }
+          }
+          else
+          {
+              using (Html.BeginForm("Logout", "Home", FormMethod.Post))
+              {<h1>
+                  @WebApplication.Resources.Common.Welcome @ViewBag.Username!</h1>     
+            <p>
+                <ul>
+                    @if (ViewBag.Logged == true && (int)(UserTypes)ViewBag.Usertype >= (int)UserTypes.Administrator)
+                    {   
+                        <li><span class="login-rememberme">
+                            <label for="loginkeeping">
+                                @Html.ActionLink(WebApplication.Resources.Common.Admin, "Index", "Admin")</label>
+                        </span></li>
+                    }
+                    <li><span class="login-rememberme">
+                        <label for="loginkeeping">
+                            <span onclick="document.getElementById('changepass').style.visibility = 'visible'">@WebApplication.Resources.Common.ChangePass</span></label>
+                    </span></li>
+                    <li><span class="login-rememberme">
+                        <label for="loginkeeping">
+                            <span onclick="document.getElementById('changeemail').style.visibility = 'visible'">@WebApplication.Resources.Common.ChangeEmail</span></label>
+                    </span></li>
+                </ul>
+            </p>
+            <p class="login-login login-button">
+                <input type="submit" value="@WebApplication.Resources.Common.Logout" />
+            </p>
+              }
+          }}
+    </div>
+</div>

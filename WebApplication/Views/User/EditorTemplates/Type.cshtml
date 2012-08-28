@@ -1,0 +1,5 @@
+﻿@model UserTypes
+@(Html.Telerik().DropDownList()
+        .Name(ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty))
+        .BindTo(new SelectList((System.Collections.IEnumerable)ViewData["UserTypes"], (UserTypes)Model))
+) 

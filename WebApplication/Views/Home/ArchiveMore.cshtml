@@ -1,0 +1,19 @@
+﻿@model IEnumerable<WebApplication.Entry>
+@{
+
+}
+
+<div class="accordion_container" style="min-height: 38px;">
+    <h2 class="accordion_panel active">
+        @(WebApplication.Resources.Modules.Titles.Archive): @WebApplication.Resources.Modules.Titles.Earlier
+    </h2>
+</div>    
+
+@Html.Partial("_entriesList", Model)
+@if (Model.Count() == (int)ViewBag.max)
+{
+    <div class="loader" id="#loadMore">
+        <div class="l">
+            <input type="hidden" value="@string.Join(",", Model.Select(e => e.Id).ToArray())" id="entry-ids" /></div>
+    </div>
+}

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActivationSent" xml:space="preserve">
+    <value>The activation email has been sent to the given email address.</value>
+  </data>
   <data name="Admin" xml:space="preserve">
     <value>Administration</value>
   </data>
@@ -187,16 +190,25 @@
     <value>Entry</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Error</value>
+    <value>Ooops, this is an error message!</value>
+  </data>
+  <data name="ErrorDatabase" xml:space="preserve">
+    <value>An error occured with the database. Please try it later again!</value>
+  </data>
+  <data name="FeaturedEntries" xml:space="preserve">
+    <value>Featured Entries</value>
   </data>
   <data name="Feedbacks" xml:space="preserve">
     <value>Feedbacks</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgotten password</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
   <data name="Information" xml:space="preserve">
-    <value>Information</value>
+    <value>Information.</value>
   </data>
   <data name="Keywords" xml:space="preserve">
     <value>Keywords</value>
@@ -210,11 +222,17 @@
   <data name="LoginButton" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="LoginMessage" xml:space="preserve">
+    <value>You successfully logged in.</value>
+  </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
   <data name="LogoutMessage" xml:space="preserve">
     <value>Successfully logged out.</value>
+  </data>
+  <data name="MoreEntries" xml:space="preserve">
+    <value>More Entries</value>
   </data>
   <data name="NewMessages" xml:space="preserve">
     <value>New messages</value>
@@ -230,6 +248,9 @@
   </data>
   <data name="OldMessages" xml:space="preserve">
     <value>Old messages</value>
+  </data>
+  <data name="OrRegister" xml:space="preserve">
+    <value>...or Register!</value>
   </data>
   <data name="OtherLanguageKey" xml:space="preserve">
     <value>hu</value>
@@ -255,6 +276,9 @@
   <data name="Published" xml:space="preserve">
     <value>Published</value>
   </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Registration</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>Required</value>
   </data>
@@ -264,11 +288,14 @@
   <data name="Send" xml:space="preserve">
     <value>Send</value>
   </data>
+  <data name="SocialProfiles" xml:space="preserve">
+    <value>Social profiles</value>
+  </data>
   <data name="Statistic" xml:space="preserve">
     <value>Statistic</value>
   </data>
   <data name="Success" xml:space="preserve">
-    <value>The operation was successful</value>
+    <value>Hooooray!</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>
@@ -276,7 +303,115 @@
   <data name="Unpublish" xml:space="preserve">
     <value>Unpublish</value>
   </data>
+  <data name="UserAlreadyActivated" xml:space="preserve">
+    <value>This user account is already activated.</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="UsernameUsed" xml:space="preserve">
+    <value>This username is already used.</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>The specified user is not found. Try register again!</value>
+  </data>
+  <data name="ChangeEmail" xml:space="preserve">
+    <value>Change your email address</value>
+  </data>
+  <data name="ChangePass" xml:space="preserve">
+    <value>Change your password</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>An email has been sent with your new password.</value>
+  </data>
+  <data name="UserActivated" xml:space="preserve">
+    <value>The activation was successfull. Now you can log in!</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>The password is not correct!</value>
+  </data>
+  <data name="EmailChanged" xml:space="preserve">
+    <value>Your email address has been changed.</value>
+  </data>
+  <data name="NewEmail" xml:space="preserve">
+    <value>New email address</value>
+  </data>
+  <data name="NewPw" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="OldPw" xml:space="preserve">
+    <value>Old password</value>
+  </data>
+  <data name="PwChanged" xml:space="preserve">
+    <value>The password has been changed.</value>
+  </data>
+  <data name="IsActivated" xml:space="preserve">
+    <value>Activated</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="Reader" xml:space="preserve">
+    <value>Reader</value>
+  </data>
+  <data name="SuperAdministrator" xml:space="preserve">
+    <value>Super Administrator</value>
+  </data>
+  <data name="SetFeatured" xml:space="preserve">
+    <value>Set as featured</value>
+  </data>
+  <data name="Attachment" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="FeaturedPart" xml:space="preserve">
+    <value>Featured part</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="CommentDelete" xml:space="preserve">
+    <value>Your comment has been deleted.</value>
+  </data>
+  <data name="CommentPlaceholder" xml:space="preserve">
+    <value>Enter your message here...</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="CommentSend" xml:space="preserve">
+    <value>Your comment has been uploaded.</value>
+  </data>
+  <data name="NotPermissionAttachments" xml:space="preserve">
+    <value>To download attachments, you have to log in.</value>
+  </data>
+  <data name="NotPermissionComment" xml:space="preserve">
+    <value>To send comment, you have to log in.</value>
+  </data>
+  <data name="NoResult" xml:space="preserve">
+    <value>No result.</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="BackToTheTop" xml:space="preserve">
+    <value>Back to the top</value>
+  </data>
+  <data name="Sitemap" xml:space="preserve">
+    <value>Sitemap</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>remember me</value>
   </data>
 </root>

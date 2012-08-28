@@ -1,0 +1,32 @@
+﻿@model WebApplication.Page
+@if ((string)ViewContext.RouteData.Values[MvcGlobalisationSupport.GlobalisedRoute.CultureKey] == "en")
+{
+    ViewBag.Title = Model.enTitle;
+    <div class="entry">
+        <div class="entry-title">@Model.enTitle
+        </div>
+        <div class="entry-info">            
+        </div>
+        <div class="entry-content">
+            @Html.Raw(HttpUtility.HtmlDecode(Model.enContent))           
+        </div>
+        <div class="entry-bottom">  
+        </div>
+    </div>
+}
+else
+{
+    ViewBag.Title = Model.huTitle;
+    <div class="entry">
+        <div class="entry-title">@Model.huTitle
+        </div>
+        <div class="entry-info">            
+        </div>
+        <div class="entry-content">
+            @Html.Raw(HttpUtility.HtmlDecode(Model.huContent))           
+        </div>
+        <div class="entry-bottom">  
+        </div>
+    </div>
+}
+

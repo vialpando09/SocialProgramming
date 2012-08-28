@@ -4,7 +4,7 @@
     ViewBag.Title = Model.enTitle;
     <div class="accordion_container" style="min-height: 38px;">
         <h2 class="accordion_panel active">
-            Reading the post</h2>
+            </h2>
     </div>
     <div class="entry">
         <div class="entry-title">@Model.enTitle
@@ -25,11 +25,72 @@
             }
         </div>
         <div class="entry-content">
-            <span style="font-weight: bold; font-style: italic;">@Html.Raw(HttpUtility.HtmlDecode(Model.enIntroduction))</span>
+            <div style="font-weight: bold;">@Html.Raw(HttpUtility.HtmlDecode(Model.enIntroduction))</div>
             <br />
             @Html.Raw(HttpUtility.HtmlDecode(Model.enContent))
+            @if (Model.Files.Count > 0)
+            {
+                if (!ViewBag.Logged)
+                {                    
+                    <h3>@WebApplication.Resources.Common.NotPermissionAttachments</h3>
+                }
+                else
+                {
+                    <div class="attachments" style="margin-top: 5px;">
+                    @{
+                    foreach (var item in Model.Files)
+                    {
+                            <text>@Html.ActionLink(item.Name + " (" + Common.GetMimeType(item.Name) + ")", "Index", "Download", new { id = item.Location }, new { target = "_blank" })
+                           <br /></text>
+                    }
+                    }
+                    </div>
+                }
+            }
         </div>
-        <div class="entry-bottom">
+        <div class="entry-bottom">        
+            <h2>@WebApplication.Resources.Common.Comments</h2>
+            
+        @if (!ViewBag.Logged)
+        {
+            <h3>@WebApplication.Resources.Common.NotPermissionComment</h3>
+        }
+        else
+        {
+            using (Html.BeginForm("Add", "Comment", FormMethod.Post))
+            {
+                <text>
+                    <input type="hidden" name="entryId" id="entryId" value="@Model.Id" />
+                    <textarea placeholder="@WebApplication.Resources.Common.CommentPlaceholder" name="message" style="width: 500px; margin-left: 20px; height: 110px;" cols="0" rows="0" id="message"></textarea>
+                    <input type="submit" value="@WebApplication.Resources.Common.Send" />
+                </text>
+            }
+        }
+        
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="comment">
+                <div class="content">
+                    @comment.Content
+                </div>
+                <div class="bottom">
+                    <div class="left">
+                        @if (ViewBag.Logged && (int.Parse((string)Session["UserId"]) == comment.User.Id || (UserTypes)Session["UserType"] >= UserTypes.Administrator))
+                        {                            
+                            @Html.ActionLink(WebApplication.Resources.Common.Delete, "Delete", "Comment", new { id = comment.Id }, null)                            
+                        }
+                        <span>@comment.User.Username</span>
+                    </div>
+                    <div class="center"></div>
+                    <div class="right">
+                        <span>@comment.Date</span>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <!-- Kommentek -->
+
         </div>
     </div>
 }
@@ -59,11 +120,72 @@ else
             }
         </div>
         <div class="entry-content">
-            <span style="font-weight: bold; font-style: italic;">@Html.Raw(HttpUtility.HtmlDecode(Model.huIntroduction))</span>
+            <div style="font-weight: bold;">@Html.Raw(HttpUtility.HtmlDecode(Model.huIntroduction))</div>
             <br />
             @Html.Raw(HttpUtility.HtmlDecode(Model.huContent))
+            @if (Model.Files.Count > 0)
+            {
+                if (!ViewBag.Logged)
+                {                    
+                    <h3>@WebApplication.Resources.Common.NotPermissionAttachments</h3>
+                }
+                else
+                {
+                    <div class="attachments" style="margin-top: 5px;">
+                    @{
+                    foreach (var item in Model.Files)
+                    {
+                            <text><span class="attachments-element" id="attachment-@item.Id">@Html.ActionLink(item.Name + " (" + Common.GetMimeType(item.Name) + ")", "Index", "Download", new { id = item.Location }, new { target = "_blank" })</span>
+                           <br /></text>
+                    }
+                    }
+                    </div>
+                }
+            }
         </div>
-        <div class="entry-bottom">
+        <div class="entry-bottom">        
+            <h2>@WebApplication.Resources.Common.Comments</h2>
+            
+        @if (!ViewBag.Logged)
+        {
+            <h3>@WebApplication.Resources.Common.NotPermissionComment</h3>
+        }
+        else
+        {
+            using (Html.BeginForm("Add", "Comment", FormMethod.Post))
+            {
+                <text>
+                    <input type="hidden" name="entryId" id="entryId" value="@Model.Id" />
+                    <textarea placeholder="@WebApplication.Resources.Common.CommentPlaceholder" name="message" style="width: 500px; margin-left: 20px; height: 110px;" cols="0" rows="0" id="message"></textarea>
+                    <input type="submit" value="@WebApplication.Resources.Common.Send" />
+                </text>
+            }
+        }
+        
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="comment">
+                <div class="content">
+                    @comment.Content
+                </div>
+                <div class="bottom">
+                    <div class="left">
+                        @if (ViewBag.Logged && (int.Parse((string)Session["UserId"]) == comment.User.Id || (UserTypes)Session["UserType"] >= UserTypes.Administrator))
+                        {                            
+                            @Html.ActionLink(WebApplication.Resources.Common.Delete, "Delete", "Comment", new { id = comment.Id }, null)                            
+                        }
+                        <span>@comment.User.Username</span>
+                    </div>
+                    <div class="center"></div>
+                    <div class="right">
+                        <span>@comment.Date</span>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <!-- Kommentek -->
+
         </div>
     </div>
 }

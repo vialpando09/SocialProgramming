@@ -1,0 +1,108 @@
+.box h1
+{
+    color: #555;
+    font-size: 16px;
+    margin: 0 0 20px 0;
+}
+
+.box label
+{
+    font-size: 12px;
+    color: #666;
+}
+
+.box form
+{
+    float: left;
+    border: 1px solid #ddd;
+    padding: 10px 0 0 10px;
+    margin: 75px 0 0 0;
+    background: #fff; /* -- CSS3 - define rounded corners for the form -- */
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px; /* -- CSS3 - create a background graident -- */
+    background: -webkit-gradient(linear, 0% 0%, 0% 40%, from(#EEE), to(#FFFFFF));
+    background: -moz-linear-gradient(0% 40% 90deg,#FFF, #EEE); /* -- CSS3 - add a drop shadow -- */
+    -webkit-box-shadow: 0px 0 50px #ccc;
+    -moz-box-shadow: 0px 0 50px #ccc;
+    box-shadow: 0px 0 50px #ccc;
+}
+
+.box fieldset
+{
+    border: none;
+}
+
+.box #user-details
+{
+    float: left;
+    width: 230px;
+}
+
+.box #user-message
+{
+    float: right;
+    width: 305px;
+}
+
+.box input, .box textarea
+{
+    padding: 2px;
+    margin: 4px 0 10px 0;
+    background: #fff;
+    width: 300px;
+    font-size: 12px;
+    color: #555;
+    border: 1px #ddd solid; /* -- CSS3 Shadow - create a shadow around each input element -- */
+    -webkit-box-shadow: 0px 0px 4px #aaa;
+    -moz-box-shadow: 0px 0px 4px #aaa;
+    box-shadow: 0px 0px 4px #aaa; /* -- CSS3 Transition - define what the transition will be applied to (i.e. the background) -- */
+    -webkit-transition: background 0.3s linear;
+}
+
+.box .img
+{
+    margin: 4px auto 4px auto;
+    background: #fff;
+    width: 100px;
+    font-size: 12px;
+    color: #555;
+    border: 1px #ddd solid; /* -- CSS3 Shadow - create a shadow around each input element -- */
+    -webkit-box-shadow: 0px 0px 4px #aaa;
+    -moz-box-shadow: 0px 0px 4px #aaa;
+    box-shadow: 0px 0px 4px #aaa; /* -- CSS3 Transition - define what the transition will be applied to (i.e. the background) -- */
+    -webkit-transition: background 0.3s linear;
+}
+.box textarea
+{
+    height: 155px;
+}
+
+.box input:hover, textarea:hover
+{
+    background: #eee;
+}
+
+.box input.submit
+{
+    width: 150px;
+    color: #eee;
+    text-transform: uppercase;
+    margin-top: 10px;
+    background-color: #18a5cc;
+    border: none; /* -- CSS3 Transition - define which property to animate (i.e. the shadow)  -- */
+    -webkit-transition: -webkit-box-shadow 0.3s linear; /* -- CSS3 - Rounded Corners -- */
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* -- CSS3 Shadow - create a shadow around each input element -- */
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#18a5cc), to(#0a85a8));
+    background: -moz-linear-gradient(25% 75% 90deg,#0a85a8, #18a5cc);
+}
+
+.box input.submit:hover
+{
+    -webkit-box-shadow: 0px 0px 20px #555;
+    -moz-box-shadow: 0px 0px 20px #aaa;
+    box-shadow: 0px 0px 20px #555;
+    cursor: pointer;
+}

@@ -7,12 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+
 namespace WebApplication
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    
     public partial class ModelContainer : DbContext
     {
         public ModelContainer()
@@ -33,5 +33,7 @@ namespace WebApplication
         public DbSet<FeedBack> FeedBacks { get; set; }
         public DbSet<Keyword> Keywords { get; set; }
         public DbSet<File> Files { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<VisitorData> VisitorDataSet { get; set; }
     }
 }

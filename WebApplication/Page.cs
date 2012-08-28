@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace WebApplication
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class Page
     {
         public int Id { get; set; }
@@ -21,7 +21,9 @@ namespace WebApplication
         public string huContent { get; set; }
         public string enContent { get; set; }
         public int UserId { get; set; }
+        public System.DateTime PublishedDate { get; set; }
     
         public virtual User Creator { get; set; }
     }
+    
 }

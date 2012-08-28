@@ -12,6 +12,7 @@ namespace WebApplication.Controllers
         //
         // GET: /Install/
 
+        [BasicAction]
         public ActionResult Index()
         {
 
@@ -23,6 +24,7 @@ namespace WebApplication.Controllers
             return View();
         }
 
+        [BasicAction]
         public ActionResult SetData()
         {
             return View();
@@ -38,7 +40,7 @@ namespace WebApplication.Controllers
             }
             if (ModelState.IsValid)
             {
-                db.Users.Add(new User { Username = model.UserName, Password = Common.CalculateMD5Hash(model.Password) });
+                db.Users.Add(new User { Type = (int)UserTypes.SuperAdministrator, Username = model.UserName, Password = Common.CalculateMD5Hash(model.Password), RegistrationDate = DateTime.Now, ActivationCode = "", IsActivated = true, EmailAddress = model.Email });
 
                 db.Settings.Add(new Setting { Key = "Installed", Value = "true" });
                 db.Settings.Add(new Setting { Key = "Email", Value = model.Email });

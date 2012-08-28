@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using WebApplication.Models;
 using CaptchaSupport;
+using System.Collections.Generic;
 
 namespace WebApplication.Controllers
 {
@@ -32,21 +33,47 @@ namespace WebApplication.Controllers
             {
                 if ((string)Session["CaptchaString"] != model.CaptchaText)
                 {
-                    ModelState.AddModelError("CaptchaError", Resources.Feedback.Index.CaptchaError);
+                    ViewData.ModelState.AddModelError("CaptchaError", Resources.Feedback.Index.CaptchaError);
+                    
                     model.CaptchaText = "";
-                    return View(model);
+                    TempData["FeedbackModel"] = model;
+                    TempData["ViewData"] = ViewData;
+
+                    return RedirectToAction("Index", "Home");
                 }
 
                 db.FeedBacks.Add(new FeedBack { Checked = false, EmailAddress = model.EmailAddress, Message = model.Message, SendDate = DateTime.Now });
-                db.SaveChanges();
+                
+                try
+                {
+                    db.SaveChanges();
 
-                ViewBag.GlobalMessage = Resources.Feedback.Index.Success;
+                    TempData["GlobalMessageType"] = MessageTypes.Success;
+                    TempData["ViewBag.GlobalMessage"] = Resources.Feedback.Index.Success;
+                    TempData["ViewBag.GlobalHeader"] = Resources.Common.Success;
 
-                return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
+                }
+                catch (Exception)
+                {
+                    TempData["GlobalMessageType"] = MessageTypes.Error;
+                    TempData["ViewBag.GlobalMessage"] = Resources.Common.ErrorDatabase;
+                    TempData["ViewBag.GlobalHeader"] = Resources.Common.Error;
+                }
+
 
             }
+
+            if ((string)Session["CaptchaString"] != model.CaptchaText)
+            {
+                ViewData.ModelState.AddModelError("CaptchaError", Resources.Feedback.Index.CaptchaError);
+                model.CaptchaText = "";
+            }
+
             model.CaptchaText = "";
-            return View(model);
+            TempData["FeedbackModel"] = model;
+            TempData["ViewData"] = ViewData;
+            return RedirectToAction("Index", "Home");
         }
 
         [LoginAuthorize]
@@ -98,10 +125,20 @@ namespace WebApplication.Controllers
             var element = db.FeedBacks.Single(e => e.Id == id);
 
             db.FeedBacks.Remove(element);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
 
-            ViewBag.GlobalMessage = Resources.Common.Success;
-            ViewBag.GlobalHeader = Resources.Common.Information;
+                TempData["GlobalMessageType"] = MessageTypes.Success;
+                TempData["ViewBag.GlobalMessage"] = Resources.Feedback.Index.Success;
+                TempData["ViewBag.GlobalHeader"] = Resources.Common.Success;
+            }
+            catch (Exception)
+            {
+                TempData["GlobalMessageType"] = MessageTypes.Error;
+                TempData["ViewBag.GlobalMessage"] = Resources.Common.ErrorDatabase;
+                TempData["ViewBag.GlobalHeader"] = Resources.Common.Error;
+            }
 
             return RedirectToAction("Index", "Admin");
         }

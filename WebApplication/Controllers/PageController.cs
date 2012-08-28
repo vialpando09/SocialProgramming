@@ -81,6 +81,8 @@ namespace WebApplication.Controllers
             if (ModelState.IsValid)
             {
                 page.UserId = int.Parse((string)Session["UserId"]);
+                page.Published = false;
+                page.PublishedDate = DateTime.Now;
                 db.Pages.Add(page);
                 db.SaveChanges();
                 return RedirectToAction("Index");  

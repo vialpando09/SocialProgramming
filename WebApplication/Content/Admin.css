@@ -1,49 +1,142 @@
 /* -------------------------------------------------------------- 
    Accordion
 -------------------------------------------------------------- */
-h2.accordion_panel 
+
+.attachments a
 {
-	background: url(./themes/admin/images/accordion_header.png) no-repeat;
-	width: 100%;
-	height: 36px;	
-	font-size: 16px;
-	font-weight: normal;
-	line-height: 36px;
-	padding: 0;	
-	margin: 0 0 .5em 0;	
-	border: 1px solid #C5C5C5;
-	
-	cursor: pointer;
-	
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
+    font-size: 10px;
+    font-style: italic;
+    color: #333;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    text-decoration: none;
 }
 
-	h2.accordion_panel a 
-	{
-		color: #222;
-		text-decoration: none;
-		padding: 0 0 0 40px;
-	}
-	
-		h2.active {background-position: left bottom; border-color: #000; }	
-			h2.active a { color: #FFF; }
-			
-.accordion_content 
-{
-	width: 100%;
-	font-size: 1.2em;
-	padding: 0;
-	margin: 1em 0 5px;
-	overflow: hidden;
-	clear: both;
-	display: none;
+.attachments a::before {
+  content: "\21D3";
+  margin-right: 5px;
+  display: inline;
+  font-size: 15px;
 }
 
-	
-	
-	.accordion_content:first-child { display: block; }
+.attachments a:hover
+{
+    color: Olive;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+.attachments-element
+{
+    font-size: 10px;
+    font-style: italic;
+}
+
+.deleted-element
+{
+    color: #999999;
+}
+
+.attachments
+{
+    background-color: #f5f5e6;
+    margin: 0;
+    padding: .3em .7em .5em;
+    border-width: 1px;
+    border-color: #bbb99d;
+    border-style: solid;
+     -o-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.infoBox, .successBox, .warningBox, .errorBox, .validationBox
+{
+    border: 1px solid;
+    margin: 3px 0px;
+    padding: 15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+.infoBox
+{
+    color: #00529B;
+    background-color: #BDE5F8;
+    background-image: url('./themes/main/info_icon.png');
+}
+.successBox
+{
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image: url('./themes/main/success_icon.png');
+}
+.warningBox
+{
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('./themes/main/warning_icon.png');
+}
+.errorBox
+{
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('./themes/main/error_icon.png');
+}
+
+h2.accordion_panel
+{
+    background: url(./themes/admin/images/accordion_header.png) no-repeat;
+    width: 100%;
+    height: 36px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 36px;
+    padding: 0;
+    margin: 0 0 .5em 0;
+    border: 1px solid #C5C5C5;
+    cursor: pointer;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+h2.accordion_panel a
+{
+    color: #222;
+    text-decoration: none;
+    padding: 0 0 0 40px;
+}
+
+h2.active
+{
+    background-position: left bottom;
+    border-color: #000;
+}
+h2.active a
+{
+    color: #FFF;
+}
+
+.accordion_content
+{
+    width: 100%;
+    font-size: 1.2em;
+    padding: 0;
+    margin: 1em 0 5px;
+    overflow: hidden;
+    clear: both;
+    display: none;
+}
+
+
+
+.accordion_content:first-child
+{
+    display: block;
+}
 
 /* CSS classes used in the styles drop-down */
 .keybinding
