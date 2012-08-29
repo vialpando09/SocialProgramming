@@ -23,12 +23,12 @@
                 @if (Culture != "hu-HU")
                 {   
                     <h2>@Model.ElementAt(i - 1).enTitle</h2>
-                    <p>@Model.ElementAt(i - 1).enIntroduction</p>
+                    <p>@Html.Raw(Model.ElementAt(i - 1).enIntroduction)</p>
                 }
                 else
                 {
                     <h2>@Model.ElementAt(i - 1).huTitle</h2>
-                    <p>@Model.ElementAt(i - 1).huIntroduction</p>
+                    <p>@Html.Raw(Model.ElementAt(i - 1).huIntroduction)</p>
                 }
             </div>
         </div>        
