@@ -2,27 +2,35 @@
     <h2 class="accordion_panel">@WebApplication.Resources.Modules.Titles.TagCloud</h2>
 </div>
 <div style="background-color: #fff; width: 290px; margin: 2px 0 3px 7px;">
-<div id="myCanvasContainer">
-    <canvas width="290" height="290" id="myCanvas">
+    <div id="myCanvasContainer">
+        <canvas width="290" height="290" id="myCanvas">
         <p>Anything in here will be replaced on browsers that support the canvas element</p>
     </canvas>
-</div>
+    </div>
 </div>
 <div id="tags">
     <ul>
-        
+        @{
+            string appPath = string.Format("{0}://{1}{2}{3}",
+                                    Request.Url.Scheme,
+                                    Request.Url.Host,
+                                    Request.Url.Port == 80
+                                        ? string.Empty
+                                        : ":" + Request.Url.Port,
+                                    Request.ApplicationPath);
+        }
         @if (Culture != "hu-HU")
         {
             foreach (var item in ((IEnumerable<Keyword>)ViewBag.Tags).Where(e => e.Type))
             {
-                <li><a href="Tag/@item.Value">@item.Value</a></li>        
+            <li><a href="@(appPath)Tag/@item.Value">@item.Value</a></li>        
             }
         }
         else
         {
             foreach (var item in ((IEnumerable<Keyword>)ViewBag.Tags).Where(e => !e.Type))
             {
-                <li><a href="Tag/@item.Value">@item.Value</a></li>        
+            <li><a href="@(appPath)Tag/@item.Value">@item.Value</a></li>        
             }
         }
     </ul>

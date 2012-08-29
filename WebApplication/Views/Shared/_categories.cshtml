@@ -1,22 +1,32 @@
 ﻿<div class="accordion_container" style="min-height: 38px;">
     <h2 class="accordion_panel">@WebApplication.Resources.Common.Categories</h2>
 </div>
-<div style="width: 291px; height: 2px;"></div>
-
+<div style="width: 291px; height: 2px;">
+</div>
 <ul class="navigation-link">
-@foreach (var item in (IEnumerable<Category>)ViewBag.Categories)
-{
+    @{
+        string appPath = string.Format("{0}://{1}{2}{3}",
+                                Request.Url.Scheme,
+                                Request.Url.Host,
+                                Request.Url.Port == 80
+                                    ? string.Empty
+                                    : ":" + Request.Url.Port,
+                                Request.ApplicationPath);
+    }
+    @foreach (var item in (IEnumerable<Category>)ViewBag.Categories)
+    {
         <li><a class="navigation-link" href="/Category/">
             @if (Culture != "hu-HU")
             {
-                <text><a class="navigation-link" href="en/Category/@item.Id/@item.enTitle.Urlable()">@item.enTitle</a></text>
+                <text><a class="navigation-link" href="@(appPath)en/Category/@item.Id/@item.enTitle.Urlable()">@item.enTitle</a></text>
             }
             else
             {
-                <text><a class="navigation-link" href="/Category/@item.Id/@item.huTitle.Urlable()">@item.huTitle</a></text>
+                <text><a class="navigation-link" href="@(appPath)hu/Category/@item.Id/@item.huTitle.Urlable()">@item.huTitle</a></text>
             }
         </a></li>
 
-}
+    }
 </ul>
-<div style="width: 291px; height: 2px;"></div>
+<div style="width: 291px; height: 2px;">
+</div>

@@ -181,6 +181,7 @@ namespace WebApplication
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
+
             ModelContainer db = ((BaseController)filterContext.Controller).Db;
             dynamic viewBag = filterContext.Controller.ViewBag;
             dynamic tempData = filterContext.Controller.TempData;
