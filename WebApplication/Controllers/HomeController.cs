@@ -51,7 +51,7 @@ namespace WebApplication.Controllers
         [BasicAction]
         public ActionResult Index()
         {
-            var entries = db.Entries.Include("Categories").Include("Files").Where(e => e.IsFeatured && e.Published).Take(TakeNumber).Union(db.Entries.Include("Categories").Include("Files").Where(e => !e.IsFeatured && e.Published).Take(TakeNumber));
+            var entries = db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.PublishedDate).Where(e => e.IsFeatured && e.Published).Take(TakeNumber).Union(db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.PublishedDate).Where(e => !e.IsFeatured && e.Published).Take(TakeNumber));
             ViewBag.AjaxType = "AjaxLoadEntries";
             ViewBag.max = TakeNumber;
             return View(entries);
@@ -67,7 +67,7 @@ namespace WebApplication.Controllers
                 {
                     list.Add(int.Parse(id));
                 }
-                var model = db.Entries.Where(e => !list.Contains(e.Id) && e.Published).Take(TakeNumber);
+                var model = db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.PublishedDate).Where(e => !list.Contains(e.Id) && e.Published).Take(TakeNumber);
                 ViewBag.ids = ids;
                 ViewBag.max = TakeNumber;
                 return View(model);
@@ -79,7 +79,7 @@ namespace WebApplication.Controllers
         public ActionResult Category(int id, string title)
         {
             var category = db.Categories.Single(e => e.Id == id);
-            var entries = category.Entries.Where(e => e.Published).Take(TakeNumber);
+            var entries = category.Entries.OrderByDescending(e => e.PublishedDate).Where(e => e.Published).Take(TakeNumber);
             
             if (entries.Count() == 0)
             {
@@ -105,7 +105,7 @@ namespace WebApplication.Controllers
             }
 
             var category = db.Categories.Single(e => e.Id == id);
-            var model = category.Entries.Where(e => e.Published && !list.Contains(e.Id)).Take(TakeNumber);
+            var model = category.Entries.OrderByDescending(e => e.PublishedDate).Where(e => e.Published && !list.Contains(e.Id)).Take(TakeNumber);
 
             ViewBag.ids = ids;
             ViewBag.max = TakeNumber;
@@ -116,7 +116,7 @@ namespace WebApplication.Controllers
         public ActionResult Tag(string tag)
         {
             ViewBag.Tag = tag;
-            var entries = db.Entries.Where(e => e.Published && e.Keywords.Where(f => f.Value.ToLower() == tag.ToLower()).Count() > 0).Take(TakeNumber);
+            var entries = db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.PublishedDate).Where(e => e.Published && e.Keywords.Where(f => f.Value.ToLower() == tag.ToLower()).Count() > 0).Take(TakeNumber);
 
             if (entries.Count() == 0)
             {
@@ -141,7 +141,7 @@ namespace WebApplication.Controllers
                 list.Add(int.Parse(idL));
             }
 
-            var model = db.Entries.Where(e => !list.Contains(e.Id) && e.Published && e.Keywords.Where(f => f.Value.ToLower() == tag.ToLower()).Count() > 0).Take(TakeNumber);
+            var model = db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.PublishedDate).Where(e => !list.Contains(e.Id) && e.Published && e.Keywords.Where(f => f.Value.ToLower() == tag.ToLower()).Count() > 0).Take(TakeNumber);
 
             ViewBag.ids = ids;
             ViewBag.max = TakeNumber;
@@ -166,13 +166,13 @@ namespace WebApplication.Controllers
             }
 
             var tags = db.Keywords.Where(e => filters.Contains(e.Value)).ToList();
-            entries.AddRange(db.Entries.Where(e => !entries.Contains(e.Id) && e.Published && e.Keywords.Intersect(tags).Count() > 0).Select(e => e.Id).ToList());
+            entries.AddRange(db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.PublishedDate).Where(e => !entries.Contains(e.Id) && e.Published && e.Keywords.Intersect(tags).Count() > 0).Select(e => e.Id).ToList());
 
             ViewBag.AjaxType = "AjaxLoadSearch";
             ViewBag.AjaxSecondParam = "&filter=" + filter;
             ViewBag.Filter = filter;
             ViewBag.max = TakeNumber;
-            var model = db.Entries.Where(e => entries.Contains(e.Id) && e.Published).Take(TakeNumber);
+            var model = db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.PublishedDate).Where(e => entries.Contains(e.Id) && e.Published).Take(TakeNumber);
 
             if (model.Count() == 0)
             {
@@ -209,9 +209,9 @@ namespace WebApplication.Controllers
             }
 
             var tags = db.Keywords.Where(e => filters.Contains(e.Value)).ToList();
-            entries.AddRange(db.Entries.Where(e => !entries.Contains(e.Id) && e.Published && e.Keywords.Intersect(tags).Count() > 0).Select(e => e.Id).ToList());
+            entries.AddRange(db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.PublishedDate).Where(e => !entries.Contains(e.Id) && e.Published && e.Keywords.Intersect(tags).Count() > 0).Select(e => e.Id).ToList());
 
-            var model = db.Entries.Where(e => e.Published && entries.Contains(e.Id) && !list.Contains(e.Id)).Take(TakeNumber);
+            var model = db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.PublishedDate).Where(e => e.Published && entries.Contains(e.Id) && !list.Contains(e.Id)).Take(TakeNumber);
             ViewBag.ids = ids;
             ViewBag.max = TakeNumber;
             return View(model);
@@ -220,7 +220,7 @@ namespace WebApplication.Controllers
         [BasicAction]
         public ActionResult Archive(int year, int month)
         {
-            var entries = db.Entries.Where(e => e.PublishedDate.Year == year && e.PublishedDate.Month == month && e.Published).Take(TakeNumber);
+            var entries = db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.PublishedDate).Where(e => e.PublishedDate.Year == year && e.PublishedDate.Month == month && e.Published).Take(TakeNumber);
 
             if (entries.Count() == 0)
             {
@@ -247,7 +247,7 @@ namespace WebApplication.Controllers
                 list.Add(int.Parse(idL));
             }
 
-            var model = db.Entries.Where(e => !list.Contains(e.Id) && e.Published && e.PublishedDate.Year == year && e.PublishedDate.Month == month).Take(TakeNumber);
+            var model = db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.PublishedDate).Where(e => !list.Contains(e.Id) && e.Published && e.PublishedDate.Year == year && e.PublishedDate.Month == month).Take(TakeNumber);
 
             ViewBag.ids = ids;
             ViewBag.max = TakeNumber;
@@ -257,7 +257,7 @@ namespace WebApplication.Controllers
         [BasicAction]
         public ActionResult ArchiveMore()
         {
-            var entries = db.Entries.Where(e => e.PublishedDate.Year < DateTime.Now.Year && e.Published).Take(TakeNumber);
+            var entries = db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.PublishedDate).Where(e => e.PublishedDate.Year < DateTime.Now.Year && e.Published).Take(TakeNumber);
 
             if (entries.Count() == 0)
             {
@@ -280,7 +280,7 @@ namespace WebApplication.Controllers
             {
                 list.Add(int.Parse(idL));
             }
-            var model = db.Entries.Where(e => !list.Contains(e.Id) && e.Published && e.PublishedDate.Year < DateTime.Now.Year).Take(TakeNumber);
+            var model = db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.PublishedDate).Where(e => !list.Contains(e.Id) && e.Published && e.PublishedDate.Year < DateTime.Now.Year).Take(TakeNumber);
 
             ViewBag.ids = ids;
             ViewBag.max = TakeNumber;
