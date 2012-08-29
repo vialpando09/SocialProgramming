@@ -168,7 +168,7 @@ namespace WebApplication
 
     public class BasicAction : ActionFilterAttribute
     {
-        public override void OnResultExecuted(ResultExecutedContext filterContext)
+        public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
             dynamic viewBag = filterContext.Controller.ViewBag;
             string title = "VialpandoBlog - ";

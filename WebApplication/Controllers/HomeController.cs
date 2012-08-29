@@ -51,7 +51,7 @@ namespace WebApplication.Controllers
         [BasicAction]
         public ActionResult Index()
         {
-            var entries = db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.Id).Where(e => e.IsFeatured && e.Published).Take(TakeNumber).Union(db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.Id).Where(e => !e.IsFeatured && e.Published).Take(TakeNumber));
+            var entries = db.Entries.Include("Categories").Include("Files").Where(e => e.IsFeatured && e.Published).OrderByDescending(e => e.PublishedDate).Take(TakeNumber).Union(db.Entries.Include("Categories").Include("Files").Where(e => !e.IsFeatured && e.Published).OrderByDescending(e => e.PublishedDate).Take(TakeNumber)).OrderByDescending(e => e.PublishedDate);
             ViewBag.AjaxType = "AjaxLoadEntries";
             ViewBag.max = TakeNumber;
             return View(entries);
