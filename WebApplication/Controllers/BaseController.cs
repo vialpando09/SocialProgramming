@@ -23,7 +23,12 @@ namespace WebApplication.Controllers
                 var fileName = Path.GetFileName(file.FileName);
                 var physicalPath = Path.Combine(path, fileName);
                 var relativePath = Path.Combine("/App_Data/Images", fileName);
-                
+
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
                 // The files are not actually saved in this demo
                 file.SaveAs(physicalPath);
                 list.Add(relativePath);
@@ -115,7 +120,7 @@ namespace WebApplication.Controllers
         {
             var attachments = TempData["Attachments"] as List<string>;
             // The parameter of the Remove action must be called "fileNames"
-            foreach (var fullName in fileNames)
+            foreach (var fullName in fileNames.Where(e => !string.IsNullOrEmpty(e)))
             {
                 var fileName = Path.GetFileName(fullName);
                 var physicalPath = Path.Combine(Server.MapPath(map), fileName);
