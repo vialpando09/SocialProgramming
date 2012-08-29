@@ -176,7 +176,6 @@ namespace WebApplication.Controllers
                 toEditEntry.huIntroduction = entry.huIntroduction;
                 toEditEntry.huTitle = entry.huTitle;
                 toEditEntry.IsFeatured = entry.IsFeatured;
-                toEditEntry.Keywords = entry.Keywords;
                 toEditEntry.Published = entry.Published;
                 toEditEntry.PublishedDate = entry.PublishedDate;                
                 toEditEntry.UserId = int.Parse((string)Session["UserId"]);
@@ -289,8 +288,10 @@ namespace WebApplication.Controllers
             {
                 var keyword = db.Keywords.SingleOrDefault(e => e.Value == item && !e.Type);
                 if (keyword == null)
+                {
                     keyword = new Keyword { Type = false, Value = item };
-
+                    db.Keywords.Add(keyword);
+                }
                 entry.Keywords.Add(keyword);
             }
 
@@ -298,8 +299,10 @@ namespace WebApplication.Controllers
             {
                 var keyword = db.Keywords.SingleOrDefault(e => e.Value == item && e.Type);
                 if (keyword == null)
+                {
                     keyword = new Keyword { Type = true, Value = item };
-
+                    db.Keywords.Add(keyword);
+                }
                 entry.Keywords.Add(keyword);
             }
         }

@@ -61,9 +61,8 @@ namespace WebApplication.Controllers
         {
             if (ids != "undefined")
             {
-                List<string> idList = ids.Split(',').ToList();
                 List<int> list = new List<int>();
-                foreach (var id in idList)
+                foreach (var id in ids.Split(','))
                 {
                     list.Add(int.Parse(id));
                 }

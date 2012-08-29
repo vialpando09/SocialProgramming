@@ -46,7 +46,12 @@
                     }
                     </div>
                 }
-            }
+            }            
+            <h2>@WebApplication.Resources.Common.Keywords</h2>            
+            @foreach (var item in Model.Keywords.Where(e => e.Type == true))
+	        {
+		        <span style="margin: 0 5px;">@item.Value</span>
+	        }
         </div>
         <div class="entry-bottom">        
             <h2>@WebApplication.Resources.Common.Comments</h2>
@@ -142,6 +147,11 @@ else
                     </div>
                 }
             }
+            <h2>@WebApplication.Resources.Common.Keywords</h2>            
+            @foreach (var item in Model.Keywords.Where(e => e.Type == false))
+	        {
+		        <span style="margin: 0 5px;">@item.Value</span>
+	        }
         </div>
         <div class="entry-bottom">        
             <h2>@WebApplication.Resources.Common.Comments</h2>
