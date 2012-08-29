@@ -170,9 +170,12 @@ namespace WebApplication
     {
         public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
-            dynamic viewBag = filterContext.Controller.ViewBag;
-            string title = "VialpandoBlog - ";
-            viewBag.Title = title + viewBag.Title;
+            //Log("OnResultExecuting", filterContext.RouteData);
+        }
+
+        public override void OnResultExecuted(ResultExecutedContext filterContext)
+        {
+            //Log("OnResultExecuted", filterContext.RouteData);
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)

@@ -4,12 +4,13 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title</title>
+    <title>VialpandoBlog - @ViewBag.Title</title>
     @(Html.Telerik().StyleSheetRegistrar()
         .DefaultGroup(group => group
             .Add("telerik.common.css")
             .Add("telerik.simple.min.css"))
     )
+    <link href="@Url.Content("~/Content/jquery-ui-1.8.12.custom.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/slider.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/login-css.css")" rel="stylesheet" type="text/css" />

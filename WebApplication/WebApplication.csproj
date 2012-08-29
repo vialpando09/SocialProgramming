@@ -481,6 +481,7 @@
     <Content Include="Content\Windows7\slider-v.gif" />
     <Content Include="Content\Windows7\sprite-vertical.png" />
     <Content Include="Content\Windows7\sprite.png" />
+    <Content Include="favicon.ico" />
     <Content Include="pthreadGC2.dll" />
     <Content Include="Scripts\dashboard.js" />
     <Content Include="Scripts\jquery-1.5.2.min.js" />
