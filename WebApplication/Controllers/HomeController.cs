@@ -257,7 +257,7 @@ namespace WebApplication.Controllers
         [BasicAction]
         public ActionResult ArchiveMore()
         {
-            var entries = db.Entries.Include("Categories").Include("Files").OrderByDescending(e => e.Id).Where(e => e.PublishedDate.Year < DateTime.Now.Year && e.Published).Take(TakeNumber);
+            var entries = db.Entries.Include("Categories").Include("Files").Where(e => e.PublishedDate.Year < DateTime.Now.Year && e.Published).OrderBy(e => e.PublishedDate).Take(TakeNumber);
 
             if (entries.Count() == 0)
             {
