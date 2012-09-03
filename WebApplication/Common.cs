@@ -136,6 +136,8 @@ namespace WebApplication
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
+            if (filterContext.Controller is FileBrowserController)
+                return;
             ModelContainer db = ((BaseController)filterContext.Controller).Db;
 
             if (filterContext.RequestContext.HttpContext.Session["UserType"] == null)

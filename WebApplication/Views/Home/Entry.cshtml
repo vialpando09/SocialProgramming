@@ -54,7 +54,7 @@
             }
             @if (Session["UserType"] != null && (UserTypes)Session["UserType"] >= UserTypes.Administrator)
             {
-                @Html.ActionLinkButton(Url, "Index", "Entry", new { id = Model.Id }, "Admin") 
+                @Html.ActionLinkButton(Url, "Edit", "Entry", new { id = Model.Id }, "Admin") 
             }
         </div>
         <div class="entry-bottom">
@@ -155,7 +155,7 @@ else
             }
             @if (Session["UserType"] != null && (UserTypes)Session["UserType"] >= UserTypes.Administrator)
             {
-                @Html.ActionLinkButton(Url, "Index", "Entry", new { id = Model.Id }, "Admin") 
+                @Html.ActionLinkButton(Url, "Edit", "Entry", new { id = Model.Id }, "Admin") 
             }
         </div>
         <div class="entry-bottom">

@@ -11,9 +11,9 @@ namespace WebApplication.Controllers
 
     public class FileBrowserController : EditorFileBrowserController
     {
-        private const string contentFolderRoot = "~/App_Data/Images";
+        private const string contentFolderRoot = "~/Images";
         private const string prettyName = "Entries";
-        private static readonly string[] foldersToCopy = new[] { "~/App_Data/Images/Entries" };
+        private static readonly string[] foldersToCopy = new[] { "~/Images/Entries" };
        
 
         private string CreateUserFolder()

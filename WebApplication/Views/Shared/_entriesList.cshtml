@@ -36,7 +36,7 @@
            
             @if (Session["UserType"] != null && (UserTypes)Session["UserType"] >= UserTypes.Administrator)
             {
-                @Html.ActionLinkButton(Url, "Index", "Entry", new { id = item.Id }, "Admin") 
+                @Html.ActionLinkButton(Url, "Edit", "Entry", new { id = item.Id }, "Admin") 
             } @Html.ActionLinkButton("en/" + url + item.enTitle.Urlable(), "More...")        
         </div>
         <div class="entry-bottom">
@@ -67,7 +67,7 @@
             
             @if (Session["UserType"] != null && (UserTypes)Session["UserType"] >= UserTypes.Administrator)
             {
-                @Html.ActionLinkButton(Url, "Index", "Entry", new { id = item.Id }, "Admin") 
+                @Html.ActionLinkButton(Url, "Edit", "Entry", new { id = item.Id }, "Admin") 
             } @Html.ActionLinkButton(url + item.huTitle.Urlable(), "Tovább...")
         </div>
         <div class="entry-bottom">
