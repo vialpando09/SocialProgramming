@@ -33,7 +33,11 @@
             }
         </div>
         <div class="entry-content">@Html.Raw(HttpUtility.HtmlDecode(item.enIntroduction))<br />
-        @Html.ActionLinkButton("en/" + url + item.enTitle.Urlable(), "More...")        
+           
+            @if (Session["UserType"] != null && (UserTypes)Session["UserType"] >= UserTypes.Administrator)
+            {
+                @Html.ActionLinkButton(Url, "Index", "Entry", new { id = item.Id }, "Admin") 
+            } @Html.ActionLinkButton("en/" + url + item.enTitle.Urlable(), "More...")        
         </div>
         <div class="entry-bottom">
         </div>
@@ -60,7 +64,11 @@
             }
         </div>
         <div class="entry-content">@Html.Raw(HttpUtility.HtmlDecode(item.huIntroduction)) <br />
-        @Html.ActionLinkButton(url + item.huTitle.Urlable(), "Tovább...")
+            
+            @if (Session["UserType"] != null && (UserTypes)Session["UserType"] >= UserTypes.Administrator)
+            {
+                @Html.ActionLinkButton(Url, "Index", "Entry", new { id = item.Id }, "Admin") 
+            } @Html.ActionLinkButton(url + item.huTitle.Urlable(), "Tovább...")
         </div>
         <div class="entry-bottom">
         </div>
