@@ -85,7 +85,7 @@
     <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImageBrowserController.cs" />
+    <Compile Include="Controllers\FileBrowserController.cs" />
     <Compile Include="Controllers\InstallController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />

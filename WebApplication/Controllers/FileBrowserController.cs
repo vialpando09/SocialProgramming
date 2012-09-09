@@ -14,7 +14,27 @@ namespace WebApplication.Controllers
         private const string contentFolderRoot = "~/App_Data/Images";
         private const string prettyName = "Entries";
         private static readonly string[] foldersToCopy = new[] { "~/App_Data/Images/Entries" };
-       
+
+
+        public ActionResult DisplayImage(string filename)
+        {
+            var path = Server.MapPath(Path.Combine("~/App_Data/Images", filename));
+            if (System.IO.File.Exists(path))
+            {
+                return File(path, Common.GetMimeType(path));
+            }
+            return null;
+        }
+
+        public ActionResult DisplayEntryImage(string filename)
+        {
+            var path = Server.MapPath(Path.Combine("~/App_Data/Images/Entries", filename));
+            if (System.IO.File.Exists(path))
+            {
+                return File(path, Common.GetMimeType(path));
+            }
+            return null;
+        }
 
         private string CreateUserFolder()
         {

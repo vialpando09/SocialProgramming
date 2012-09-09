@@ -29,8 +29,8 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
-        <script type="text/javascript">
-            $(document).ready(function () {               
+    <script type="text/javascript">
+            $(document).ready(function () {
                 if ($('.Box').length > 0) {
                     setTimeout(function () {
                         $('.Box').fadeOut('fast');
@@ -98,11 +98,20 @@
         </div>
         @RenderBody()
     </div>
+    <div id="test"></div>
     @RenderSection("AdditionScriptsEnd", false)
     @(Html.Telerik().ScriptRegistrar().jQuery(false)
         .OnDocumentReady(
             @<text>@RenderSection("AdditionalOnready", false)</text>
         )
     )
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').live('click', '.t-tile', function () {
+                var url = $('#t-editor-image-url').val().replace("/App_Data", "");
+                $('#t-editor-image-url').val(url);
+            });
+        });
+    </script>
 </body>
 </html>
