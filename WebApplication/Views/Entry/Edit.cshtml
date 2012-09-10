@@ -139,8 +139,8 @@ jQuery('.accordion_container').accordion();
                         .Name("attachments")
                         .Multiple(true)
                         .Async(async => async
-                            .Save("Upload", "User")
-                            .Remove("DeleteFiles", "User")
+                            .Save("SaveFiles", "Upload")
+                            .Remove("RemoveFiles", "Upload")
                             .AutoUpload(true)
                         )
                     )
@@ -171,8 +171,8 @@ jQuery('.accordion_container').accordion();
                         .Name("featuredImage")
                         .Multiple(true)
                         .Async(async => async
-                            .Save("UploadImage", "Upload")
-                            .Remove("DeleteImage", "Upload")
+                            .Save("SaveFeatured", "Upload")
+                            .Remove("RemoveFeatured", "Upload")
                             .AutoUpload(true)
                         )
                     )

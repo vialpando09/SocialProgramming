@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
+using Amazon.S3.Model;
+using Amazon.S3;
 
 namespace WebApplication.Controllers
 {
@@ -12,127 +14,10 @@ namespace WebApplication.Controllers
         protected readonly ModelContainer db = new ModelContainer();
         public ModelContainer Db { get { return db; } }
 
-        public ActionResult UploadImage(IEnumerable<HttpPostedFileBase> featuredImage)
-        {
-            // The Name of the Upload component is "attachments" 
-            List<string> list = new List<string>();
-            foreach (var file in featuredImage)
-            {
-                var path = Server.MapPath("~/App_Data/Images");
-                // Some browsers send file names with full path. This needs to be stripped.
-                var fileName = Path.GetFileName(file.FileName);
-                var physicalPath = Path.Combine(path, fileName);
-                var relativePath = Path.Combine("/App_Data/Images", fileName);
-
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-
-                // The files are not actually saved in this demo
-                file.SaveAs(physicalPath);
-                list.Add(relativePath);
-            }
-            TempData["FeaturedImage"] = list;
-            // Return an empty string to signify success
-            return Content("");
-        }
-        public ActionResult DeleteImage(string[] fileNames)
-        {
-            var attachments = TempData["FeaturedImage"] as List<string>;
-            // The parameter of the Remove action must be called "fileNames"
-            foreach (var fullName in fileNames)
-            {
-                var fileName = Path.GetFileName(fullName);
-                var physicalPath = Path.Combine(Server.MapPath("~/App_Data/Images"), fileName);
-
-                // TODO: Verify user permissions
-                if (System.IO.File.Exists(physicalPath))
-                {
-                    // The files are not actually removed in this demo
-                    System.IO.File.Delete(physicalPath);
-                }
-
-                if (attachments != null)
-                    attachments.Remove(Path.Combine("/App_Data/Images", fileName));
-            }
-            if (attachments != null)
-                TempData["FeaturedImage"] = attachments;
-
-            // Return an empty string to signify success
-            return Content("");
-        }
-
-        public ActionResult Upload(IEnumerable<HttpPostedFileBase> attachments)
-        {
-            var list = TempData["Attachments"] as List<string>;
-            if (list == null)
-                list = new List<string>();
-            // The Name of the Upload component is "attachments" 
-            foreach (var file in attachments)
-            {
-                var path = Server.MapPath("~/App_Data/Files");
-                // Some browsers send file names with full path. This needs to be stripped.
-                var fileName = Path.GetFileName(file.FileName);
-                var physicalPath = Path.Combine(path, fileName);
-                var relativePath = Path.Combine("/App_Data/Files", fileName);
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-                
-                // The files are not actually saved in this demo
-                file.SaveAs(physicalPath);
-
-                list.Add(relativePath);
-            }
-            TempData["Attachments"] = list;
-            // Return an empty string to signify success
-            return Content("");
-        }
-        public ActionResult DeleteFiles(string[] fileNames)
-        {
-            var attachments = TempData["Attachments"] as List<string>;
-            // The parameter of the Remove action must be called "fileNames"
-            foreach (var fullName in fileNames)
-            {
-                var fileName = Path.GetFileName(fullName);
-                var physicalPath = Path.Combine(Server.MapPath("~/App_Data/Files"), fileName);
-
-                // TODO: Verify user permissions
-                if (System.IO.File.Exists(physicalPath))
-                {
-                    // The files are not actually removed in this demo
-                    System.IO.File.Delete(physicalPath);
-                }
-
-                if (attachments != null)
-                    attachments.Remove(Path.Combine("/App_Data/Files", fileName));
-            }
-            if (attachments != null)
-                TempData["Attachments"] = attachments;
-
-            // Return an empty string to signify success
-            return Content("");
-        }
-
-        protected void Delete(string map, string[] fileNames)
-        {
-            var attachments = TempData["Attachments"] as List<string>;
-            // The parameter of the Remove action must be called "fileNames"
-            foreach (var fullName in fileNames.Where(e => !string.IsNullOrEmpty(e)))
-            {
-                var fileName = Path.GetFileName(fullName);
-                var physicalPath = Path.Combine(Server.MapPath(map), fileName);
-
-                // TODO: Verify user permissions
-                if (System.IO.File.Exists(physicalPath))
-                {
-                    // The files are not actually removed in this demo
-                    System.IO.File.Delete(physicalPath);
-                }
-            }
-        }
+        protected string accessKey = System.Configuration.ConfigurationManager.AppSettings["DropBoxAccessKey"];
+        protected string secretAccessKey = System.Configuration.ConfigurationManager.AppSettings["DropBoxSecretKey"];
+        protected string userTokenKey = System.Configuration.ConfigurationManager.AppSettings["DropBoxUserTokenKey"];
+        protected string userSecretKey = System.Configuration.ConfigurationManager.AppSettings["DropBoxUserSecretKey"];
 
         protected override void Dispose(bool disposing)
         {

@@ -130,6 +130,10 @@ namespace WebApplication.Controllers
                     ViewBag.huKeywords = db.Keywords.Where(e => e.Type == false);
                     return View(entry);
                 }
+
+                TempData["Attachments"] = null;
+                TempData["FeaturedImage"] = null;
+
                 return RedirectToAction("Index");
             }
 
@@ -195,7 +199,9 @@ namespace WebApplication.Controllers
                     toEditEntry.Files.Remove(file);
                     db.Files.Remove(file);
                 }
-                this.Delete("~/App_Data/Files", fileNames.ToArray());
+                var ctrl = new UploadController();
+                ctrl.PathValue = "/Public/Files/";
+                ctrl.Remove(fileNames.ToArray());
                 //Add new ones
                 if (attachments != null)
                 {
@@ -208,7 +214,8 @@ namespace WebApplication.Controllers
                 if (featuredImage != null && featuredImage.Count > 0)
                 {
                     string[] fileName = { Path.GetFileName(entry.FeaturedImage) };
-                    this.Delete("~/App_Data/Images", fileName);
+                    ctrl.PathValue = "/Public/Images/";
+                    ctrl.Remove(fileName);
                     toEditEntry.FeaturedImage = featuredImage[0];
                 }
                 else if (string.IsNullOrEmpty(entry.FeaturedImage))
@@ -222,6 +229,10 @@ namespace WebApplication.Controllers
                 catch (DbEntityValidationException e)
                 {
                 }
+
+                TempData["Attachments"] = null;
+                TempData["FeaturedImage"] = null;
+
                 return RedirectToAction("Index");
             }
 
@@ -249,7 +260,10 @@ namespace WebApplication.Controllers
         {
             Entry entry = db.Entries.Single(e => e.Id == id);
             var fileNames = entry.Files.Select(e => e.Name).ToArray();
-            this.Delete("~/App_Data/Files", fileNames);
+            var ctrl = new UploadController();
+            ctrl.PathValue = "/Public/Files/";
+            ctrl.Remove(fileNames.ToArray());
+            
             foreach (var file in entry.Files.ToList())
             {
                 db.Files.Remove(file);
@@ -257,7 +271,9 @@ namespace WebApplication.Controllers
             if (!string.IsNullOrEmpty(entry.FeaturedImage))
             {
                 string[] filenames = { Path.GetFileName(entry.FeaturedImage) };
-                this.Delete("~/App_Data/Images", filenames);
+                ctrl.PathValue = "/Public/Images/";
+                ctrl.Remove(fileNames);
+            
             }
             var categories = entry.Categories.ToList();
             foreach (var category in categories)

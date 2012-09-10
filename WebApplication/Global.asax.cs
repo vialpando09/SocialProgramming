@@ -22,8 +22,8 @@ namespace WebApplication
         public static void RegisterRoutes(RouteCollection routes)
         {
             const string DefaultRouteUrl = "{controller}/{action}/{id}";
-            const string ImageRouteUrl = "Images/{filename}";
-            const string ImageEntriesRouteUrl = "Images/Entries/{filename}";
+            const string ImageRouteUrl = "Public/Images/{filename}";
+            const string FileRouteUrl = "Public/Files/{id}";
             const string SitemapRouteUrl = "sitemap.xml";
             const string PageRouteUrl = "Pages/{id}/{title}";
             const string EntryRouteUrl = "Entries/{date}/{id}/{title}";
@@ -36,8 +36,8 @@ namespace WebApplication
             
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             RouteValueDictionary defaultRouteValueDictionary = new RouteValueDictionary(new { controller = "Home", action = "Index", id = UrlParameter.Optional });
-            RouteValueDictionary imageRouteValueDictionary = new RouteValueDictionary(new { controller = "FileBrowser", action = "DisplayImage" });
-            RouteValueDictionary imageEntriesRouteValueDictionary = new RouteValueDictionary(new { controller = "FileBrowser", action = "DisplayEntryImage" });
+            RouteValueDictionary imageRouteValueDictionary = new RouteValueDictionary(new { controller = "DropBox", action = "Image" });
+            RouteValueDictionary fileRouteValueDictionary = new RouteValueDictionary(new { controller = "DropBox", action = "File" });
             RouteValueDictionary sitemapRouteValueDictionary = new RouteValueDictionary(new { controller = "Sitemap", action = "Generate" });
             RouteValueDictionary pageRouteValueDictionary = new RouteValueDictionary(new { controller = "Home", action = "Page" });
             RouteValueDictionary entryRouteValueDictionary = new RouteValueDictionary(new { controller = "Home", action = "Entry" });
@@ -50,7 +50,7 @@ namespace WebApplication
 
             routes.Add("LoginGlobalised", new GlobalisedRoute(LoginRouteUrl, loginRouteValueDictionary));
             routes.Add("ImageGlobalised", new GlobalisedRoute(ImageRouteUrl, imageRouteValueDictionary));
-            routes.Add("ImageEntriesGlobalised", new GlobalisedRoute(ImageEntriesRouteUrl, imageEntriesRouteValueDictionary));
+            routes.Add("FileGlobalised", new GlobalisedRoute(FileRouteUrl, fileRouteValueDictionary));
             routes.Add("SitemapGlobalised", new GlobalisedRoute(SitemapRouteUrl, sitemapRouteValueDictionary));
             routes.Add("PageGlobalised", new GlobalisedRoute(PageRouteUrl, pageRouteValueDictionary));
             routes.Add("EntryGlobalised", new GlobalisedRoute(EntryRouteUrl, entryRouteValueDictionary));
@@ -63,7 +63,7 @@ namespace WebApplication
 
             routes.Add("Login", new Route(LoginRouteUrl, loginRouteValueDictionary, new MvcRouteHandler()));
             routes.Add("Image", new Route(ImageRouteUrl, imageRouteValueDictionary, new MvcRouteHandler()));
-            routes.Add("ImageEntries", new Route(ImageEntriesRouteUrl, imageEntriesRouteValueDictionary, new MvcRouteHandler()));
+            routes.Add("File", new Route(FileRouteUrl, fileRouteValueDictionary, new MvcRouteHandler()));
             routes.Add("Sitemap", new Route(SitemapRouteUrl, sitemapRouteValueDictionary, new MvcRouteHandler()));
             routes.Add("Page", new Route(PageRouteUrl, pageRouteValueDictionary, new MvcRouteHandler()));
             routes.Add("Entry", new Route(EntryRouteUrl, entryRouteValueDictionary, new MvcRouteHandler()));

@@ -5,73 +5,114 @@ using System.Web;
 using System.Web.Mvc;
 using Telerik.Web.Mvc.UI;
 using System.IO;
+using System.Web.UI.WebControls;
+using System.Drawing;
+using Amazon.S3.Model;
+using Amazon.S3;
+using DropNet;
+using System.Net;
 
 namespace WebApplication.Controllers
 {
-
-    public class FileBrowserController : EditorFileBrowserController
+    public class FileBrowserController : BaseController, IImageBrowserController
     {
-        private const string contentFolderRoot = "~/App_Data/Images";
-        private const string prettyName = "Entries";
-        private static readonly string[] foldersToCopy = new[] { "~/App_Data/Images/Entries" };
+        //
+        // GET: /FileBrowserTest/
 
-
-        public ActionResult DisplayImage(string filename)
+        public string[] ContentPaths
         {
-            var path = Server.MapPath(Path.Combine("~/App_Data/Images", filename));
-            if (System.IO.File.Exists(path))
-            {
-                return File(path, Common.GetMimeType(path));
-            }
-            return null;
+            get { return new[] { "/Public" }; }
         }
 
-        public ActionResult DisplayEntryImage(string filename)
+        public JsonResult Browse(string path)
         {
-            var path = Server.MapPath(Path.Combine("~/App_Data/Images/Entries", filename));
-            if (System.IO.File.Exists(path))
-            {
-                return File(path, Common.GetMimeType(path));
-            }
-            return null;
-        }
+            path = Path.Combine(ContentPaths[0], path).Replace('\\', '/') + "/";
 
-        private string CreateUserFolder()
-        {
-            var virtualPath = Path.Combine(contentFolderRoot, prettyName);
-            var path = Server.MapPath(virtualPath);
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-                foreach (var sourceFolder in foldersToCopy)
+            var _client = new DropNetClient(accessKey, secretAccessKey, userTokenKey, userSecretKey);
+            var _metaData = _client.GetMetaData(path);
+
+            BrowseResult result = new BrowseResult();
+            result.ContentPaths = ContentPaths;
+            result.Path = path;
+
+            result.Files = _metaData.Contents.Where(e => e.Extension != "").Select(e => 
                 {
-                    CopyFolder(Server.MapPath(sourceFolder), path);
-                }
-            }
-            return virtualPath;
+                    long size = 0;
+                    if (e.Size.Contains(" B"))
+                        size = (long)double.Parse(e.Size.Replace(" B", "").Replace('.', ','));
+                    else if( e.Size.Contains(" KB"))
+                        size = (long)(double.Parse(e.Size.Replace(" KB", "").Replace('.', ',')) * 1024);
+                    else if (e.Size.Contains(" MB"))
+                        size = (long)(double.Parse(e.Size.Replace(" MB", "").Replace('.', ',')) * 1024 * 1024);
+                    else if (e.Size.Contains(" GB"))
+                        size = (long)(double.Parse(e.Size.Replace(" GB", "").Replace('.', ',')) * 1024 * 1024 * 1024);
+                    return new FileEntry { Name = e.Name, Size = size };
+                });
+            result.Directories = _metaData.Contents.Where(e => e.Extension == "").Select(e => new DirectoryEntry { Name = e.Name });
+
+            return this.Json(result);
         }
-        private void CopyFolder(string source, string destination)
+
+        public ActionResult CreateDirectory(string path, string name)
         {
-            if (!Directory.Exists(destination))
+            var _client = new DropNetClient(accessKey, secretAccessKey, userTokenKey, userSecretKey);
+            path = Path.Combine(path, name).Replace('\\', '/');
+            _client.CreateFolder(path);
+            return Content("");
+        }
+
+        public ActionResult DeleteDirectory(string path)
+        {
+            var _client = new DropNetClient(accessKey, secretAccessKey, userTokenKey, userSecretKey);
+            _client.Delete(path);
+            return Content("");
+        }
+
+        public ActionResult DeleteFile(string path)
+        {
+            var _client = new DropNetClient(accessKey, secretAccessKey, userTokenKey, userSecretKey);
+            _client.Delete(path);
+            return Content("");
+        }
+
+        public ActionResult Thumbnail(string path)
+        {
+            
+            var result = CreateBigThumbNail(86, path);
+            return result;
+        }
+
+        private FileContentResult CreateBigThumbNail(int newWidth, string path)
+        {
+            var _client = new DropNetClient(accessKey, secretAccessKey, userTokenKey, userSecretKey);
+            var _file = _client.GetFile(path);
+            MemoryStream myStream = new MemoryStream();
+            myStream.Write(_file, 0, _file.Length);
+            using (Bitmap originalImage = new Bitmap(myStream))
             {
-                Directory.CreateDirectory(destination);
-            }
-            foreach (var file in Directory.EnumerateFiles(source))
-            {
-                var dest = Path.Combine(destination, Path.GetFileName(file));
-                System.IO.File.Copy(file, dest);
-            }
-            foreach (var folder in Directory.EnumerateDirectories(source))
-            {
-                var dest = Path.Combine(destination, Path.GetFileName(folder));
-                CopyFolder(folder, dest);
+                int width = newWidth;
+                int height = (originalImage.Height * newWidth) / originalImage.Width;
+                Bitmap thumbnail = new Bitmap(width, height);
+                using (Graphics g = Graphics.FromImage((System.Drawing.Image)thumbnail))
+                    g.DrawImage(originalImage, 0, 0, width, height);
+
+                ImageConverter converter = new ImageConverter();
+                return File((byte[])converter.ConvertTo(thumbnail, typeof(byte[])), Common.GetMimeType(path));
             }
         }
 
-        public override string[] ContentPaths
+        public ActionResult Upload(string path, HttpPostedFileBase file)
         {
-            get { return new[] { CreateUserFolder() }; }
+            var fileName = Path.GetFileName(file.FileName);
+
+            MemoryStream target = new MemoryStream();
+            file.InputStream.CopyTo(target);
+            byte[] data = target.ToArray();
+
+            var _client = new DropNetClient(accessKey, secretAccessKey, userTokenKey, userSecretKey);
+            _client.UploadFile(path, fileName, data);
+
+            return this.Json(new FileEntry { Name = fileName, Size = file.ContentLength });
         }
     }
 }
-

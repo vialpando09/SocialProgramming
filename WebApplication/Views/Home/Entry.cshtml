@@ -141,7 +141,7 @@ else
                     @{
                     foreach (var item in Model.Files)
                     {
-                        <text><span class="attachments-element" id="attachment-@item.Id">@Html.ActionLink(item.Name + " (" + Common.GetMimeType(item.Name) + ")", "Index", "Download", new { id = item.Location }, new { target = "_blank" })</span>
+                        <text><span class="attachments-element" id="attachment-@item.Id">@Html.ActionLink(item.Name + " (" + Common.GetMimeType(item.Name) + ")", "File", "DropBox", new { id = item.Location }, new { target = "_blank" })</span>
                         <br /></text>
                     }
                     }

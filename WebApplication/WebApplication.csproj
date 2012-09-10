@@ -34,11 +34,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AWSSDK, Version=1.5.2.1, Culture=neutral, PublicKeyToken=cd2d24cd2bace800, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AWSSDK.1.5.2.1\lib\AWSSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="DropNet">
+      <HintPath>..\packages\DropNet.1.9.3\lib\net35\DropNet.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\DropNet.1.9.3\lib\net35\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -81,11 +91,11 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
-    <Compile Include="Controllers\DownloadController.cs" />
+    <Compile Include="Controllers\DropBoxController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FileBrowserController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstallController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
