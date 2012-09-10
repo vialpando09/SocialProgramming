@@ -7,10 +7,14 @@
     {
         lang = "en/";
     }
+    else
+    {
+        lang = "hu/";
+    }
     int year = DateTime.Now.Year;
     int month = DateTime.Now.Month;
-    int lastYear = ((IEnumerable<DateTime>)ViewBag.Archive).ToList().LastOrDefault().Year;
-    int lastMonth = ((IEnumerable<DateTime>)ViewBag.Archive).ToList().LastOrDefault().Month;
+    int lastYear = (int)ViewBag.ArchiveLatestYear;
+    int lastMonth = (int)ViewBag.ArchiveLatestMonth;
 
     var months = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.MonthNames
          .TakeWhile(m => m != String.Empty)

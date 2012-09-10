@@ -196,6 +196,10 @@ namespace WebApplication
             viewBag.Tags = db.Keywords;
             viewBag.Categories = db.Categories;
             viewBag.Archive = db.Entries.Where(e => e.Published).Select(e => e.PublishedDate);
+            
+            var latest = db.Entries.Where(e => e.Published).OrderBy(e => e.PublishedDate).Select(e => e.PublishedDate).FirstOrDefault();
+            viewBag.ArchiveLatestYear = latest.Year;
+            viewBag.ArchiveLatestMonth = latest.Month;
 
             viewBag.AjaxType = "";
             viewBag.AjaxSecondParam = "";

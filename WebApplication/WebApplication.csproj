@@ -1115,6 +1115,7 @@
     <Content Include="Views\Home\ArchiveMore.cshtml" />
     <Content Include="Views\Home\AjaxLoadArchiveMore.cshtml" />
     <Content Include="Views\Home\Page.cshtml" />
+    <Content Include="Views\Shared\_like_a_boss.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
