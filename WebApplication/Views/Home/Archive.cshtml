@@ -1,4 +1,62 @@
 ﻿@model IEnumerable<WebApplication.Entry>
+
+
+@section AdditionalScripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            function nextElement() {
+                var result = 'undefined';
+                var list = $('.entry-title').each(function (index, value) {
+                    var offset = $(value).offset().top - $(window).scrollTop();
+                    if (index == 0)
+                        result = value;
+                    else if ($(result).offset().top - $(window).scrollTop() < 60)
+                        result = value;
+                    else if (offset > 60 && $(result).offset().top - $(window).scrollTop() > offset)
+                        result = value;
+                });
+                return result;
+            }
+
+            function backElement() {
+                var result = 'undefined';
+                var wTop = $(window).scrollTop();
+                var list = $('.entry-title').each(function (index, value) {
+                    var offset = $(value).offset().top - $(window).scrollTop();
+                    if (index == 0)
+                        result = value;
+                    else if (offset > $(result).offset().top - $(window).scrollTop() && offset < 0)
+                        result = value;
+                });
+                return result;
+            }
+
+            $(document).keypress(function (e) {
+                var additional = $(window).scrollTop() + 50;
+                if ($("*:focus").length != 0)
+                    return;
+                switch (e.which) {
+                    //next  
+                    case 110:
+                        var next = nextElement();
+                        $('html, body').animate({ scrollTop: $(next).position().top - 50 }, 'slow');
+                        break;
+                    //back  
+                    case 98:
+                        var back = backElement();
+                        $('html, body').animate({ scrollTop: $(back).position().top - 50 }, 'slow');
+                        break;
+                }
+
+            });
+        });
+
+    </script>
+}
+
+
 @{
     ViewBag.Title = "Index";
     var months = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.MonthNames
