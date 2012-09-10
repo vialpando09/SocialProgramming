@@ -16,18 +16,42 @@ namespace WebApplication.Controllers
         [BasicAction]
         public ActionResult Entry(string date, int id, string title)
         {
-
             Entry entry;
             if (Session["UserType"] != null && (UserTypes)Session["UserType"] >= UserTypes.Administrator)
-                entry= db.Entries.Single(e => e.Id == id); 
+                entry = db.Entries.Single(e => e.Id == id);
             else
-                entry = db.Entries.Single(e => e.Id == id && e.Published); 
+                entry = db.Entries.Single(e => e.Id == id && e.Published);
             if (entry == null)
             {
                 TempData["GlobalMessageType"] = MessageTypes.Information;
                 TempData["ViewBag.GlobalHeader"] = Resources.Common.Information;
                 TempData["ViewBag.GlobalMessage"] = Resources.Common.NoElement;
-            }           
+            }
+            var next = db.Entries.OrderBy(e => e.Id).Where(e => e.Id > id).Take(1).FirstOrDefault();
+            var back = db.Entries.OrderByDescending(e => e.Id).Where(e => e.Id < id).Take(1).FirstOrDefault();
+
+            if (next != null)
+            {
+                int year = next.PublishedDate.Year;
+                int month = next.PublishedDate.Month;
+                int day = next.PublishedDate.Day;
+                string nDate = year.ToString() + ((month < 10) ? "0" : "") + month.ToString() + ((day < 10) ? "0" : "") + day.ToString();
+                ViewBag.NextDate = nDate;
+                ViewBag.NextEnTitle = next.enTitle.Urlable();
+                ViewBag.NextHuTitle = next.huTitle.Urlable();
+                ViewBag.NextId = next.Id;
+            }
+            if (back != null)
+            {
+                int year = back.PublishedDate.Year;
+                int month = back.PublishedDate.Month;
+                int day = back.PublishedDate.Day;
+                string nDate = year.ToString() + ((month < 10) ? "0" : "") + month.ToString() + ((day < 10) ? "0" : "") + day.ToString();
+                ViewBag.BackDate = nDate;
+                ViewBag.BackEnTitle = back.enTitle.Urlable();
+                ViewBag.BackHuTitle = back.huTitle.Urlable();
+                ViewBag.BackId = back.Id;
+            }
             return View(entry);
         }
 
@@ -79,14 +103,14 @@ namespace WebApplication.Controllers
         {
             var category = db.Categories.Single(e => e.Id == id);
             var entries = category.Entries.OrderByDescending(e => e.Id).Where(e => e.Published).Take(TakeNumber);
-            
+
             if (entries.Count() == 0)
             {
                 TempData["GlobalMessageType"] = MessageTypes.Information;
                 TempData["ViewBag.GlobalHeader"] = Resources.Common.Information;
                 TempData["ViewBag.GlobalMessage"] = Resources.Common.NoElement;
             }
-            
+
             ViewBag.Category = category;
             ViewBag.AjaxType = "AjaxLoadCategory";
             ViewBag.AjaxSecondParam = "&id=" + category.Id;
@@ -340,13 +364,13 @@ namespace WebApplication.Controllers
             Session["UserName"] = null;
 
             string cookieName = "VialpandoBlogAuth";
-                HttpCookie myCookie = Request.Cookies[cookieName];
+            HttpCookie myCookie = Request.Cookies[cookieName];
 
-                if (myCookie != null)
-                {
-                    myCookie.Expires = DateTime.Now.AddDays(-1);
-                    Response.Cookies.Set(myCookie);
-                }
+            if (myCookie != null)
+            {
+                myCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Set(myCookie);
+            }
 
             TempData["GlobalMessageType"] = MessageTypes.Information;
             TempData["ViewBag.GlobalHeader"] = Resources.Common.Information;

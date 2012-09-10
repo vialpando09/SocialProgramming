@@ -1,5 +1,19 @@
 ﻿@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic|Oswald:400,700&subset=latin,latin-ext);
 
+.keybinding
+{
+    display: inline-block;
+    background: #EEE;
+    border-color: #CCC #AAA #888 #BBB;
+    border-style: solid;
+    border-width: 1px 3px 3px 1px;
+    color: black;
+    margin: 2px 0;
+    padding: 0 4px;
+    white-space: nowrap;
+    font-size: 120%;
+}
+
 .keywords
 {
     padding: 5px;

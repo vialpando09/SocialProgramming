@@ -23,7 +23,7 @@ namespace WebApplication.Controllers
         [LoginAuthorize]
         public ViewResult Index()
         {
-            var entries = db.Entries.Include("Creator");
+            var entries = db.Entries.Include("Creator").OrderByDescending(e => e.Id);
             return View(entries.ToList());
         }
 

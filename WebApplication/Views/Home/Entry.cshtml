@@ -1,4 +1,72 @@
 ﻿@model Entry
+           
+@section AdditionalScripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {            
+
+            function getHostname()
+            {
+                var full = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+                return full;
+            }
+
+            $(document).keypress(function (e) {
+                var additional = $(window).scrollTop() + 50;
+                if ($("*:focus").length != 0)
+                    return;
+                switch (e.which) {
+                    //back   
+                    case 98:
+                        @if (ViewBag.NextDate != null)
+                        {
+                            if (Culture != "hu-HU")
+                            {
+                                string url = "en/Entries/" + ViewBag.NextDate + "/" + ViewBag.NextId + "/" + ViewBag.NextEnTitle;
+                                <text>
+                                    var url = getHostname() + '/@url'
+                                    window.location.href = url;
+                                </text>
+                            }
+                            else
+                            {
+                                string url = "hu/Entries/" + ViewBag.NextDate + "/" + ViewBag.NextId + "/" + ViewBag.NextHuTitle;
+                                <text>
+                                    var url = getHostname() + '/@url'
+                                    window.location.href = url;
+                                </text>
+                            }
+                        }                         
+                        break;
+                    //next   
+                    case 110:
+                        @if (ViewBag.BackDate != null)
+                        {
+                            if (Culture != "hu-HU")
+                            {
+                                string url = "en/Entries/" + ViewBag.BackDate + "/" + ViewBag.BackId + "/" + ViewBag.BackEnTitle;
+                                <text>
+                                    var url = getHostname() + '/@url'
+                                    window.location.href = url;
+                                </text>
+                            }
+                            else
+                            {
+                                string url = "hu/Entries/" + ViewBag.BackDate + "/" + ViewBag.BackId + "/" + ViewBag.BackHuTitle;
+                                <text>
+                                    var url = getHostname() + '/@url'
+                                    window.location.href = url;
+                                </text>
+                            }
+                        } 
+                        break;
+                }
+
+            });
+        });
+
+    </script>
+}
 @if (Culture != "hu-HU")
 {
     ViewBag.Title = Model.enTitle;
