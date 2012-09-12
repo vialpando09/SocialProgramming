@@ -321,14 +321,22 @@ namespace WebApplication
             return "";
         }
 
+        public static MvcHtmlString LinkedInLink(string date, int id, string title, string type)
+        {
+            string link = SiteAddress + type + "/Entries/" + date + "/" + id.ToString() + "/" + title;
+            string linkedIn = "<script src=\"//platform.linkedin.com/in.js\" type=\"text/javascript\"></script><script type=\"IN/Share\" data-url=\"" + link + "\"></script>";
+
+            return new MvcHtmlString(linkedIn);
+        }
+
         public static MvcHtmlString GooglePlusLink(string date, int id, string title, string type)
         {
             string link = SiteAddress + type + "/Entries/" + date + "/" + id.ToString() + "/" + title;
             string gplus;
             if (type == "hu/")
-                gplus = "<div style=\"float: left\"><div class=\"g-plusone\" data-size=\"medium\" data-annotation=\"inline\" data-width=\"120\" data-href=\"" + link +"\"></div></div>";
+                gplus = "<div style=\"float: left; width: 42px; overflow: hidden;\"><div class=\"g-plusone\" data-size=\"medium\" data-annotation=\"inline\" data-width=\"120\" data-href=\"" + link +"\"></div></div>";
             else
-                gplus = "<div style=\"float: left\"><div class=\"g-plusone\" data-size=\"medium\" data-annotation=\"inline\" data-width=\"120\" data-href=\"" + link + "\"></div></div>";
+                gplus = "<div style=\"float: left; width: 42px; overflow: hidden;\"><div class=\"g-plusone\" data-size=\"medium\" data-annotation=\"inline\" data-width=\"120\" data-href=\"" + link + "\"></div></div>";
 
             return new MvcHtmlString(gplus);
         }
