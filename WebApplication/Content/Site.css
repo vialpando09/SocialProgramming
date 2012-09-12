@@ -3,6 +3,7 @@
 .fb
 {
     margin: 10px;
+    display: table;
 }
 
 .entry-content a, .entry-content a:visited

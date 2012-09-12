@@ -321,14 +321,44 @@ namespace WebApplication
             return "";
         }
 
+        public static MvcHtmlString GooglePlusLink(string date, int id, string title, string type)
+        {
+            string link = SiteAddress + type + "/Entries/" + date + "/" + id.ToString() + "/" + title;
+            string gplus;
+            if (type == "hu/")
+                gplus = "<div style=\"float: left\"><div class=\"g-plusone\" data-size=\"medium\" data-annotation=\"inline\" data-width=\"120\" data-href=\"" + link +"\"></div></div>";
+            else
+                gplus = "<div style=\"float: left\"><div class=\"g-plusone\" data-size=\"medium\" data-annotation=\"inline\" data-width=\"120\" data-href=\"" + link + "\"></div></div>";
+
+            return new MvcHtmlString(gplus);
+        }
+
+        public static MvcHtmlString GooglePlusStatic()
+        {
+            return new MvcHtmlString( "<script type=\"text/javascript\">  (function() {    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://apis.google.com/js/plusone.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);  })();</script>" );
+        }
+
         public static MvcHtmlString FacebookLink(string date, int id, string title, string type)
         {
             string link = SiteAddress + type + "/Entries/" + date + "/" + id.ToString() + "/" + title;
             link = link.Replace(":", "%3A");
             link = link.Replace("/", "%2F");
 
-            string fb = "<iframe src=\"//www.facebook.com/plugins/like.php?href=" + link + "&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; width:450px; height:35px;\" allowTransparency=\"true\"></iframe>";
+            string fb = "<div style=\"float: left\"><iframe src=\"//www.facebook.com/plugins/like.php?href=" + link + "&amp;send=false&amp;layout=button_count&amp;width=80&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; width:80px; height:35px;\" allowTransparency=\"true\"></iframe></div>";
             return new MvcHtmlString(fb);
+        }
+
+        public static MvcHtmlString TwitterLink(string date, int id, string title, string type)
+        {
+            string link = SiteAddress + type + "/Entries/" + date + "/" + id.ToString() + "/" + title;
+            string twitter;
+            if(type == "hu/")
+                twitter = "<div style=\"float: left; margin-right: 10px;\"><a href=\"https://twitter.com/share\" class=\"twitter-share-button\" data-url=\"" + link + "\" data-count=\"none\" data-lang=\"hu\">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=\"//platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");</script></div>";
+            else
+                twitter = "<div style=\"float: left; margin-right: 10px;\"><a href=\"https://twitter.com/share\" class=\"twitter-share-button\" data-url=\"" + link + "\" data-count=\"none\" data-lang=\"en\">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=\"//platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");</script></div>";
+
+
+            return new MvcHtmlString(twitter);
         }
 
         public static string SiteName = "VialpandoBlog";
