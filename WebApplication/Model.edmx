@@ -160,17 +160,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IpAddress" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
-    <Property Name="Latitude" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Longitude" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ZipCode" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="TimeZone" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ISP" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Domain" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IDD" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ConnectionType" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="CategoryEntry">
     <Key>
@@ -509,17 +499,7 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="IpAddress" Nullable="false" />
-          <Property Type="String" Name="Country" Nullable="false" />
-          <Property Type="String" Name="Location" Nullable="false" />
           <Property Type="DateTime" Name="Date" Nullable="false" />
-          <Property Type="String" Name="Latitude" Nullable="false" />
-          <Property Type="String" Name="Longitude" Nullable="false" />
-          <Property Type="String" Name="ZipCode" Nullable="false" />
-          <Property Type="String" Name="TimeZone" Nullable="false" />
-          <Property Type="String" Name="ISP" Nullable="false" />
-          <Property Type="String" Name="Domain" Nullable="false" />
-          <Property Type="String" Name="IDD" Nullable="false" />
-          <Property Type="String" Name="ConnectionType" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -638,17 +618,7 @@
         <MappingFragment StoreEntitySet="VisitorDataSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
-          <ScalarProperty Name="Country" ColumnName="Country" />
-          <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-          <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
-          <ScalarProperty Name="ISP" ColumnName="ISP" />
-          <ScalarProperty Name="Domain" ColumnName="Domain" />
-          <ScalarProperty Name="IDD" ColumnName="IDD" />
-          <ScalarProperty Name="ConnectionType" ColumnName="ConnectionType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -741,7 +711,7 @@
           <ConnectorPoint PointX="2.5" PointY="2.1151432291666667" />
           <ConnectorPoint PointX="2.125" PointY="2.1151432291666667" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model.VisitorData" Width="1.5" PointX="8.125" PointY="2.625" Height="3.5186979166666656" />
+        <EntityTypeShape EntityType="Model.VisitorData" Width="1.5" PointX="8.125" PointY="2.625" Height="1.5956835937499996" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

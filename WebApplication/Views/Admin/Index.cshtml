@@ -31,32 +31,68 @@
         </div>
     </div>
     <div class="rssfeeds">
-        @(Html.Telerik().Grid(rssModel.Elements)
-        .Name("Grid")
-        .Columns(columns =>
-        {
-            columns.Template
-                (
-                    @<text>
-        <h5>@item.Element("title").Value</h5>
-        @(new HtmlString(item.Element("description").Value))
-        <br />
-        @item.Element("pubDate").Value
-        (
-        @foreach (var element in item.Elements("category"))
-        {
-            <text>@element.Value </text>
-        }
+        @(Html.Telerik().Chart((IEnumerable<WebApplication.Models.DailyVisitors>)ViewBag.DailyVisitors)
+        .Name("chartDaily")
+        .Title(title => title
+            .Text("Napi egyedi látogatók száma az előző egy hétben")
+            .Visible(true)
         )
-        <input type="button" value="@WebApplication.Resources.Common.Details" onclick="javascript:window.location.href='@item.Element("link").Value'" />
-        </text>
-
-                ).Title(rssModel.Title);
+        .Legend(legend => legend
+            .Position(ChartLegendPosition.Top)
+            .Visible(true)
+        )
+        .SeriesDefaults(series =>
+        {
+            series.Column().Stack(true);
         })
-        .Scrollable(scrolling => scrolling.Enabled(true))
-        .Sortable(sorting => sorting.Enabled(true))
-        .Pageable(paging => paging.Enabled(true))
-        .Footer(true)
-)
+        .Series(series =>
+        {
+            series.Column(s => s.Count).Name("Látogatók száma");                        
+        })
+        .CategoryAxis(axis => axis
+            .Categories(s => s.Day)
+        )
+        .ValueAxis(axis => axis
+            .Numeric().Labels(labels => labels.Format("{0:#,##0}"))
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Format("{0:#,##0}")
+        )
+        .HtmlAttributes(new { style = "padding: 2%; float: left; width: 46%; height: 400px;" })
+    )
+
+    @(Html.Telerik().Chart((IEnumerable<WebApplication.Models.MonthlyVisitors>)ViewBag.MonthlyVisitors)
+        .Name("chartMonthly")
+        .Title(title => title
+            .Text("Havi egyedi látogatók száma az előző egy évben")
+            .Visible(true)
+        )
+        .Legend(legend => legend
+            .Position(ChartLegendPosition.Top)
+            .Visible(true)
+        )
+        .SeriesDefaults(series =>
+        {
+            series.Column().Stack(true);
+        })
+        .Series(series =>
+        {
+            series.Column(s => s.Count).Name("Látogatók száma");                        
+        })
+        .CategoryAxis(axis => axis
+            .Categories(s => s.Month)
+        )
+        .ValueAxis(axis => axis
+            .Numeric().Labels(labels => labels.Format("{0:#,##0}"))
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Format("{0:#,##0}")
+        )
+        .HtmlAttributes(new { style = "float: left; padding: 2%; width: 46%; height: 400px;" })
+    )
+    </div>
+    <div class="rssfeeds">
     </div>
 </div>

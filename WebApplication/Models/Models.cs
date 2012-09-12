@@ -9,6 +9,18 @@ using System.Text.RegularExpressions;
 
 namespace WebApplication.Models
 {
+    public class DailyVisitors
+    {
+        public string Day { get; set; }
+        public int Count { get; set; }
+    }
+
+    public class MonthlyVisitors
+    {
+        public string Month { get; set; }
+        public int Count { get; set; }
+    }
+
     public class RssModel
     {
         public string Title { get; set; }

@@ -16,17 +16,7 @@ namespace WebApplication
     {
         public int Id { get; set; }
         public string IpAddress { get; set; }
-        public string Country { get; set; }
-        public string Location { get; set; }
         public System.DateTime Date { get; set; }
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
-        public string ZipCode { get; set; }
-        public string TimeZone { get; set; }
-        public string ISP { get; set; }
-        public string Domain { get; set; }
-        public string IDD { get; set; }
-        public string ConnectionType { get; set; }
     }
     
 }

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 09/10/2012 23:53:53
+-- Date Created: 09/12/2012 17:19:11
 -- Generated from EDMX file: D:\Documents\GitHub\SocialProgramming\WebApplication\Model.edmx
 -- --------------------------------------------------
 
@@ -193,17 +193,7 @@ GO
 CREATE TABLE [dbo].[VisitorDataSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [IpAddress] nvarchar(max)  NOT NULL,
-    [Country] nvarchar(max)  NOT NULL,
-    [Location] nvarchar(max)  NOT NULL,
-    [Date] datetime  NOT NULL,
-    [Latitude] nvarchar(max)  NOT NULL,
-    [Longitude] nvarchar(max)  NOT NULL,
-    [ZipCode] nvarchar(max)  NOT NULL,
-    [TimeZone] nvarchar(max)  NOT NULL,
-    [ISP] nvarchar(max)  NOT NULL,
-    [Domain] nvarchar(max)  NOT NULL,
-    [IDD] nvarchar(max)  NOT NULL,
-    [ConnectionType] nvarchar(max)  NOT NULL
+    [Date] datetime  NOT NULL
 );
 GO
 

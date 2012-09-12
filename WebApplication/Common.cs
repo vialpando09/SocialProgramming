@@ -136,9 +136,13 @@ namespace WebApplication
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
+
+            ModelContainer db = ((BaseController)filterContext.Controller).Db;
+            db.VisitorDataSet.Add(new VisitorData { Date = DateTime.Now, IpAddress = filterContext.RequestContext.HttpContext.Request.UserHostAddress });
+            db.SaveChanges();
+
             if (filterContext.Controller is FileBrowserController)
                 return;
-            ModelContainer db = ((BaseController)filterContext.Controller).Db;
 
             if (filterContext.RequestContext.HttpContext.Session["UserType"] == null)
             {
