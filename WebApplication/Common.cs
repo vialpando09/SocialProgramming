@@ -152,16 +152,8 @@ namespace WebApplication
         {
             base.OnActionExecuting(filterContext);
             string strHostName = System.Net.Dns.GetHostName();
-            var clientIPAddresses = System.Net.Dns.GetHostAddresses(strHostName).Where(e => e.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
-            string clientIPAddress = "";
-            foreach (var item in clientIPAddresses)
-            {
-                if (!isPrivateAddress(item))
-                {
-                    clientIPAddress = item.ToString();
-                    break;
-                }
-            }
+            
+            string clientIPAddress = filterContext.HttpContext.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];            
 
             ModelContainer db = ((BaseController)filterContext.Controller).Db;
             db.VisitorDataSet.Add(new VisitorData { Date = DateTime.Now, IpAddress = clientIPAddress });
