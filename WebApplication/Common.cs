@@ -131,14 +131,37 @@ namespace WebApplication
         }
     }
 
+
+
     public class GlobalAutoLoginAction : ActionFilterAttribute
     {
+        public static bool isPrivateAddress(IPAddress ip)
+        {
+            var ipAddr = ip.ToString().Split('.');
+            //10.0.0.0 through 10.255.255.255  
+            if (ipAddr[0] == "10") return true;            
+            //169.254.0.0 through 169.254.255.255 (APIPA only)
+            if (ipAddr[0] == "169" && ipAddr[1] == "254") return true;
+            //172.16.0.0 through 172.31.255.255
+            if (ipAddr[0] == "172" && int.Parse(ipAddr[1]) >= 16 && int.Parse(ipAddr[1]) <= 31) return true;
+            //192.168.0.0 through 192.168.255.255
+            if (ipAddr[0] == "192" && ipAddr[1] == "168") return true;
+            return false;
+        }
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
             string strHostName = System.Net.Dns.GetHostName();
-            string clientIPAddress = System.Net.Dns.GetHostAddresses(strHostName).Where(e => e.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).First().ToString();
-
+            var clientIPAddresses = System.Net.Dns.GetHostAddresses(strHostName).Where(e => e.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
+            string clientIPAddress = "";
+            foreach (var item in clientIPAddresses)
+            {
+                if (!isPrivateAddress(item))
+                {
+                    clientIPAddress = item.ToString();
+                    break;
+                }
+            }
 
             ModelContainer db = ((BaseController)filterContext.Controller).Db;
             db.VisitorDataSet.Add(new VisitorData { Date = DateTime.Now, IpAddress = clientIPAddress });
