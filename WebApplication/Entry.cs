@@ -34,6 +34,8 @@ namespace WebApplication
         public string enIntroduction { get; set; }
         public bool IsFeatured { get; set; }
         public string FeaturedImage { get; set; }
+        public string FeaturedEnText { get; set; }
+        public string FeaturedHuText { get; set; }
     
         public virtual User Creator { get; set; }
         public virtual ICollection<Category> Categories { get; set; }

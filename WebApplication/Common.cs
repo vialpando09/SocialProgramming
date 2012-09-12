@@ -321,6 +321,16 @@ namespace WebApplication
             return "";
         }
 
+        public static MvcHtmlString FacebookLink(string date, int id, string title, string type)
+        {
+            string link = SiteAddress + type + "/Entries/" + date + "/" + id.ToString() + "/" + title;
+            link = link.Replace(":", "%3A");
+            link = link.Replace("/", "%2F");
+
+            string fb = "<iframe src=\"//www.facebook.com/plugins/like.php?href=" + link + "&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=35\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; width:450px; height:35px;\" allowTransparency=\"true\"></iframe>";
+            return new MvcHtmlString(fb);
+        }
+
         public static string SiteName = "VialpandoBlog";
         public static string SiteAddress = "http://vialpando.apphb.com/";
         public static string NoReplyPassword = "DreBr5wE";
@@ -361,6 +371,7 @@ namespace WebApplication
             text = text.Replace('$', '_');
             text = text.Replace('.', '_');
             text = text.Replace('&', '_');
+            text = text.Replace("\"", "");
 
             return text;
         }

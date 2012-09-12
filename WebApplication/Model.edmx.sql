@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 08/28/2012 08:52:36
+-- Date Created: 09/10/2012 23:53:53
 -- Generated from EDMX file: D:\Documents\GitHub\SocialProgramming\WebApplication\Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [Vialpando];
+USE [db2d18f7c2b5554fe49690a0bb00803280];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -125,7 +125,9 @@ CREATE TABLE [dbo].[Entries] (
     [huIntroduction] nvarchar(max)  NOT NULL,
     [enIntroduction] nvarchar(max)  NOT NULL,
     [IsFeatured] bit  NOT NULL,
-    [FeaturedImage] nvarchar(max)  NOT NULL
+    [FeaturedImage] nvarchar(max)  NOT NULL,
+    [FeaturedEnText] nvarchar(max)  NULL,
+    [FeaturedHuText] nvarchar(max)  NULL
 );
 GO
 

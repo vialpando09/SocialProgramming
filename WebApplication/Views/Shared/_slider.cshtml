@@ -16,19 +16,26 @@
         }
     </ul>
     @for (int i = 1; i <= Model.Count(); i++)
-    {        
+    {
+
+        int year = Model.ElementAt(i - 1).PublishedDate.Year;
+        int month = Model.ElementAt(i - 1).PublishedDate.Month;
+        int day = Model.ElementAt(i - 1).PublishedDate.Day;
+        string date = year.ToString() + ((month < 10) ? "0" : "") + month.ToString() + ((day < 10) ? "0" : "") + day.ToString();
+        string url = "Entries/" + date + "/" + Model.ElementAt(i - 1).Id;
+        
         <div id="fragment-@i" class="ui-tabs-panel" style="">
             <img src="@Model.ElementAt(i - 1).FeaturedImage" alt="" />
             <div class="info">
                 @if (Culture != "hu-HU")
                 {   
-                    <h2>@Model.ElementAt(i - 1).enTitle</h2>
-                    <p>@Html.Raw(Model.ElementAt(i - 1).enIntroduction)</p>
+                    <h2><a href="en/@url/@Model.ElementAt(i - 1).enTitle.Urlable()">@Model.ElementAt(i - 1).enTitle</a></h2>
+                    <p><a href="en/@url/@Model.ElementAt(i - 1).enTitle.Urlable()">@Html.Raw(Model.ElementAt(i - 1).FeaturedEnText)</a></p>
                 }
                 else
                 {
-                    <h2>@Model.ElementAt(i - 1).huTitle</h2>
-                    <p>@Html.Raw(Model.ElementAt(i - 1).huIntroduction)</p>
+                    <h2><a href="hu/@url/@Model.ElementAt(i - 1).huTitle.Urlable()">@Model.ElementAt(i - 1).huTitle</a></h2>
+                    <p><a href="hu/@url/@Model.ElementAt(i - 1).huTitle.Urlable()">@Html.Raw(Model.ElementAt(i - 1).FeaturedHuText)</a></p>
                 }
             </div>
         </div>        

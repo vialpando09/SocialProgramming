@@ -161,6 +161,17 @@ jQuery('.accordion_container').accordion();
                 <a href="#">@WebApplication.Resources.Common.FeaturedPart</a></h2>
             <div class="accordion_content" style="display: block;">
                 @Html.ValidationSummary(true)
+                @Html.ValidationSummary(true)
+                <div class="field" style="margin-top: 20px;">
+                    @Html.LabelFor(model => model.FeaturedHuText, "Magyar szöveg")
+                    @Html.TextBoxFor(model => model.FeaturedHuText, new { size = "50" })
+                    @Html.ValidationMessageFor(model => model.FeaturedHuText)
+                </div>
+                <div class="field">
+                    @Html.LabelFor(model => model.FeaturedEnText, "English text")
+                    @Html.TextBoxFor(model => model.FeaturedEnText, new { size = "50" })
+                    @Html.ValidationMessageFor(model => model.FeaturedEnText)
+                </div>
                 <div class="field" style="margin-top: 20px;">
                     @Html.LabelFor(model => model.IsFeatured, WebApplication.Resources.Common.SetFeatured)
                     @Html.CheckBoxFor(model => model.IsFeatured, new { size = "50" })

@@ -93,6 +93,8 @@
     <Property Name="enIntroduction" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsFeatured" Type="bit" Nullable="false" />
     <Property Name="FeaturedImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FeaturedEnText" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FeaturedHuText" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="Pages">
     <Key>
@@ -385,6 +387,8 @@
           <NavigationProperty Name="Comments" Relationship="Model.CommentEntry" FromRole="Entry" ToRole="Comment" />
           <Property Type="Boolean" Name="IsFeatured" Nullable="false" />
           <Property Type="String" Name="FeaturedImage" Nullable="false" />
+          <Property Type="String" Name="FeaturedEnText" Nullable="true" />
+          <Property Type="String" Name="FeaturedHuText" Nullable="true" />
           </EntityType>
         <EntityType Name="Page">
           <Key>
@@ -562,6 +566,8 @@
           <ScalarProperty Name="enIntroduction" ColumnName="enIntroduction" />
           <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
           <ScalarProperty Name="FeaturedImage" ColumnName="FeaturedImage" />
+          <ScalarProperty Name="FeaturedEnText" ColumnName="FeaturedEnText" />
+          <ScalarProperty Name="FeaturedHuText" ColumnName="FeaturedHuText" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -700,7 +706,7 @@
       <Diagram Name="Model" >
         <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="6.25" PointY="0.5" Height="1.787985026041667" />
         <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="0.625" PointY="0.5" Height="3.326396484375" />
-        <EntityTypeShape EntityType="Model.Entry" Width="1.5" PointX="4.375" PointY="0.5" Height="4.2879036458333335" />
+        <EntityTypeShape EntityType="Model.Entry" Width="1.5" PointX="4.375" PointY="0.5" Height="4.6725065104166656" />
         <EntityTypeShape EntityType="Model.Page" Width="1.5" PointX="0.625" PointY="4.125" Height="2.7494921874999996" />
         <EntityTypeShape EntityType="Model.Setting" Width="1.5" PointX="8.125" PointY="0.5" Height="1.5956835937499996" />
         <AssociationConnector Association="Model.UserEntry">
@@ -723,8 +729,8 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.File" Width="1.5" PointX="2.5" PointY="3.375" Height="1.9802864583333335" />
         <AssociationConnector Association="Model.EntryFile">
-          <ConnectorPoint PointX="4.375" PointY="4.0814518229166667" />
-          <ConnectorPoint PointX="4" PointY="4.0814518229166667" />
+          <ConnectorPoint PointX="4.375" PointY="4.2737532552083328" />
+          <ConnectorPoint PointX="4" PointY="4.2737532552083328" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.Comment" Width="1.5" PointX="2.5" PointY="1.125" Height="1.9802864583333331" />
         <AssociationConnector Association="Model.CommentEntry">

@@ -62,8 +62,8 @@
 #featured .ui-tabs-panel .info{ 
 	width: 100%;
 	position:absolute; 
-	top:223px; left:0; 
-	height:77px; 
+	top:240px; left:0; 
+	height:60px; 
 	overflow: hidden;
 	background-image: url('./themes/main/transparent-bg.png');
 }
