@@ -136,9 +136,12 @@ namespace WebApplication
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
+            string strHostName = System.Net.Dns.GetHostName();
+            string clientIPAddress = System.Net.Dns.GetHostAddresses(strHostName).Where(e => e.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).First().ToString();
+
 
             ModelContainer db = ((BaseController)filterContext.Controller).Db;
-            db.VisitorDataSet.Add(new VisitorData { Date = DateTime.Now, IpAddress = filterContext.RequestContext.HttpContext.Request.UserHostAddress });
+            db.VisitorDataSet.Add(new VisitorData { Date = DateTime.Now, IpAddress = clientIPAddress });
             db.SaveChanges();
 
             if (filterContext.Controller is FileBrowserController)
