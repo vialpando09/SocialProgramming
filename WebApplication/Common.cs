@@ -157,7 +157,7 @@ namespace WebApplication
 
             ModelContainer db = ((BaseController)filterContext.Controller).Db;
             db.VisitorDataSet.Add(new VisitorData { Date = DateTime.Now, IpAddress = clientIPAddress });
-            db.SaveChanges();
+            //db.SaveChanges();
 
             if (filterContext.Controller is FileBrowserController)
                 return;
